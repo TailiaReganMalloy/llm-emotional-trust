@@ -10,6 +10,9 @@ from scipy import stats
 
 combined = pd.read_csv("./data/combined.csv")
 
+print(combined['Age'].unique().mean())
+
+assert(False)
 TARGET_COLUMNS = [
       "AI Weary Post",
       "AI Confident Post",
