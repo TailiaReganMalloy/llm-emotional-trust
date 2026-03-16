@@ -7,7 +7,7 @@ from uuid import uuid4
 import pandas as pd
 import matplotlib.pyplot as plt
 
-RAW_DIR = Path(__file__).resolve().parent / "raw"
+RAW_DIR = Path(__file__).resolve().parent / "all"
 
 
 def _latest_csv(prefix: str) -> Path:
