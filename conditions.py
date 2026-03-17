@@ -23,6 +23,7 @@ cross_condition_ids = (
       .index
 )
 
+print("BOTH CONDITIONS", len(cross_condition_ids))
 if len(cross_condition_ids) > 0:
       overlapping = (
             df[df["_normalized_id"].isin(cross_condition_ids)]

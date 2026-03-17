@@ -10,9 +10,6 @@ from scipy import stats
 
 combined = pd.read_csv("./data/combined.csv")
 
-print(combined['Age'].unique().mean())
-
-assert(False)
 TARGET_COLUMNS = [
       "AI Weary Post",
       "AI Confident Post",
@@ -222,3 +219,19 @@ plt.close()
 
 print(f"\nSaved significance table to: {results_path}")
 print(f"Saved R^2 plot to: {plot_path}")
+
+# Plot distribution of all recorded completion times.
+time_taken = pd.to_numeric(combined["Time taken"], errors="coerce").dropna()
+if not time_taken.empty:
+      plt.figure(figsize=(10, 6))
+      plt.hist(time_taken, bins=30, color="#F58518", edgecolor="white")
+      plt.title("Distribution of Time Taken")
+      plt.xlabel("Time Taken")
+      plt.ylabel("Count")
+      plt.tight_layout()
+      time_hist_path = out_dir / "time_taken_histogram.png"
+      plt.savefig(time_hist_path, dpi=300, bbox_inches="tight")
+      plt.close()
+      print(f"Saved time taken histogram to: {time_hist_path}")
+else:
+      print("No valid numeric values found in 'Time taken'; histogram was not generated.")

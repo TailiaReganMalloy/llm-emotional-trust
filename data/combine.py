@@ -45,6 +45,7 @@ student_responses_df = pd.read_csv(student_csv)
 trust_group_1_df = pd.read_excel(RAW_DIR / "TrustGroup1(1-188).xlsx")
 trust_group_2_df = pd.read_excel(RAW_DIR / "TrustGroup2(1-167).xlsx")
 
+assert(False)
 
 
 trust_group_1_df.columns = _remove_special_chars(trust_group_1_df.columns)
