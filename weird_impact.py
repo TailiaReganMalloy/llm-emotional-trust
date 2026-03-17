@@ -48,9 +48,99 @@ LIKERT_MAP = {
     "Strongly Agree": 2,
 }
 
+# Proxies for Industrialized/Rich/Democratic via nationality.
+INDUSTRIALIZED_NATIONALITIES = {
+    "Australia",
+    "Canada",
+    "Chile",
+    "Croatia",
+    "Czech Republic",
+    "Estonia",
+    "France",
+    "Germany",
+    "Greece",
+    "Hong Kong",
+    "Hungary",
+    "Israel",
+    "Italy",
+    "Japan",
+    "Korea",
+    "Lithuania",
+    "Netherlands",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+    "United Kingdom",
+    "United States",
+}
 
-LOW_KNOWLEDGE = {"beginner knowledge", "conceptual understanding", "no knowledge"}
-HIGH_KNOWLEDGE = {"advanced", "expert"}
+RICH_NATIONALITIES = {
+    "Australia",
+    "Canada",
+    "Chile",
+    "Czech Republic",
+    "Estonia",
+    "France",
+    "Germany",
+    "Greece",
+    "Hong Kong",
+    "Hungary",
+    "Israel",
+    "Italy",
+    "Japan",
+    "Korea",
+    "Lithuania",
+    "Netherlands",
+    "Poland",
+    "Portugal",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+    "Trinidad and Tobago",
+    "United Kingdom",
+    "United States",
+}
+
+DEMOCRATIC_NATIONALITIES = {
+    "Australia",
+    "Brazil",
+    "Canada",
+    "Chile",
+    "Colombia",
+    "Croatia",
+    "Czech Republic",
+    "Estonia",
+    "France",
+    "Germany",
+    "Greece",
+    "Hungary",
+    "India",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Korea",
+    "Lithuania",
+    "Malaysia",
+    "Mexico",
+    "Netherlands",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovenia",
+    "South Africa",
+    "Spain",
+    "Sweden",
+    "Tunisia",
+    "United Kingdom",
+    "United States",
+}
+
+EDUCATED_LEVELS = {"Bachelor", "Master", "PhD", "Graduate Professional Degree"}
 
 
 def _normalize_text(value: object) -> str:
@@ -59,13 +149,38 @@ def _normalize_text(value: object) -> str:
     return " ".join(text.split())
 
 
-def _knowledge_group(value: object) -> str | None:
-    key = _normalize_text(value)
-    if key in LOW_KNOWLEDGE:
-        return "Low Knowledge"
-    if key in HIGH_KNOWLEDGE:
-        return "High Knowledge"
-    return None
+def _is_white_ethnicity(row: pd.Series) -> bool:
+    simplified = _normalize_text(row.get("Ethnicity simplified", ""))
+    if simplified == "white":
+        return True
+
+    ethnicity = _normalize_text(row.get("Ethnicity", ""))
+    return ethnicity.startswith("white")
+
+
+def _is_educated(value: object) -> bool:
+    return str(value).strip() in EDUCATED_LEVELS
+
+
+def _weird_flags(row: pd.Series) -> dict[str, bool]:
+    nationality = str(row.get("Nationality", "")).strip()
+    return {
+        "W": _is_white_ethnicity(row),
+        "E": _is_educated(row.get("Education", "")),
+        "I": nationality in INDUSTRIALIZED_NATIONALITIES,
+        "R": nationality in RICH_NATIONALITIES,
+        "D": nationality in DEMOCRATIC_NATIONALITIES,
+    }
+
+
+def _weird_score(row: pd.Series) -> int:
+    flags = _weird_flags(row)
+    return int(sum(flags.values()))
+
+
+def _is_weird(row: pd.Series) -> bool:
+    # Inclusive threshold requested: classify as WEIRD when >=3 of 5 criteria are met.
+    return _weird_score(row) >= 3
 
 
 LIKERT_VALUE_MAP = {_normalize_text(k): v for k, v in LIKERT_MAP.items()}
@@ -151,30 +266,35 @@ def _summarize_by_condition(df: pd.DataFrame, impact_col: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-combined["Knowledge Group"] = combined["AI Knowledge"].apply(_knowledge_group)
-combined = combined[combined["Knowledge Group"].notna()].copy()
+required_cols = ["Education", "Ethnicity", "Ethnicity simplified", "Nationality", "Condition"]
+missing = [col for col in required_cols if col not in combined.columns]
+if missing:
+    raise ValueError(f"Expected columns missing from dataset: {missing}")
+
+combined["WEIRD Group"] = combined.apply(_is_weird, axis=1).map({True: "WEIRD", False: "Non-WEIRD"})
+combined["WEIRD Score"] = combined.apply(_weird_score, axis=1)
 
 combined["Emotional Impact Delta"] = _build_emotional_delta(combined)
 combined["Analytical Trust Impact Delta"] = _build_analytical_delta(combined)
 
 panel_specs = [
-    ("Emotional Impact Delta", "Emotional", "Low Knowledge", 0, 0),
-    ("Emotional Impact Delta", "Emotional", "High Knowledge", 0, 1),
-    ("Analytical Trust Impact Delta", "Analytical", "Low Knowledge", 1, 0),
-    ("Analytical Trust Impact Delta", "Analytical", "High Knowledge", 1, 1),
+    ("Emotional Impact Delta", "Emotional", "WEIRD", 0, 0),
+    ("Emotional Impact Delta", "Emotional", "Non-WEIRD", 0, 1),
+    ("Analytical Trust Impact Delta", "Analytical", "WEIRD", 1, 0),
+    ("Analytical Trust Impact Delta", "Analytical", "Non-WEIRD", 1, 1),
 ]
 
 all_summaries = []
 fig, axes = plt.subplots(2, 2, figsize=(14, 10), sharey=True)
 
-for impact_col, impact_label, knowledge_label, row_i, col_i in panel_specs:
+for impact_col, impact_label, weird_label, row_i, col_i in panel_specs:
     ax = axes[row_i, col_i]
-    subset = combined[combined["Knowledge Group"] == knowledge_label].copy()
+    subset = combined[combined["WEIRD Group"] == weird_label].copy()
     subset = subset[["Condition", impact_col]].dropna()
 
     summary_df = _summarize_by_condition(subset, impact_col)
     summary_df["impact_type"] = impact_label
-    summary_df["knowledge_group"] = knowledge_label
+    summary_df["weird_group"] = weird_label
     all_summaries.append(summary_df)
 
     x = summary_df["Condition"].tolist()
@@ -184,7 +304,7 @@ for impact_col, impact_label, knowledge_label, row_i, col_i in panel_specs:
 
     bars = ax.bar(x, means, yerr=sems, capsize=6, color=["#4C78A8", "#72B7B2"])
     ax.axhline(0.0, color="black", linewidth=1, alpha=0.6)
-    ax.set_title(f"{impact_label} - {knowledge_label}")
+    ax.set_title(f"{impact_label} - {weird_label}")
     ax.set_xlabel("Condition")
     ax.set_ylabel("Trust Impact (Post - Pre)")
 
@@ -199,21 +319,28 @@ for impact_col, impact_label, knowledge_label, row_i, col_i in panel_specs:
         va = "bottom" if height >= 0 else "top"
         ax.text(bar.get_x() + bar.get_width() / 2, y, label, ha="center", va=va, fontsize=10)
 
-fig.suptitle("Overall Trust Impact by Condition and AI Knowledge Group", fontsize=14)
+fig.suptitle("Overall Trust Impact by Condition and WEIRD Group", fontsize=14)
 plt.tight_layout(rect=[0, 0, 1, 0.97])
 
 out_dir = Path("./analysis")
 out_dir.mkdir(parents=True, exist_ok=True)
 
-plot_path = out_dir / "knowledge_split_emotional_analytical_2x2.png"
+plot_path = out_dir / "weird_split_emotional_analytical_2x2.png"
 plt.savefig(plot_path, dpi=300, bbox_inches="tight")
 plt.close()
 
 summary_all_df = pd.concat(all_summaries, ignore_index=True)
-summary_path = out_dir / "knowledge_split_emotional_analytical_summary.csv"
+summary_path = out_dir / "weird_split_emotional_analytical_summary.csv"
 summary_all_df.to_csv(summary_path, index=False)
 
-print("Knowledge-split emotional and analytical impact summary:")
+group_counts = combined.groupby(["WEIRD Group", "Condition"], as_index=False).size()
+score_counts = combined.groupby(["WEIRD Score", "WEIRD Group"], as_index=False).size()
+
+print("WEIRD-split emotional and analytical impact summary:")
 print(summary_all_df.to_string(index=False))
+print("\nWEIRD group sample sizes by condition:")
+print(group_counts.to_string(index=False))
+print("\nWEIRD score distribution:")
+print(score_counts.sort_values(["WEIRD Score", "WEIRD Group"]).to_string(index=False))
 print(f"\nSaved 2x2 plot to: {plot_path}")
 print(f"Saved summary table to: {summary_path}")

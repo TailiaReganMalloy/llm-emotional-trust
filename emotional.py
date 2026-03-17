@@ -15,15 +15,15 @@ if "Status" in combined.columns:
 
 
 EMOTIONAL_PAIRS = {
-	"AI systems are 1": {"Apathetic": 0, "Empathetic": 1},
-	"AI systems are 2": {"Insensitive": 0, "Sensitive": 1},
-	"AI systems are 3": {"Impersonal": 0, "Personal": 1},
-	"AI systems are 4": {"Ignoring": 0, "Caring": 1},
-	"AI systems are 5": {"Self Serving": 0, "Self-Serving": 0, "Altruistic": 1},
-	"AI systems are 6": {"Rude": 0, "Cordial": 1},
-	"AI systems are 7": {"Indifferent": 0, "Responsive": 1},
-	"AI systems are 8": {"Judgemental": 0, "Judgmental": 0, "Open-Minded": 1},
-	"AI systems are 9": {"Impatient": 0, "Patient": 1},
+	"AI systems are 1": {"Apathetic": -1, "Empathetic": 1},
+	"AI systems are 2": {"Insensitive": -1, "Sensitive": 1},
+	"AI systems are 3": {"Impersonal": -1, "Personal": 1},
+	"AI systems are 4": {"Ignoring": -1, "Caring": 1},
+	"AI systems are 5": {"Self Serving": -1, "Self-Serving": -1, "Altruistic": 1},
+	"AI systems are 6": {"Rude": -1, "Cordial": 1},
+	"AI systems are 7": {"Indifferent": -1, "Responsive": 1},
+	"AI systems are 8": {"Judgemental": -1, "Judgmental": -1, "Open-Minded": 1},
+	"AI systems are 9": {"Impatient": -1, "Patient": 1},
 }
 
 
