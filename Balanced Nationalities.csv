@@ -1,4 +1,10 @@
 ,Condition,Nationality,count,balance count,target_count
+
+USA 17
+Mexico 10
+Canada 5
+
+
 0,Interactive,South Africa,21,0,21
 3,Interactive,United States,1,17,18
 5,Interactive,Mexico,5,10,15
@@ -45,6 +51,20 @@
 43,Interactive,Sweden,0,1,1
 44,Interactive,Trinidad and Tobago,0,1,1
 45,Interactive,Tunisia,0,1,1
+
+
+7 south african 
+6 mexico 
+5 india 
+7 brazil 
+4 australia 
+6 egypt 
+4 netherlands 
+3 israel 
+10 canada 
+2 korea 
+
+
 46,Static,South Africa,14,7,21
 49,Static,United States,18,0,18
 51,Static,Mexico,9,6,15
