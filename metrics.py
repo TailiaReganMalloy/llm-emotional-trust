@@ -55,10 +55,57 @@ likert_map = {
       "strongly agree": 2,
 }
 
+reverse_likert_map = {
+      "strongly disagree": 2,
+      "disagree": 1,
+      "neutral": 0,
+      "neither agree nor disagree": 0,
+      "agree": -1,
+      "strongly agree": -2,
+}
 
-for column in AI_Analytical_Trust + AI_Analytical_Trust_Post:
+#analytical polarity
+"""
+'AI Deceptive', 'AI Honest', 'AI Suspicious', 'AI Weary', 'AI Harm',
+       'AI Confident', 'AI Security', 'AI Trustworthy', 'AI Reliable',
+       'AI Trust',
+
+       AI-systems are deceptive
+AI-systems behave in an dishonest manner
+I am suspicious of  AI-system's intent, action, or, outputs
+I am wary of AI-systems
+AI-system’s actions will have a harmful or injurious outcome
+I am confident in AI-systems
+AI-systems provide security
+AI-systems are trustworthy
+AI-system are reliable
+I can trust  AI-systems
+       
+"""
+
+
+positive_analytical_cols = {
+      "AI Confident",
+      "AI Security",
+      "AI Trustworthy",
+      "AI Reliable",
+      "AI Trust",
+      "AI Confident Post",
+      "AI Security Post",
+      "AI Trustworthy Post",
+      "AI Reliable Post",
+      "AI Trust Post",
+}
+
+negative_analytical_cols = set(AI_Analytical_Trust + AI_Analytical_Trust_Post) - positive_analytical_cols
+
+for column in positive_analytical_cols:
       if column in Combined.columns:
             Combined[column] = Combined[column].map(lambda x: likert_map.get(_normalize_text(x), 0))
+
+for column in negative_analytical_cols:
+      if column in Combined.columns:
+            Combined[column] = Combined[column].map(lambda x: reverse_likert_map.get(_normalize_text(x), 0))
 
 
 # Emotional polarity by item: positive term -> +1, opposite term -> -1.

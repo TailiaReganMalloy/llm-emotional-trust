@@ -3,8 +3,8 @@ from scipy import stats
 import matplotlib.pyplot as plt
 
 Cleaned = pd.read_csv("./data/Cleaned.csv")
-print(Cleaned.columns)
-""" 
+
+""" print(Cleaned.columns)
 Index(['ID', 'Start time', 'Completion time', 'Email', 'Name',
        'Last modified time', 'Consent 1', 'Consent 2', 'Consent 3',
        'Consent 4', 'Education', 'AI Knowledge', 'Age', 'AI Deceptive',
@@ -31,6 +31,8 @@ Index(['ID', 'Start time', 'Completion time', 'Email', 'Name',
       dtype='str')
 """
 
+
+assert(False)
 """
 Research Question:
 Does experimental condition (Interactive vs Text) influence trust change outcomes,
@@ -55,7 +57,6 @@ Prediction:
 
 2. We will reject the Null Hypotheses H0_Emotional due to there being a statistically significant difference between the conditions. 
 """
-
 
 def _to_numeric(series: pd.Series) -> pd.Series:
       return pd.to_numeric(series, errors="coerce")

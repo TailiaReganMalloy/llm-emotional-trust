@@ -9,7 +9,6 @@ Questionnaires = pd.read_csv("./data/Questionnaires.csv")
 Responses = pd.read_csv("./data/Responses.csv")
 Submissions = pd.read_csv("./data/Submissions.csv")
 
-
 """
 'Responses' : {'Study Type': study_type, 'Page Title': page_title, 'Section Title': section_title, 'Section Index': section_index, 'Response Text': response_text}
 """
