@@ -1,184 +1,165 @@
-# LLM Emotional Trust Data and Analysis
+# LLM Emotional Trust
 
-This repository contains data preparation and analysis scripts for pre/post trust and emotional perception outcomes across experimental conditions.
+This repository contains merged survey + demographics data for an AI trust/emotion study.
 
-## Data Dictionary
+Main dataset:
+- data/Combined.csv
 
-The `combined` dataset (for example `data/combined.csv`) includes the following columns.
+## Combined.csv column dictionary
 
-| Column | Definition | Example value |
-| --- | --- | --- |
-| `ID` | Survey platform response ID. | `R_5Q8abc123` |
-| `Start time` | Survey start timestamp. | `2026-02-17 10:45:20` |
-| `Completion time` | Survey completion timestamp. | `2026-02-17 11:02:12` |
-| `Email` | Email captured in survey export. | `participant@email.prolific.com` |
-| `Name` | Optional name field from survey export. | `Jane Doe` |
-| `Last modified time` | Last modified timestamp in survey platform. | `2026-02-17 11:02:30` |
-| `Consent 1` | Consent item 1 response. | `Yes` |
-| `Consent 2` | Consent item 2 response. | `Yes` |
-| `Consent 3` | Consent item 3 response. | `Yes` |
-| `Consent 4` | Consent item 4 response. | `Yes` |
-| `Prolific or Email` | Participant identifier used for joins (Prolific ID or email). | `6980bcbe582db0ee10868525` |
-| `Education` | Self-reported education level. | `Bachelor degree` |
-| `AI Knowledge` | Self-reported AI knowledge category. | `Conceptual understanding` |
-| `Age` | Survey age response field. | `24` |
-| `AI Deceptive` | Pre item: AI systems are deceptive (Likert). | `Disagree` |
-| `AI Honest` | Pre item: AI systems behave honestly (Likert). | `Agree` |
-| `AI Suspicious` | Pre item: suspicion of AI intent/actions/outputs (Likert). | `Agree` |
-| `AI Weary` | Pre item: wariness of AI systems (Likert). | `Disagree` |
-| `AI Harm` | Pre item: expectation of harmful outcomes (Likert). | `Disagree` |
-| `AI Confident` | Pre item: confidence in AI systems (Likert). | `Agree` |
-| `AI Security` | Pre item: AI provides security (Likert). | `Disagree` |
-| `AI Trustworthy` | Pre item: AI systems are trustworthy (Likert). | `Agree` |
-| `AI Reliable` | Pre item: AI systems are reliable (Likert). | `Agree` |
-| `AI Trust` | Pre item: I can trust AI systems (Likert). | `Agree` |
-| `AI systems are 1` | Pre bipolar emotional item 1. | `Empathetic` |
-| `AI systems are 2` | Pre bipolar emotional item 2. | `Sensitive` |
-| `AI systems are 3` | Pre bipolar emotional item 3. | `Personal` |
-| `AI systems are 4` | Pre bipolar emotional item 4. | `Caring` |
-| `AI systems are 5` | Pre bipolar emotional item 5. | `Altruistic` |
-| `AI systems are 6` | Pre bipolar emotional item 6. | `Cordial` |
-| `AI systems are 7` | Pre bipolar emotional item 7. | `Responsive` |
-| `AI systems are 8` | Pre bipolar emotional item 8. | `Open-Minded` |
-| `AI systems are 9` | Pre bipolar emotional item 9. | `Patient` |
-| `AI Weary Post` | Post item paired with `AI Weary`. | `Disagree` |
-| `AI Confident Post` | Post item paired with `AI Confident`. | `Agree` |
-| `AI Suspicious Post` | Post item paired with `AI Suspicious`. | `Disagree` |
-| `AI Trust Post` | Post item paired with `AI Trust`. | `Agree` |
-| `AI Harm Post` | Post item paired with `AI Harm`. | `Strongly Disagree` |
-| `AI Honest Post` | Post item paired with `AI Honest`. | `Agree` |
-| `AI Security Post` | Post item paired with `AI Security`. | `Disagree` |
-| `AI Deceptive Post` | Post item paired with `AI Deceptive`. | `Disagree` |
-| `AI Reliable Post` | Post item paired with `AI Reliable`. | `Agree` |
-| `AI Trustworthy Post` | Post item paired with `AI Trustworthy`. | `Agree` |
-| `AI systems are 1 Post` | Post bipolar emotional item 1. | `Apathetic` |
-| `AI systems are 2 Post` | Post bipolar emotional item 2. | `Insensitive` |
-| `AI systems are 3 Post` | Post bipolar emotional item 3. | `Impersonal` |
-| `AI systems are 4 Post` | Post bipolar emotional item 4. | `Ignoring` |
-| `AI systems are 5 Post` | Post bipolar emotional item 5. | `Self-Serving` |
-| `AI systems are 6 Post` | Post bipolar emotional item 6. | `Rude` |
-| `AI systems are 7 Post` | Post bipolar emotional item 7. | `Indifferent` |
-| `AI systems are 8 Post` | Post bipolar emotional item 8. | `Judgmental` |
-| `AI systems are 9 Post` | Post bipolar emotional item 9. | `Impatient` |
-| `AI Feel Post` | Post item: feeling after reading/interaction prompt. | `Somewhat positive` |
-| `AI Understand Post` | Post item: need model understanding to trust. | `Agree` |
-| `AI Job Post` | Post item: feeling about AI job screening. | `Uncomfortable` |
-| `Condition` | Experimental condition label. | `Interactive` |
-| `Interactive Page Title List` | List of page titles in interactive submissions for participant. | `['Introduction', 'Case 1']` |
-| `Interactive Section Title List` | List of section titles in interactive submissions. | `['Context', 'Answer']` |
-| `Interactive Section Index List` | List of section indexes in interactive submissions. | `[0, 1, 2]` |
-| `Interactive Original Text List` | List of original text edits/interactions. | `['original snippet ...']` |
-| `Interactive Updated Text List` | List of updated text edits/interactions. | `['updated snippet ...']` |
-| `Response Section Title List` | List of student response section titles. | `['Q1', 'Q2']` |
-| `Response Section Index List` | List of student response section indexes. | `[0, 1]` |
-| `Response Text List` | List of free-text response strings. | `['I think ...', 'My answer ...']` |
-| `Response Created At List` | List of response creation timestamps. | `['2026-02-17T10:50:01Z']` |
-| `Response Updated At List` | List of response update timestamps. | `['2026-02-17T10:51:12Z']` |
-| `Submission id` | Prolific submission ID from demographics export. | `65f1abc123` |
-| `Participant id` | Prolific participant ID from demographics export. | `6980bcbe582db0ee10868525` |
-| `Status` | Prolific submission status. | `APPROVED` |
-| `Custom study tncs accepted at` | Timestamp for custom T&Cs acceptance. | `2026-02-17 10:44:01` |
-| `Started at` | Prolific start timestamp. | `2026-02-17 10:44:12` |
-| `Completed at` | Prolific completion timestamp. | `2026-02-17 11:03:01` |
-| `Reviewed at` | Prolific review timestamp. | `2026-02-18 09:12:22` |
-| `Archived at` | Prolific archive timestamp if archived. | `NaN` |
-| `Time taken` | Time spent in study (seconds/minutes depending on export). | `1125` |
-| `Completion code` | Completion code used for reward. | `ABC123XYZ` |
-| `Total approvals` | Participant total approvals on Prolific. | `145` |
-| `Gender` | Self-reported gender. | `Female` |
-| `Ethnicity` | Self-reported ethnicity. | `White` |
-| `Age_demographic` | Age from demographics export (separate from survey age field). | `24` |
-| `Sex` | Self-reported sex. | `Female` |
-| `Ethnicity simplified` | Simplified ethnicity category from Prolific export. | `White` |
-| `Country of birth` | Country of birth from demographics export. | `France` |
-| `Country of residence` | Country of residence from demographics export. | `Luxembourg` |
-| `Nationality` | Nationality from demographics export. | `French` |
-| `Language` | Primary language from demographics export. | `English` |
-| `Student status` | Student status from demographics export. | `Student` |
-| `Employment status` | Employment status from demographics export. | `Part-time` |
+Notes:
+- Combined.csv currently has 103 columns.
+- The header contains repeated names (for example Age appears multiple times).
+- The index column below is the safest way to identify a specific field unambiguously.
 
-## Script Guide and Results
+| # | Column name | Description |
+|---|---|---|
+| 1 | Submission id | Prolific submission ID from the primary merged record. |
+| 2 | PID | Prolific participant ID used for joins. |
+| 3 | Status | Prolific submission status (for example APPROVED). |
+| 4 | Started at | Prolific study start timestamp. |
+| 5 | Completed at | Prolific study completion timestamp. |
+| 6 | Reviewed at | Prolific review timestamp. |
+| 7 | Archived at | Prolific archive timestamp (if archived). |
+| 8 | Time taken | Time taken in Prolific export. |
+| 9 | Completion code | Completion code used for payout tracking. |
+| 10 | Total approvals | Participant total approval count on Prolific. |
+| 11 | Gender | Participant gender from Prolific demographics export. |
+| 12 | Ethnicity | Participant ethnicity from Prolific demographics export. |
+| 13 | Age | Age from the first demographics block. |
+| 14 | Sex | Participant sex from demographics export. |
+| 15 | Ethnicity simplified | Simplified ethnicity category. |
+| 16 | Country of birth | Country of birth. |
+| 17 | Country of residence | Country of residence. |
+| 18 | Nationality | Nationality. |
+| 19 | Language | Participant language. |
+| 20 | Student status | Participant student status. |
+| 21 | Employment status | Participant employment status. |
+| 22 | Condition | Study condition label (Interactive or Text). |
+| 23 | ID | Questionnaire platform response ID. |
+| 24 | Start time | Questionnaire start timestamp. |
+| 25 | Completion time | Questionnaire completion timestamp. |
+| 26 | Email | Questionnaire email field (often anonymous or blank). |
+| 27 | Name | Questionnaire name field (often blank). |
+| 28 | Last modified time | Questionnaire last-modified timestamp. |
+| 29 | Education | Self-reported education level. |
+| 30 | AI Knowledge | Self-reported AI knowledge level. |
+| 31 | Age | Age from questionnaire block (duplicate header name). |
+| 32 | AI Deceptive | Pre item: AI systems are deceptive. |
+| 33 | AI Dishonest | Pre item: AI systems behave dishonestly. |
+| 34 | AI Suspicious | Pre item: participant is suspicious of AI intent/actions/outputs. |
+| 35 | AI Wary | Pre item: participant is wary of AI systems. |
+| 36 | AI Harm | Pre item: AI actions have harmful/injurious outcomes. |
+| 37 | AI Confident | Pre item: confidence in AI systems. |
+| 38 | AI Security | Pre item: AI systems provide security. |
+| 39 | AI Trustworthy | Pre item: AI systems are trustworthy. |
+| 40 | AI Reliable | Pre item: AI systems are reliable. |
+| 41 | AI Trust | Pre item: participant can trust AI systems. |
+| 42 | AI systems are 1 | Pre emotional adjective item 1. |
+| 43 | AI systems are 2 | Pre emotional adjective item 2. |
+| 44 | AI systems are 3 | Pre emotional adjective item 3. |
+| 45 | AI systems are 4 | Pre emotional adjective item 4. |
+| 46 | AI systems are 5 | Pre emotional adjective item 5. |
+| 47 | AI systems are 6 | Pre emotional adjective item 6. |
+| 48 | AI systems are 7 | Pre emotional adjective item 7. |
+| 49 | AI systems are 8 | Pre emotional adjective item 8. |
+| 50 | AI systems are 9 | Pre emotional adjective item 9. |
+| 51 | AI Harm Post 1 | Post trust item variant tied to harm wording. |
+| 52 | AI Security Post | Post item: AI systems provide security. |
+| 53 | AI Suspicious Post | Post item: suspiciousness toward AI. |
+| 54 | AI Wary/Deceptive Post | Post item variant combining wary/deceptive wording in source form. |
+| 55 | AI Harm Post 2 | Post trust item second harm variant. |
+| 56 | AI Confident Post | Post item: confidence in AI systems. |
+| 57 | AI Dishonest Post | Post item: AI systems behave dishonestly. |
+| 58 | AI Trust Post | Post item: participant can trust AI systems. |
+| 59 | AI Reliable Post | Post item: AI systems are reliable. |
+| 60 | AI Trustworthy Post | Post item: AI systems are trustworthy. |
+| 61 | AI systems are Post 1 | Post emotional adjective item 1. |
+| 62 | AI systems are Post 2 | Post emotional adjective item 2. |
+| 63 | AI systems are Post 3 | Post emotional adjective item 3. |
+| 64 | AI systems are Post 4 | Post emotional adjective item 4. |
+| 65 | AI systems are Post 5 | Post emotional adjective item 5. |
+| 66 | AI systems are Post 6 | Post emotional adjective item 6. |
+| 67 | AI systems are Post 7 | Post emotional adjective item 7. |
+| 68 | AI systems are Post 8 | Post emotional adjective item 8. |
+| 69 | AI systems are Post 9 | Post emotional adjective item 9. |
+| 70 | AI Interaction Feeling | Feeling after interacting with the AI explanation/tool. |
+| 71 | Need Model Understanding | Whether understanding the model is needed for trust. |
+| 72 | Job Screening Feeling | Feeling about AI use in job screening. |
+| 73 | Age | Third Age column from later questionnaire block (duplicate header name). |
+| 74 | AI Wary Post | Post item: participant is wary of AI systems. |
+| 75 | AI Deceptive Post | Post item: AI systems are deceptive. |
+| 76 | AI Trust Post 2 | Alternate post trust item field (duplicate concept). |
+| 77 | AI Definition Feeling | Feeling after reading AI definition text. |
+| 78 | Is White | Derived binary indicator from ethnicity simplified (1 if White else 0). |
+| 79 | Explanation Comment | Free-text comment after explanation interaction. |
+| 80 | Submission id (Demographics) | Submission ID from secondary demographics lookup table. |
+| 81 | PID (Demographics) | Participant ID from secondary demographics lookup table. |
+| 82 | Status (Demographics) | Status from secondary demographics lookup table. |
+| 83 | Started at (Demographics) | Start timestamp from secondary demographics lookup table. |
+| 84 | Completed at (Demographics) | Completion timestamp from secondary demographics lookup table. |
+| 85 | Reviewed at (Demographics) | Review timestamp from secondary demographics lookup table. |
+| 86 | Archived at (Demographics) | Archive timestamp from secondary demographics lookup table. |
+| 87 | Time taken (Demographics) | Time taken from secondary demographics lookup table. |
+| 88 | Completion code (Demographics) | Completion code from secondary demographics lookup table. |
+| 89 | Total approvals (Demographics) | Total approvals from secondary demographics lookup table. |
+| 90 | Gender (Demographics) | Gender from secondary demographics lookup table. |
+| 91 | Ethnicity (Demographics) | Ethnicity from secondary demographics lookup table. |
+| 92 | Age (Demographics) | Age from secondary demographics lookup table. |
+| 93 | Sex (Demographics) | Sex from secondary demographics lookup table. |
+| 94 | Ethnicity simplified (Demographics) | Simplified ethnicity from secondary demographics lookup table. |
+| 95 | Country of birth (Demographics) | Country of birth from secondary demographics lookup table. |
+| 96 | Country of residence (Demographics) | Country of residence from secondary demographics lookup table. |
+| 97 | Nationality (Demographics) | Nationality from secondary demographics lookup table. |
+| 98 | Language (Demographics) | Language from secondary demographics lookup table. |
+| 99 | Student status (Demographics) | Student status from secondary demographics lookup table. |
+| 100 | Employment status (Demographics) | Employment status from secondary demographics lookup table. |
+| 101 | Condition (Demographics) | Condition from secondary demographics lookup table. |
+| 102 | Responses | List-like payload of matched response objects per participant. |
+| 103 | Submissions | List-like payload of matched submission/edit objects per participant. |
 
-### `conditions.py`
+## Simple seaborn plot example
 
-Purpose:
-- Removes participants who appear in both conditions.
-- Merges survey data with demographics.
-- Filters to approved participants.
-- Writes cleaned combined dataset used by downstream analyses.
+The snippet below creates a simple bar plot of mean pre-study AI Trust by condition.
 
-Key outputs:
-- `data/all/grouped_with_interactions_no_cross_condition.csv`
-- `data/all/combined_with_demographics.csv`
-- `data/combined.csv`
-- `data/combined.pkl`
+    import pandas as pd
+    import seaborn as sns
+    import matplotlib.pyplot as plt
 
-### `statistics.py`
+    # Load data
+    df = pd.read_csv("data/Combined.csv")
 
-Purpose:
-- Computes condition effects on per-item `Post - Pre` deltas.
-- Reports test statistics, p-values, and `R^2` effect sizes.
+    # Convert Likert labels to numeric scores for plotting
+    likert_map = {
+        "Strongly Disagree": 1,
+        "Disagree": 2,
+        "Neither Agree nor Disagree": 3,
+        "Agree": 4,
+        "Strongly Agree": 5,
+    }
 
-Key outputs:
-- `analysis/post_delta_condition_significance.csv`
-- `analysis/post_delta_condition_r2.png`
+    # AI Trust is the pre item at header position #41
+    df["AI Trust Score"] = df["AI Trust"].map(likert_map)
 
-Figure:
+    # Keep only rows with valid trust scores and condition labels
+    plot_df = df.dropna(subset=["AI Trust Score", "Condition"]).copy()
 
-![Post delta condition R2](./analysis/post_delta_condition_r2.png)
+    sns.set_theme(style="whitegrid")
+    plt.figure(figsize=(8, 5))
+    ax = sns.barplot(
+        data=plot_df,
+        x="Condition",
+        y="AI Trust Score",
+        estimator="mean",
+        errorbar=("ci", 95),
+        palette="Set2",
+    )
 
-### `emotional.py`
+    ax.set_title("Mean Pre-study AI Trust by Condition")
+    ax.set_xlabel("Condition")
+    ax.set_ylabel("Mean AI Trust (1-5)")
+    plt.tight_layout()
+    plt.show()
 
-Purpose:
-- Aggregates overall emotional impact from `AI systems are 1..9` using participant-level mean `Post - Pre`.
-- Tests each condition against 0 (no change) and reports by-condition impact.
-
-Key outputs:
-- `analysis/overall_emotional_impact_by_condition.csv`
-- `analysis/overall_emotional_impact_by_condition.png`
-
-Figure:
-
-![Overall emotional impact by condition](./analysis/overall_emotional_impact_by_condition.png)
-
-### `analytical.py`
-
-Purpose:
-- Aggregates overall analytical trust impact from Likert trust items (with negative-keyed item direction correction).
-- Computes participant-level mean `Post - Pre` and tests each condition against 0.
-
-Key outputs:
-- `analysis/overall_analytical_trust_impact_by_condition.csv`
-- `analysis/overall_analytical_trust_impact_by_condition.png`
-
-Figure:
-
-![Overall analytical trust impact by condition](./analysis/overall_analytical_trust_impact_by_condition.png)
-
-### `knowledge_impact.py`
-
-Purpose:
-- Repeats emotional and analytical impact analyses split by AI knowledge groups.
-- Low knowledge group: `Beginner knowledge`, `Conceptual understanding`, `No knowledge`.
-- High knowledge group: `Advanced`, `Expert`.
-- Produces a 2x2 panel (rows: emotional/analytical, columns: low/high knowledge).
-
-Key outputs:
-- `analysis/knowledge_split_emotional_analytical_summary.csv`
-- `analysis/knowledge_split_emotional_analytical_2x2.png`
-
-Figure:
-
-![Knowledge split 2x2 impact plot](./analysis/knowledge_split_emotional_analytical_2x2.png)
-
-## How To Run
-
-From project root:
-
-```bash
-python conditions.py
-python statistics.py
-python emotional.py
-python analytical.py
-python knowledge_impact.py
-```
+Optional extension:
+- If you want, I can also add a second example that compares pre vs post trust in one figure (long-format reshape + seaborn pointplot).
