@@ -2,15 +2,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-Cleaned = pd.read_csv("./data/Cleaned.csv")
+Combined = pd.read_csv("./data/Combined.csv")
 
 
 def _to_numeric(series: pd.Series) -> pd.Series:
     return pd.to_numeric(series, errors="coerce").dropna()
 
 
-interactive = Cleaned[Cleaned["Condition"] == "Interactive"].copy()
-text = Cleaned[Cleaned["Condition"] == "Text"].copy()
+interactive = Combined[Combined["Condition"] == "Interactive"].copy()
+text = Combined[Combined["Condition"] == "Text"].copy()
 
 analytical_pre_interactive = _to_numeric(interactive["Total Analytical Trust"])
 analytical_pre_text = _to_numeric(text["Total Analytical Trust"])
