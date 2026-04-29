@@ -1,0 +1,9 @@
+Metric,Group,Condition,n,Mean,SD
+Emotional Trust Change (Post - Pre),WEIRD-like,Interactive,60,-0.137037037037037,0.43123819484515863
+Emotional Trust Change (Post - Pre),WEIRD-like,Static (Text),60,0.02222222222222222,0.28843945918580677
+Emotional Trust Change (Post - Pre),Non-WEIRD-like,Interactive,192,-0.043981481481481476,0.4327965132007292
+Emotional Trust Change (Post - Pre),Non-WEIRD-like,Static (Text),192,-0.0787037037037037,0.433822061971809
+Analytical Post-Trust Score,WEIRD-like,Interactive,60,-0.31388888888888894,0.8508101452892154
+Analytical Post-Trust Score,WEIRD-like,Static (Text),60,-0.02592592592592592,1.002427826352653
+Analytical Post-Trust Score,Non-WEIRD-like,Interactive,192,0.1886574074074074,0.870314928570578
+Analytical Post-Trust Score,Non-WEIRD-like,Static (Text),192,0.08362268518518519,0.963291020778628
