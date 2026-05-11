@@ -5,8 +5,11 @@ Generate a preliminary WEIRD-vs-condition trust report with plots.
 Outputs:
 - figures/prelim_emotional_change_by_weird_condition.png
 - figures/prelim_analytical_post_by_weird_condition.png
+- figures/prelim_analytical_vs_emotional_trust_difference_by_weird_condition.png
 - figures/preliminary_weird_summary.csv
+- figures/preliminary_weird_analytical_vs_emotional_trust_difference_summary.csv
 - report.md
+- report_prelim_analytical_vs_emotional_trust_difference.md
 """
 from __future__ import annotations
 
@@ -31,6 +34,9 @@ SUMMARY_CSV_PATH = FIG_DIR / "preliminary_weird_summary.csv"
 
 EMOTIONAL_FIG_PATH = FIG_DIR / "prelim_emotional_change_by_weird_condition.png"
 ANALYTICAL_FIG_PATH = FIG_DIR / "prelim_analytical_post_by_weird_condition.png"
+DIFFERENCE_FIG_PATH = FIG_DIR / "prelim_analytical_vs_emotional_trust_difference_by_weird_condition.png"
+DIFFERENCE_SUMMARY_CSV_PATH = FIG_DIR / "preliminary_weird_analytical_vs_emotional_trust_difference_summary.csv"
+DIFFERENCE_REPORT_PATH = ROOT / "report_prelim_analytical_vs_emotional_trust_difference.md"
 
 CONDITION_INTERACTIVE = "Interactive"
 CONDITION_STATIC = "Static (Text)"
@@ -118,6 +124,14 @@ def map_emotional_token(series: pd.Series) -> pd.Series:
 
 def mean_of_available(series_list: list[pd.Series]) -> pd.Series:
     return pd.concat(series_list, axis=1).mean(axis=1)
+
+
+def zscore_series(series: pd.Series) -> pd.Series:
+    mean = float(series.mean())
+    std = float(series.std(ddof=0))
+    if np.isclose(std, 0.0):
+        return pd.Series(0.0, index=series.index, dtype=float)
+    return ((series - mean) / std).astype(float)
 
 
 def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
@@ -395,11 +409,22 @@ def main() -> None:
 
     analysis = analysis.dropna(subset=["emotional_change", "analytical_post", "Condition", "WEIRD Group", "weird_like"])
 
+    analysis["analytical_post_norm"] = zscore_series(analysis["analytical_post"])
+    analysis["emotional_change_norm"] = zscore_series(analysis["emotional_change"])
+    analysis["analytical_vs_emotional_trust_difference"] = (
+        analysis["analytical_post_norm"] - analysis["emotional_change_norm"]
+    )
+
     emotional_tests = welch_condition_tests(analysis, "emotional_change")
     analytical_tests = welch_condition_tests(analysis, "analytical_post")
+    difference_tests = welch_condition_tests(analysis, "analytical_vs_emotional_trust_difference")
 
     emotional_did, emotional_interaction_p = interaction_permutation_test(analysis, "emotional_change")
     analytical_did, analytical_interaction_p = interaction_permutation_test(analysis, "analytical_post")
+    difference_did, difference_interaction_p = interaction_permutation_test(
+        analysis,
+        "analytical_vs_emotional_trust_difference",
+    )
 
     plot_metric(
         analysis,
@@ -417,6 +442,14 @@ def main() -> None:
         output_path=ANALYTICAL_FIG_PATH,
         draw_zero_line=True,
     )
+    plot_metric(
+        analysis,
+        metric="analytical_vs_emotional_trust_difference",
+        title="analytical vs emotional trust difference",
+        y_label="analytical vs emotional trust difference",
+        output_path=DIFFERENCE_FIG_PATH,
+        draw_zero_line=True,
+    )
 
     summary_df = pd.concat(
         [
@@ -427,6 +460,13 @@ def main() -> None:
     )
     SUMMARY_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     summary_df.to_csv(SUMMARY_CSV_PATH, index=False)
+
+    difference_summary_df = build_summary_table(
+        analysis,
+        "analytical_vs_emotional_trust_difference",
+        "analytical vs emotional trust difference",
+    )
+    difference_summary_df.to_csv(DIFFERENCE_SUMMARY_CSV_PATH, index=False)
 
     weird_counts = (
         analysis.groupby(["WEIRD Group", "Condition"]).size().reset_index(name="n").sort_values(["WEIRD Group", "Condition"])
@@ -530,10 +570,77 @@ def main() -> None:
 
     REPORT_PATH.write_text("\n".join(report_lines) + "\n", encoding="utf-8")
 
+    difference_key_results = pd.DataFrame(
+        [
+            {
+                "Metric": "analytical vs emotional trust difference",
+                "Interaction (Diff-in-Diff)": difference_did,
+                "Permutation p": difference_interaction_p,
+            }
+        ]
+    )
+
+    difference_report_lines = [
+        "# Preliminary Version: analytical vs emotional trust difference",
+        "",
+        f"Generated on {date.today().isoformat()} from `data/Combined.csv`.",
+        "",
+        "This version only shows one combined metric for the 4 bars (WEIRD-like x Condition):",
+        "",
+        "- `analytical_post_norm`: z-score normalized analytical post-trust",
+        "- `emotional_change_norm`: z-score normalized emotional trust change (post - pre)",
+        "- `analytical vs emotional trust difference` = `analytical_post_norm - emotional_change_norm`",
+        "",
+        "## Sample Sizes",
+        "",
+        to_markdown_table(weird_counts),
+        "",
+        "## Interaction Result",
+        "",
+        to_markdown_table(
+            difference_key_results.assign(
+                **{
+                    "Permutation p": difference_key_results["Permutation p"].map(format_p_value),
+                }
+            ),
+            float_columns=["Interaction (Diff-in-Diff)"],
+            precision=3,
+        ),
+        "",
+        "## Figure",
+        "",
+        "![analytical vs emotional trust difference](figures/prelim_analytical_vs_emotional_trust_difference_by_weird_condition.png)",
+        "",
+        "## Welch Tests (Interactive vs Static within each group)",
+        "",
+        to_markdown_table(
+            difference_tests.assign(
+                **{
+                    "p": difference_tests["p"].map(format_p_value),
+                }
+            ),
+            float_columns=[
+                "Interactive Mean",
+                "Static Mean",
+                "Mean Difference (Interactive - Static)",
+                "Welch t",
+                "Cohen d",
+            ],
+            precision=3,
+        ),
+        "",
+        "A reproducible numeric summary was saved to `figures/preliminary_weird_analytical_vs_emotional_trust_difference_summary.csv`.",
+    ]
+
+    DIFFERENCE_REPORT_PATH.write_text("\n".join(difference_report_lines) + "\n", encoding="utf-8")
+
     print(f"Saved report: {REPORT_PATH}")
+    print(f"Saved report: {DIFFERENCE_REPORT_PATH}")
     print(f"Saved figure: {EMOTIONAL_FIG_PATH}")
     print(f"Saved figure: {ANALYTICAL_FIG_PATH}")
+    print(f"Saved figure: {DIFFERENCE_FIG_PATH}")
     print(f"Saved summary CSV: {SUMMARY_CSV_PATH}")
+    print(f"Saved summary CSV: {DIFFERENCE_SUMMARY_CSV_PATH}")
 
 
 if __name__ == "__main__":
