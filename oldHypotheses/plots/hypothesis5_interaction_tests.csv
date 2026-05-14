@@ -1,0 +1,2 @@
+Metric,Interaction Coef (Condition x WEIRD),Interaction SE,Interaction t,Interaction df,Interaction p,Interaction Significant (p<0.05),Observed DID,Permutation p (DID),Permutation Significant (p<0.05)
+Overall Trust Change,-0.9645833333333378,1.65358299421287,-0.583329253329975,500.0,0.5599346890886818,False,-0.9645833333333333,0.553044695530447,False

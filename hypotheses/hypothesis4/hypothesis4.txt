@@ -1,0 +1,8 @@
+\subsubsection{Hypothesis 4 Results}
+Hypothesis 4 tested group x condition effects across three trust-change dimensions in a three-panel visualization.
+All trust-change outcomes are computed as per-item average change (Post - Pre).
+
+4.1 Analytical trust change by Group x Condition (left panel): paired pre-post tests were WEIRD / Interactive: $t(59)=2.17$, $p = .034$, $\Delta M=-0.180$; WEIRD / Static (Text): $t(59)=2.14$, $p = .037$, $\Delta M=-0.123$; NORMAL / Interactive: $t(191)=2.81$, $p = .006$, $\Delta M=-0.130$; NORMAL / Static (Text): $t(191)=2.74$, $p = .007$, $\Delta M=-0.124$. Omnibus four-cell ANOVA: $F=0.14$, $p = .938$. Interaction estimate: $b=-0.050$, $t(500)=-0.39$, $p = .696$.
+4.2 Emotional trust change by Group x Condition (middle panel): paired pre-post tests were WEIRD / Interactive: $t(59)=1.71$, $p = .092$, $\Delta M=-0.104$; WEIRD / Static (Text): $t(59)=1.22$, $p = .229$, $\Delta M=-0.081$; NORMAL / Interactive: $t(191)=9.48$, $p < .001$, $\Delta M=-0.297$; NORMAL / Static (Text): $t(191)=10.57$, $p < .001$, $\Delta M=-0.326$. Omnibus four-cell ANOVA: $F=7.49$, $p < .001$. Interaction estimate: $b=-0.051$, $t(500)=-0.55$, $p = .585$.
+4.3 Analytical-vs-emotional change difference by Group x Condition (right panel): Welch tests by condition were Interactive: $t=-2.28$, $p = .025$, $M_{WEIRD}=-0.076$, $M_{NORMAL}=0.167$; Static (Text): $t=-2.46$, $p = .015$, $M_{WEIRD}=-0.042$, $M_{NORMAL}=0.202$. Omnibus four-cell ANOVA: $F=3.82$, $p = .010$. Interaction estimate: $b=0.001$, $t(500)=0.01$, $p = .996$.
+Asterisk key: * p < .05, ** p < .01, *** p < .001.

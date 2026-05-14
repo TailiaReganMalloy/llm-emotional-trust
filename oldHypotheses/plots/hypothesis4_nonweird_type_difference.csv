@@ -1,0 +1,2 @@
+Group,n (paired),Emotional z Mean,Emotional z SD,Analytical z Mean,Analytical z SD,Mean Difference (Emotional z - Analytical z),Paired t,df,Paired t p,Paired t Significant (p<0.05),Wilcoxon,Wilcoxon p,Wilcoxon Significant (p<0.05),Cohen d (paired)
+Non-WEIRD-like,384,-0.11472371643564942,0.9467644498270964,0.009528664347875079,1.0321498718066442,-0.12425238078352448,-1.9225423384028772,383,0.055278912652679014,False,32037.0,0.023699466726345958,True,-0.09810932787467153
