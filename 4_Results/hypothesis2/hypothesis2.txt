@@ -1,0 +1,15 @@
+\subsubsection{Hypothesis 7 Results}
+Hypothesis 7 tested whether there is a main effect of condition across three trust-change outcomes: overall change, emotional change, and analytical change.
+
+7.1 Main condition effect on overall change:
+Overall change condition effect: $M_{Interactive}=-0.197$, $M_{Text}=-0.196$, $t=-0.020$, $p = .984$, $\Delta(M_I-M_T)=-0.001$.
+Interpretation: no significant main condition effect on overall change.
+
+7.2 Main condition effect on emotional change:
+Emotional change condition effect: $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
+Interpretation: no significant main condition effect on emotional change.
+
+7.3 Main condition effect on analytical change:
+Analytical change condition effect: $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
+Interpretation: no significant main condition effect on analytical change.
+Asterisk key: * p < .05, ** p < .01, *** p < .001.

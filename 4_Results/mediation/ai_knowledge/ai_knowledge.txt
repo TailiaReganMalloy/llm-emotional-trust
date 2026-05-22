@@ -1,0 +1,81 @@
+\subsubsection{AI-Knowledge Trust-Change Comparison Results}
+Compared analytical trust change, emotional trust change, and their difference across AI Knowledge categories.
+
+Included groups and counts:
+- Conceptual: n=242
+- Beginner: n=121
+- Advanced: n=120
+- Expert: n=17
+- No knowledge: n=4
+
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=1.902, p = .128.
+Group means (95% CI):
+- No knowledge: n=4, M=0.250, CI=[-0.338, 0.838]
+- Beginner: n=121, M=-0.027, CI=[-0.120, 0.065]
+- Conceptual: n=242, M=-0.180, CI=[-0.260, -0.099]
+- Advanced: n=120, M=-0.140, CI=[-0.259, -0.021]
+- Expert: n=17, M=-0.259, CI=[-0.585, 0.067]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Beginner vs Conceptual: t=2.457, p=0.015, p_adj=0.087
+- Beginner vs Advanced: t=1.479, p=0.141, p_adj=0.844
+- Beginner vs Expert: t=1.440, p=0.166, p_adj=0.997
+- Conceptual vs Advanced: t=-0.547, p=0.585, p_adj=1.000
+- Conceptual vs Expert: t=0.497, p=0.625, p_adj=1.000
+- Advanced vs Expert: t=0.719, p=0.480, p_adj=1.000
+
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=2.907, p = .034.
+Group means (95% CI):
+- No knowledge: n=4, M=0.056, CI=[-0.548, 0.659]
+- Beginner: n=121, M=-0.193, CI=[-0.268, -0.118]
+- Conceptual: n=242, M=-0.248, CI=[-0.307, -0.188]
+- Advanced: n=120, M=-0.337, CI=[-0.418, -0.256]
+- Expert: n=17, M=-0.431, CI=[-0.682, -0.181]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Beginner vs Conceptual: t=1.137, p=0.257, p_adj=1.000
+- Beginner vs Advanced: t=2.586, p=0.010, p_adj=0.062
+- Beginner vs Expert: t=1.922, p=0.069, p_adj=0.416
+- Conceptual vs Advanced: t=1.752, p=0.081, p_adj=0.486
+- Conceptual vs Expert: t=1.504, p=0.150, p_adj=0.899
+- Advanced vs Expert: t=0.754, p=0.459, p_adj=1.000
+
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=1.102, p = .348.
+Group means (95% CI):
+- No knowledge: n=4, M=0.194, CI=[-0.975, 1.364]
+- Beginner: n=121, M=0.166, CI=[0.055, 0.276]
+- Conceptual: n=242, M=0.068, CI=[-0.021, 0.157]
+- Advanced: n=120, M=0.197, CI=[0.057, 0.337]
+- Expert: n=17, M=0.173, CI=[-0.236, 0.582]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Beginner vs Conceptual: t=1.355, p=0.176, p_adj=1.000
+- Beginner vs Advanced: t=-0.349, p=0.727, p_adj=1.000
+- Beginner vs Expert: t=-0.035, p=0.973, p_adj=1.000
+- Conceptual vs Advanced: t=-1.534, p=0.126, p_adj=0.758
+- Conceptual vs Expert: t=-0.527, p=0.605, p_adj=1.000
+- Advanced vs Expert: t=0.119, p=0.906, p_adj=1.000
+
+Condition-effect follow-up tests (Interactive vs Text):
+These tests are additive to the trust-change group comparisons above and evaluate condition effects overall and within each group category.
+
+Analytical Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
+Within-group condition tests:
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.367$, $M_{Text}=-0.100$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.467$.
+- Beginner: $n_{Interactive}=58$, $n_{Text}=63$, $M_{Interactive}=-0.048$, $M_{Text}=-0.008$, $t=-0.429$, $p = .669$, $\Delta(M_I-M_T)=-0.040$.
+- Conceptual: $n_{Interactive}=125$, $n_{Text}=117$, $M_{Interactive}=-0.190$, $M_{Text}=-0.168$, $t=-0.271$, $p = .787$, $\Delta(M_I-M_T)=-0.022$.
+- Advanced: $n_{Interactive}=55$, $n_{Text}=65$, $M_{Interactive}=-0.133$, $M_{Text}=-0.146$, $t=0.110$, $p = .912$, $\Delta(M_I-M_T)=0.013$.
+- Expert: $n_{Interactive}=11$, $n_{Text}=6$, $M_{Interactive}=-0.273$, $M_{Text}=-0.233$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.039$.
+
+Emotional Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
+Within-group condition tests:
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.000$, $M_{Text}=0.222$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.222$.
+- Beginner: $n_{Interactive}=58$, $n_{Text}=63$, $M_{Interactive}=-0.261$, $M_{Text}=-0.131$, $t=-1.736$, $p = .085$, $\Delta(M_I-M_T)=-0.130$.
+- Conceptual: $n_{Interactive}=125$, $n_{Text}=117$, $M_{Interactive}=-0.231$, $M_{Text}=-0.266$, $t=0.574$, $p = .567$, $\Delta(M_I-M_T)=0.035$.
+- Advanced: $n_{Interactive}=55$, $n_{Text}=65$, $M_{Interactive}=-0.267$, $M_{Text}=-0.397$, $t=1.579$, $p = .117$, $\Delta(M_I-M_T)=0.130$.
+- Expert: $n_{Interactive}=11$, $n_{Text}=6$, $M_{Interactive}=-0.424$, $M_{Text}=-0.444$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.020$.
+
+Analytical - Emotional Change Difference overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=0.109$, $M_{Text}=0.144$, $t=-0.558$, $p = .577$, $\Delta(M_I-M_T)=-0.035$.
+Within-group condition tests:
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.367$, $M_{Text}=-0.322$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.689$.
+- Beginner: $n_{Interactive}=58$, $n_{Text}=63$, $M_{Interactive}=0.212$, $M_{Text}=0.123$, $t=0.805$, $p = .422$, $\Delta(M_I-M_T)=0.090$.
+- Conceptual: $n_{Interactive}=125$, $n_{Text}=117$, $M_{Interactive}=0.041$, $M_{Text}=0.098$, $t=-0.629$, $p = .530$, $\Delta(M_I-M_T)=-0.057$.
+- Advanced: $n_{Interactive}=55$, $n_{Text}=65$, $M_{Interactive}=0.134$, $M_{Text}=0.250$, $t=-0.817$, $p = .416$, $\Delta(M_I-M_T)=-0.116$.
+- Expert: $n_{Interactive}=11$, $n_{Text}=6$, $M_{Interactive}=0.152$, $M_{Text}=0.211$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.060$.

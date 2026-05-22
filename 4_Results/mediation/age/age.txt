@@ -1,0 +1,74 @@
+\subsubsection{Age-Based Trust-Change Comparison Results}
+Compared analytical trust change, emotional trust change, and their difference across Age Group categories.
+
+Included groups and counts:
+- 25-34: n=219
+- 18-24: n=125
+- 35-44: n=93
+- 45+: n=67
+
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=2.278, p = .079.
+Group means (95% CI):
+- 18-24: n=125, M=-0.217, CI=[-0.338, -0.095]
+- 25-34: n=219, M=-0.068, CI=[-0.154, 0.018]
+- 35-44: n=93, M=-0.101, CI=[-0.201, -0.002]
+- 45+: n=67, M=-0.233, CI=[-0.358, -0.107]
+Pairwise Welch tests (Bonferroni-adjusted):
+- 18-24 vs 25-34: t=-1.979, p=0.049, p_adj=0.294
+- 18-24 vs 35-44: t=-1.461, p=0.145, p_adj=0.872
+- 18-24 vs 45+: t=0.183, p=0.855, p_adj=1.000
+- 25-34 vs 35-44: t=0.498, p=0.619, p_adj=1.000
+- 25-34 vs 45+: t=2.157, p=0.033, p_adj=0.196
+- 35-44 vs 45+: t=1.640, p=0.103, p_adj=0.619
+
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=7.024, p < .001.
+Group means (95% CI):
+- 18-24: n=125, M=-0.359, CI=[-0.436, -0.283]
+- 25-34: n=219, M=-0.287, CI=[-0.345, -0.230]
+- 35-44: n=93, M=-0.088, CI=[-0.190, 0.013]
+- 45+: n=67, M=-0.222, CI=[-0.335, -0.110]
+Pairwise Welch tests (Bonferroni-adjusted):
+- 18-24 vs 25-34: t=-1.487, p=0.138, p_adj=0.830
+- 18-24 vs 35-44: t=-4.222, p=0.000, p_adj=0.000 ***
+- 18-24 vs 45+: t=-2.005, p=0.047, p_adj=0.282
+- 25-34 vs 35-44: t=-3.372, p=0.001, p_adj=0.006 **
+- 25-34 vs 45+: t=-1.024, p=0.308, p_adj=1.000
+- 35-44 vs 45+: t=1.758, p=0.081, p_adj=0.485
+
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=3.389, p = .018.
+Group means (95% CI):
+- 18-24: n=125, M=0.142, CI=[0.016, 0.269]
+- 25-34: n=219, M=0.219, CI=[0.122, 0.316]
+- 35-44: n=93, M=-0.013, CI=[-0.141, 0.116]
+- 45+: n=67, M=-0.011, CI=[-0.176, 0.155]
+Pairwise Welch tests (Bonferroni-adjusted):
+- 18-24 vs 25-34: t=-0.954, p=0.341, p_adj=1.000
+- 18-24 vs 35-44: t=1.705, p=0.090, p_adj=0.538
+- 18-24 vs 45+: t=1.462, p=0.146, p_adj=0.875
+- 25-34 vs 35-44: t=2.853, p=0.005, p_adj=0.029 *
+- 25-34 vs 45+: t=2.386, p=0.019, p_adj=0.112
+- 35-44 vs 45+: t=-0.020, p=0.984, p_adj=1.000
+
+Condition-effect follow-up tests (Interactive vs Text):
+These tests are additive to the trust-change group comparisons above and evaluate condition effects overall and within each group category.
+
+Analytical Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
+Within-group condition tests:
+- 18-24: $n_{Interactive}=57$, $n_{Text}=68$, $M_{Interactive}=-0.256$, $M_{Text}=-0.184$, $t=-0.583$, $p = .561$, $\Delta(M_I-M_T)=-0.072$.
+- 25-34: $n_{Interactive}=117$, $n_{Text}=102$, $M_{Interactive}=-0.059$, $M_{Text}=-0.078$, $t=0.223$, $p = .824$, $\Delta(M_I-M_T)=0.019$.
+- 35-44: $n_{Interactive}=43$, $n_{Text}=50$, $M_{Interactive}=-0.151$, $M_{Text}=-0.058$, $t=-0.902$, $p = .370$, $\Delta(M_I-M_T)=-0.093$.
+- 45+: $n_{Interactive}=35$, $n_{Text}=32$, $M_{Interactive}=-0.223$, $M_{Text}=-0.244$, $t=0.166$, $p = .868$, $\Delta(M_I-M_T)=0.021$.
+
+Emotional Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
+Within-group condition tests:
+- 18-24: $n_{Interactive}=57$, $n_{Text}=68$, $M_{Interactive}=-0.300$, $M_{Text}=-0.408$, $t=1.397$, $p = .165$, $\Delta(M_I-M_T)=0.108$.
+- 25-34: $n_{Interactive}=117$, $n_{Text}=102$, $M_{Interactive}=-0.264$, $M_{Text}=-0.314$, $t=0.852$, $p = .395$, $\Delta(M_I-M_T)=0.050$.
+- 35-44: $n_{Interactive}=43$, $n_{Text}=50$, $M_{Interactive}=-0.140$, $M_{Text}=-0.044$, $t=-0.931$, $p = .354$, $\Delta(M_I-M_T)=-0.095$.
+- 45+: $n_{Interactive}=35$, $n_{Text}=32$, $M_{Interactive}=-0.267$, $M_{Text}=-0.174$, $t=-0.825$, $p = .413$, $\Delta(M_I-M_T)=-0.093$.
+
+Analytical - Emotional Change Difference overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=0.109$, $M_{Text}=0.144$, $t=-0.558$, $p = .577$, $\Delta(M_I-M_T)=-0.035$.
+Within-group condition tests:
+- 18-24: $n_{Interactive}=57$, $n_{Text}=68$, $M_{Interactive}=0.044$, $M_{Text}=0.225$, $t=-1.407$, $p = .162$, $\Delta(M_I-M_T)=-0.181$.
+- 25-34: $n_{Interactive}=117$, $n_{Text}=102$, $M_{Interactive}=0.205$, $M_{Text}=0.235$, $t=-0.306$, $p = .760$, $\Delta(M_I-M_T)=-0.030$.
+- 35-44: $n_{Interactive}=43$, $n_{Text}=50$, $M_{Interactive}=-0.012$, $M_{Text}=-0.014$, $t=0.015$, $p = .988$, $\Delta(M_I-M_T)=0.002$.
+- 45+: $n_{Interactive}=35$, $n_{Text}=32$, $M_{Interactive}=0.044$, $M_{Text}=-0.070$, $t=0.686$, $p = .495$, $\Delta(M_I-M_T)=0.114$.

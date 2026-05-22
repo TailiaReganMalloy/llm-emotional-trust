@@ -1,0 +1,18 @@
+\subsubsection{Hypothesis 12 Results}
+Hypothesis 12 tested whether WEIRD and NORMAL participants differ in pre-to-post trust change using Group x Time interaction models (difference-in-differences) for overall, analytical, and emotional trust.
+
+12.1 Group x Time interaction for overall trust:
+WEIRD pre-post: $n=120$, $\Delta(M_{post}-M_{pre})=-2.350$, $t=3.440$, $p < .001$.
+NORMAL pre-post: $n=384$, $\Delta(M_{post}-M_{pre})=-4.078$, $t=9.970$, $p < .001$.
+Interaction estimate: $b=1.728$, $t(1004)=1.070$, $p = .285$.
+
+12.2 Group x Time interaction for analytical trust:
+WEIRD pre-post: $n=120$, $\Delta(M_{post}-M_{pre})=-1.517$, $t=3.014$, $p = .003$.
+NORMAL pre-post: $n=384$, $\Delta(M_{post}-M_{pre})=-1.271$, $t=3.928$, $p < .001$.
+Interaction estimate: $b=-0.246$, $t(1004)=-0.179$, $p = .858$.
+
+12.3 Group x Time interaction for emotional trust:
+WEIRD pre-post: $n=120$, $\Delta(M_{post}-M_{pre})=-0.833$, $t=2.058$, $p = .042$.
+NORMAL pre-post: $n=384$, $\Delta(M_{post}-M_{pre})=-2.807$, $t=14.183$, $p < .001$.
+Interaction estimate: $b=1.974$, $t(1004)=4.345$, $p < .001$.
+Asterisk key: * p < .05, ** p < .01, *** p < .001.

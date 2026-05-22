@@ -1,0 +1,31 @@
+\subsubsection{Employment-Status Trust-Change Comparison Condition-Effect Results}
+Condition-effect tests (Interactive vs Text) were run within each Employment Status category for analytical change, emotional change, and analytical-minus-emotional difference.
+
+Analytical Change (Post - Pre, per-item) (min n per condition = 8):
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=-0.114$, $M_{Text}=-0.088$, $t=-0.318$, $p = .751$, $\Delta(M_I-M_T)=-0.026$, ns.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.318$, $M_{Text}=-0.195$, $t=-1.095$, $p = .276$, $\Delta(M_I-M_T)=-0.123$, ns.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=-0.040$, $M_{Text}=-0.102$, $t=0.448$, $p = .655$, $\Delta(M_I-M_T)=0.062$, ns.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.167$, $M_{Text}=-0.325$, $t=0.503$, $p = .623$, $\Delta(M_I-M_T)=0.158$, ns.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=0.475$, $M_{Text}=0.325$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.150$, NA.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=-0.025$, $M_{Text}=-0.150$, $t=0.584$, $p = .564$, $\Delta(M_I-M_T)=0.125$, ns.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.458$, $M_{Text}=-0.136$, $t=-1.289$, $p = .216$, $\Delta(M_I-M_T)=-0.322$, ns.
+
+Emotional Change (Post - Pre, per-item) (min n per condition = 8):
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=-0.270$, $M_{Text}=-0.222$, $t=-0.693$, $p = .489$, $\Delta(M_I-M_T)=-0.048$, ns.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.227$, $M_{Text}=-0.360$, $t=1.609$, $p = .111$, $\Delta(M_I-M_T)=0.133$, ns.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=-0.249$, $M_{Text}=-0.369$, $t=1.528$, $p = .130$, $\Delta(M_I-M_T)=0.120$, ns.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.123$, $M_{Text}=-0.167$, $t=0.162$, $p = .874$, $\Delta(M_I-M_T)=0.043$, ns.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=-0.333$, $M_{Text}=-0.333$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.000$, NA.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=-0.444$, $M_{Text}=-0.198$, $t=-1.898$, $p = .068$, $\Delta(M_I-M_T)=-0.247$, ns.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.074$, $M_{Text}=-0.091$, $t=0.106$, $p = .917$, $\Delta(M_I-M_T)=0.017$, ns.
+
+Analytical - Emotional Change Difference (min n per condition = 8):
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=0.156$, $M_{Text}=0.134$, $t=0.227$, $p = .820$, $\Delta(M_I-M_T)=0.022$, ns.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.091$, $M_{Text}=0.165$, $t=-2.177$, $p = .032$, $\Delta(M_I-M_T)=-0.256$, *.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=0.209$, $M_{Text}=0.267$, $t=-0.383$, $p = .702$, $\Delta(M_I-M_T)=-0.058$, ns.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.043$, $M_{Text}=-0.158$, $t=0.324$, $p = .752$, $\Delta(M_I-M_T)=0.115$, ns.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=0.808$, $M_{Text}=0.658$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.150$, NA.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=0.419$, $M_{Text}=0.048$, $t=1.494$, $p = .147$, $\Delta(M_I-M_T)=0.372$, ns.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.384$, $M_{Text}=-0.045$, $t=-1.205$, $p = .244$, $\Delta(M_I-M_T)=-0.339$, ns.
+
+Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

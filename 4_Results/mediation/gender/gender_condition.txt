@@ -1,0 +1,19 @@
+\subsubsection{Gender-Based Trust-Change Comparison Condition-Effect Results}
+Condition-effect tests (Interactive vs Text) were run within each Gender category for analytical change, emotional change, and analytical-minus-emotional difference.
+
+Analytical Change (Post - Pre, per-item) (min n per condition = 8):
+- Man: $n_{Interactive}=79$, $n_{Text}=91$, $M_{Interactive}=-0.147$, $M_{Text}=-0.202$, $t=0.700$, $p = .485$, $\Delta(M_I-M_T)=0.055$, ns.
+- Woman: $n_{Interactive}=87$, $n_{Text}=92$, $M_{Interactive}=-0.264$, $M_{Text}=-0.093$, $t=-1.996$, $p = .048$, $\Delta(M_I-M_T)=-0.171$, *.
+- NB/GD: $n_{Interactive}=86$, $n_{Text}=69$, $M_{Interactive}=-0.014$, $M_{Text}=-0.061$, $t=0.386$, $p = .700$, $\Delta(M_I-M_T)=0.047$, ns.
+
+Emotional Change (Post - Pre, per-item) (min n per condition = 8):
+- Man: $n_{Interactive}=79$, $n_{Text}=91$, $M_{Interactive}=-0.290$, $M_{Text}=-0.293$, $t=0.045$, $p = .964$, $\Delta(M_I-M_T)=0.003$, ns.
+- Woman: $n_{Interactive}=87$, $n_{Text}=92$, $M_{Interactive}=-0.332$, $M_{Text}=-0.283$, $t=-0.706$, $p = .481$, $\Delta(M_I-M_T)=-0.049$, ns.
+- NB/GD: $n_{Interactive}=86$, $n_{Text}=69$, $M_{Interactive}=-0.134$, $M_{Text}=-0.216$, $t=1.239$, $p = .217$, $\Delta(M_I-M_T)=0.081$, ns.
+
+Analytical - Emotional Change Difference (min n per condition = 8):
+- Man: $n_{Interactive}=79$, $n_{Text}=91$, $M_{Interactive}=0.143$, $M_{Text}=0.091$, $t=0.534$, $p = .594$, $\Delta(M_I-M_T)=0.052$, ns.
+- Woman: $n_{Interactive}=87$, $n_{Text}=92$, $M_{Interactive}=0.068$, $M_{Text}=0.189$, $t=-1.164$, $p = .246$, $\Delta(M_I-M_T)=-0.121$, ns.
+- NB/GD: $n_{Interactive}=86$, $n_{Text}=69$, $M_{Interactive}=0.120$, $M_{Text}=0.155$, $t=-0.269$, $p = .789$, $\Delta(M_I-M_T)=-0.034$, ns.
+
+Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

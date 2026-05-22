@@ -1,0 +1,140 @@
+\subsubsection{Employment-Status Trust-Change Comparison Results}
+Compared analytical trust change, emotional trust change, and their difference across Employment Status categories.
+
+Included groups and counts:
+- Full-Time: n=202
+- Unemployed: n=108
+- Part-Time: n=105
+- Data_Expired: n=34
+- Other: n=30
+- Retired: n=17
+- Starting new job soon: n=8
+
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=2.298, p = .034.
+Group means (95% CI):
+- Full-Time: n=202, M=-0.102, CI=[-0.181, -0.023]
+- Part-Time: n=105, M=-0.253, CI=[-0.364, -0.142]
+- Unemployed: n=108, M=-0.069, CI=[-0.205, 0.068]
+- Retired: n=17, M=-0.241, CI=[-0.575, 0.093]
+- Starting new job soon: n=8, M=0.400, CI=[0.147, 0.653]
+- Other: n=30, M=-0.100, CI=[-0.322, 0.122]
+- Data_Expired: n=34, M=-0.250, CI=[-0.467, -0.033]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Full-Time vs Part-Time: t=2.195, p=0.029, p_adj=0.614
+- Full-Time vs Unemployed: t=-0.420, p=0.675, p_adj=1.000
+- Full-Time vs Retired: t=0.857, p=0.403, p_adj=1.000
+- Full-Time vs Starting new job soon: t=-4.394, p=0.002, p_adj=0.035 *
+- Full-Time vs Other: t=-0.017, p=0.986, p_adj=1.000
+- Full-Time vs Data_Expired: t=1.298, p=0.201, p_adj=1.000
+- Part-Time vs Unemployed: t=-2.086, p=0.038, p_adj=0.803
+- Part-Time vs Retired: t=-0.073, p=0.943, p_adj=1.000
+- Part-Time vs Starting new job soon: t=-5.415, p=0.000, p_adj=0.004 **
+- Part-Time vs Other: t=-1.255, p=0.216, p_adj=1.000
+- Part-Time vs Data_Expired: t=-0.028, p=0.978, p_adj=1.000
+- Unemployed vs Retired: t=1.005, p=0.325, p_adj=1.000
+- Unemployed vs Starting new job soon: t=-3.687, p=0.002, p_adj=0.052
+- Unemployed vs Other: t=0.245, p=0.807, p_adj=1.000
+- Unemployed vs Data_Expired: t=1.430, p=0.158, p_adj=1.000
+- Retired vs Starting new job soon: t=-3.369, p=0.003, p_adj=0.056
+- Retired vs Other: t=-0.738, p=0.466, p_adj=1.000
+- Retired vs Data_Expired: t=0.046, p=0.963, p_adj=1.000
+- Starting new job soon vs Other: t=3.281, p=0.003, p_adj=0.069
+- Starting new job soon vs Data_Expired: t=4.304, p=0.000, p_adj=0.006 **
+- Other vs Data_Expired: t=0.985, p=0.328, p_adj=1.000
+
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=1.402, p = .212.
+Group means (95% CI):
+- Full-Time: n=202, M=-0.248, CI=[-0.315, -0.180]
+- Part-Time: n=105, M=-0.296, CI=[-0.379, -0.214]
+- Unemployed: n=108, M=-0.305, CI=[-0.383, -0.226]
+- Retired: n=17, M=-0.144, CI=[-0.418, 0.130]
+- Starting new job soon: n=8, M=-0.333, CI=[-0.596, -0.071]
+- Other: n=30, M=-0.296, CI=[-0.445, -0.148]
+- Data_Expired: n=34, M=-0.085, CI=[-0.254, 0.084]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Full-Time vs Part-Time: t=0.903, p=0.367, p_adj=1.000
+- Full-Time vs Unemployed: t=1.085, p=0.279, p_adj=1.000
+- Full-Time vs Retired: t=-0.776, p=0.448, p_adj=1.000
+- Full-Time vs Starting new job soon: t=0.738, p=0.481, p_adj=1.000
+- Full-Time vs Other: t=0.608, p=0.547, p_adj=1.000
+- Full-Time vs Data_Expired: t=-1.812, p=0.077, p_adj=1.000
+- Part-Time vs Unemployed: t=0.143, p=0.886, p_adj=1.000
+- Part-Time vs Retired: t=-1.124, p=0.275, p_adj=1.000
+- Part-Time vs Starting new job soon: t=0.312, p=0.762, p_adj=1.000
+- Part-Time vs Other: t=-0.000, p=1.000, p_adj=1.000
+- Part-Time vs Data_Expired: t=-2.279, p=0.027, p_adj=0.565
+- Unemployed vs Retired: t=-1.190, p=0.249, p_adj=1.000
+- Unemployed vs Starting new job soon: t=0.244, p=0.813, p_adj=1.000
+- Unemployed vs Other: t=-0.100, p=0.921, p_adj=1.000
+- Unemployed vs Data_Expired: t=-2.389, p=0.021, p_adj=0.436
+- Retired vs Starting new job soon: t=1.113, p=0.278, p_adj=1.000
+- Retired vs Other: t=1.030, p=0.313, p_adj=1.000
+- Retired vs Data_Expired: t=-0.383, p=0.704, p_adj=1.000
+- Starting new job soon vs Other: t=-0.279, p=0.784, p_adj=1.000
+- Starting new job soon vs Data_Expired: t=-1.792, p=0.092, p_adj=1.000
+- Other vs Data_Expired: t=-1.919, p=0.060, p_adj=1.000
+
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=3.078, p = .006.
+Group means (95% CI):
+- Full-Time: n=202, M=0.146, CI=[0.050, 0.241]
+- Part-Time: n=105, M=0.043, CI=[-0.076, 0.161]
+- Unemployed: n=108, M=0.236, CI=[0.090, 0.382]
+- Retired: n=17, M=-0.097, CI=[-0.477, 0.282]
+- Starting new job soon: n=8, M=0.733, CI=[0.267, 1.199]
+- Other: n=30, M=0.196, CI=[-0.066, 0.459]
+- Data_Expired: n=34, M=-0.165, CI=[-0.421, 0.091]
+Pairwise Welch tests (Bonferroni-adjusted):
+- Full-Time vs Part-Time: t=1.332, p=0.184, p_adj=1.000
+- Full-Time vs Unemployed: t=-1.026, p=0.306, p_adj=1.000
+- Full-Time vs Retired: t=1.309, p=0.207, p_adj=1.000
+- Full-Time vs Starting new job soon: t=-2.895, p=0.020, p_adj=0.428
+- Full-Time vs Other: t=-0.370, p=0.713, p_adj=1.000
+- Full-Time vs Data_Expired: t=2.299, p=0.026, p_adj=0.554
+- Part-Time vs Unemployed: t=-2.036, p=0.043, p_adj=0.904
+- Part-Time vs Retired: t=0.743, p=0.466, p_adj=1.000
+- Part-Time vs Starting new job soon: t=-3.352, p=0.009, p_adj=0.199
+- Part-Time vs Other: t=-1.084, p=0.285, p_adj=1.000
+- Part-Time vs Data_Expired: t=1.491, p=0.142, p_adj=1.000
+- Unemployed vs Retired: t=1.722, p=0.099, p_adj=1.000
+- Unemployed vs Starting new job soon: t=-2.364, p=0.042, p_adj=0.885
+- Unemployed vs Other: t=0.269, p=0.789, p_adj=1.000
+- Unemployed vs Data_Expired: t=2.748, p=0.008, p_adj=0.168
+- Retired vs Starting new job soon: t=-3.119, p=0.006, p_adj=0.125
+- Retired vs Other: t=-1.333, p=0.192, p_adj=1.000
+- Retired vs Data_Expired: t=0.309, p=0.759, p_adj=1.000
+- Starting new job soon vs Other: t=2.284, p=0.039, p_adj=0.820
+- Starting new job soon vs Data_Expired: t=3.840, p=0.002, p_adj=0.041 *
+- Other vs Data_Expired: t=2.010, p=0.049, p_adj=1.000
+
+Condition-effect follow-up tests (Interactive vs Text):
+These tests are additive to the trust-change group comparisons above and evaluate condition effects overall and within each group category.
+
+Analytical Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
+Within-group condition tests:
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=-0.114$, $M_{Text}=-0.088$, $t=-0.318$, $p = .751$, $\Delta(M_I-M_T)=-0.026$.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.318$, $M_{Text}=-0.195$, $t=-1.095$, $p = .276$, $\Delta(M_I-M_T)=-0.123$.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=-0.040$, $M_{Text}=-0.102$, $t=0.448$, $p = .655$, $\Delta(M_I-M_T)=0.062$.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.167$, $M_{Text}=-0.325$, $t=0.503$, $p = .623$, $\Delta(M_I-M_T)=0.158$.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=0.475$, $M_{Text}=0.325$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.150$.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=-0.025$, $M_{Text}=-0.150$, $t=0.584$, $p = .564$, $\Delta(M_I-M_T)=0.125$.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.458$, $M_{Text}=-0.136$, $t=-1.289$, $p = .216$, $\Delta(M_I-M_T)=-0.322$.
+
+Emotional Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
+Within-group condition tests:
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=-0.270$, $M_{Text}=-0.222$, $t=-0.693$, $p = .489$, $\Delta(M_I-M_T)=-0.048$.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.227$, $M_{Text}=-0.360$, $t=1.609$, $p = .111$, $\Delta(M_I-M_T)=0.133$.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=-0.249$, $M_{Text}=-0.369$, $t=1.528$, $p = .130$, $\Delta(M_I-M_T)=0.120$.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.123$, $M_{Text}=-0.167$, $t=0.162$, $p = .874$, $\Delta(M_I-M_T)=0.043$.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=-0.333$, $M_{Text}=-0.333$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.000$.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=-0.444$, $M_{Text}=-0.198$, $t=-1.898$, $p = .068$, $\Delta(M_I-M_T)=-0.247$.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.074$, $M_{Text}=-0.091$, $t=0.106$, $p = .917$, $\Delta(M_I-M_T)=0.017$.
+
+Analytical - Emotional Change Difference overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=0.109$, $M_{Text}=0.144$, $t=-0.558$, $p = .577$, $\Delta(M_I-M_T)=-0.035$.
+Within-group condition tests:
+- Full-Time: $n_{Interactive}=107$, $n_{Text}=95$, $M_{Interactive}=0.156$, $M_{Text}=0.134$, $t=0.227$, $p = .820$, $\Delta(M_I-M_T)=0.022$.
+- Part-Time: $n_{Interactive}=50$, $n_{Text}=55$, $M_{Interactive}=-0.091$, $M_{Text}=0.165$, $t=-2.177$, $p = .032$, $\Delta(M_I-M_T)=-0.256$.
+- Unemployed: $n_{Interactive}=58$, $n_{Text}=50$, $M_{Interactive}=0.209$, $M_{Text}=0.267$, $t=-0.383$, $p = .702$, $\Delta(M_I-M_T)=-0.058$.
+- Retired: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.043$, $M_{Text}=-0.158$, $t=0.324$, $p = .752$, $\Delta(M_I-M_T)=0.115$.
+- Starting new job soon: $n_{Interactive}=4$, $n_{Text}=4$, $M_{Interactive}=0.808$, $M_{Text}=0.658$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.150$.
+- Other: $n_{Interactive}=12$, $n_{Text}=18$, $M_{Interactive}=0.419$, $M_{Text}=0.048$, $t=1.494$, $p = .147$, $\Delta(M_I-M_T)=0.372$.
+- Data_Expired: $n_{Interactive}=12$, $n_{Text}=22$, $M_{Interactive}=-0.384$, $M_{Text}=-0.045$, $t=-1.205$, $p = .244$, $\Delta(M_I-M_T)=-0.339$.

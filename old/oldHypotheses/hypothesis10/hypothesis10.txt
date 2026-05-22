@@ -1,0 +1,15 @@
+\subsubsection{Hypothesis 10 Results}
+Hypothesis 10 tested whether WEIRD and NORMAL participants differ in pre-experiment overall trust, analytical trust, and emotional trust.
+
+10.1 WEIRD vs NORMAL difference in pre-experiment overall trust:
+Overall pre-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=1.217$, $M_{NORMAL}=5.826$, $t=-3.412$, $p < .001$, $\Delta(M_W-M_N)=-4.609$.
+Interpretation: significant WEIRD vs NORMAL difference in pre-experiment overall trust.
+
+10.2 WEIRD vs NORMAL difference in pre-experiment analytical trust:
+Analytical pre-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=-0.167$, $M_{NORMAL}=2.664$, $t=-2.802$, $p = .006$, $\Delta(M_W-M_N)=-2.831$.
+Interpretation: significant WEIRD vs NORMAL difference in pre-experiment analytical trust.
+
+10.3 WEIRD vs NORMAL difference in pre-experiment emotional trust:
+Emotional pre-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=1.383$, $M_{NORMAL}=3.161$, $t=-3.715$, $p < .001$, $\Delta(M_W-M_N)=-1.778$.
+Interpretation: significant WEIRD vs NORMAL difference in pre-experiment emotional trust.
+Asterisk key: * p < .05, ** p < .01, *** p < .001.

@@ -1,0 +1,15 @@
+\subsubsection{Hypothesis 11 Results}
+Hypothesis 11 tested whether WEIRD and NORMAL participants differ in post-experiment overall trust, analytical trust, and emotional trust.
+
+11.1 WEIRD vs NORMAL difference in post-experiment overall trust:
+Overall post-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=-1.133$, $M_{NORMAL}=1.747$, $t=-2.862$, $p = .005$, $\Delta(M_W-M_N)=-2.881$.
+Interpretation: significant WEIRD vs NORMAL difference in post-experiment overall trust.
+
+11.2 WEIRD vs NORMAL difference in post-experiment analytical trust:
+Analytical post-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=-1.683$, $M_{NORMAL}=1.393$, $t=-3.165$, $p = .002$, $\Delta(M_W-M_N)=-3.077$.
+Interpretation: significant WEIRD vs NORMAL difference in post-experiment analytical trust.
+
+11.3 WEIRD vs NORMAL difference in post-experiment emotional trust:
+Emotional post-trust group contrast: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=0.550$, $M_{NORMAL}=0.354$, $t=2.170$, $p = .031$, $\Delta(M_W-M_N)=0.196$.
+Interpretation: significant WEIRD vs NORMAL difference in post-experiment emotional trust.
+Asterisk key: * p < .05, ** p < .01, *** p < .001.

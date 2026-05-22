@@ -1,0 +1,28 @@
+\subsubsection{Ethnicity-Based Trust-Change Comparison Condition-Effect Results}
+Condition-effect tests (Interactive vs Text) were run within each Ethnicity category for analytical change, emotional change, and analytical-minus-emotional difference.
+
+Analytical Change (Post - Pre, per-item) (min n per condition = 8):
+- White: $n_{Interactive}=88$, $n_{Text}=110$, $M_{Interactive}=-0.097$, $M_{Text}=-0.149$, $t=0.567$, $p = .571$, $\Delta(M_I-M_T)=0.053$, ns.
+- Asian: $n_{Interactive}=49$, $n_{Text}=44$, $M_{Interactive}=-0.249$, $M_{Text}=-0.191$, $t=-0.447$, $p = .656$, $\Delta(M_I-M_T)=-0.058$, ns.
+- Black: $n_{Interactive}=46$, $n_{Text}=39$, $M_{Interactive}=-0.189$, $M_{Text}=-0.041$, $t=-1.336$, $p = .185$, $\Delta(M_I-M_T)=-0.148$, ns.
+- Mixed: $n_{Interactive}=34$, $n_{Text}=25$, $M_{Interactive}=-0.062$, $M_{Text}=-0.016$, $t=-0.352$, $p = .726$, $\Delta(M_I-M_T)=-0.046$, ns.
+- Other: $n_{Interactive}=26$, $n_{Text}=26$, $M_{Interactive}=-0.169$, $M_{Text}=-0.112$, $t=-0.263$, $p = .794$, $\Delta(M_I-M_T)=-0.058$, ns.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=0.011$, $M_{Text}=-0.188$, $t=0.606$, $p = .555$, $\Delta(M_I-M_T)=0.199$, ns.
+
+Emotional Change (Post - Pre, per-item) (min n per condition = 8):
+- White: $n_{Interactive}=88$, $n_{Text}=110$, $M_{Interactive}=-0.263$, $M_{Text}=-0.139$, $t=-1.967$, $p = .051$, $\Delta(M_I-M_T)=-0.123$, ns.
+- Asian: $n_{Interactive}=49$, $n_{Text}=44$, $M_{Interactive}=-0.204$, $M_{Text}=-0.399$, $t=2.113$, $p = .037$, $\Delta(M_I-M_T)=0.195$, *.
+- Black: $n_{Interactive}=46$, $n_{Text}=39$, $M_{Interactive}=-0.444$, $M_{Text}=-0.496$, $t=0.552$, $p = .583$, $\Delta(M_I-M_T)=0.051$, ns.
+- Mixed: $n_{Interactive}=34$, $n_{Text}=25$, $M_{Interactive}=-0.131$, $M_{Text}=-0.267$, $t=1.016$, $p = .315$, $\Delta(M_I-M_T)=0.136$, ns.
+- Other: $n_{Interactive}=26$, $n_{Text}=26$, $M_{Interactive}=-0.120$, $M_{Text}=-0.179$, $t=0.511$, $p = .612$, $\Delta(M_I-M_T)=0.060$, ns.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.247$, $M_{Text}=-0.500$, $t=1.404$, $p = .181$, $\Delta(M_I-M_T)=0.253$, ns.
+
+Analytical - Emotional Change Difference (min n per condition = 8):
+- White: $n_{Interactive}=88$, $n_{Text}=110$, $M_{Interactive}=0.166$, $M_{Text}=-0.010$, $t=1.738$, $p = .084$, $\Delta(M_I-M_T)=0.176$, ns.
+- Asian: $n_{Interactive}=49$, $n_{Text}=44$, $M_{Interactive}=-0.045$, $M_{Text}=0.208$, $t=-1.891$, $p = .062$, $\Delta(M_I-M_T)=-0.253$, ns.
+- Black: $n_{Interactive}=46$, $n_{Text}=39$, $M_{Interactive}=0.255$, $M_{Text}=0.455$, $t=-1.558$, $p = .123$, $\Delta(M_I-M_T)=-0.199$, ns.
+- Mixed: $n_{Interactive}=34$, $n_{Text}=25$, $M_{Interactive}=0.069$, $M_{Text}=0.251$, $t=-0.939$, $p = .352$, $\Delta(M_I-M_T)=-0.182$, ns.
+- Other: $n_{Interactive}=26$, $n_{Text}=26$, $M_{Interactive}=-0.050$, $M_{Text}=0.068$, $t=-0.524$, $p = .603$, $\Delta(M_I-M_T)=-0.118$, ns.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=0.258$, $M_{Text}=0.312$, $t=-0.124$, $p = .903$, $\Delta(M_I-M_T)=-0.054$, ns.
+
+Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

@@ -3,3 +3,4 @@ seaborn>=0.12
 matplotlib>=3.5
 scipy>=1.7
 numpy>=1.21
+jinja2>=3.1

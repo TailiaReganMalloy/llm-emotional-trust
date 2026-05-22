@@ -1,0 +1,93 @@
+\subsubsection{Education-Based Trust-Change Comparison Results}
+Compared analytical trust change, emotional trust change, and their difference across Education categories.
+
+Included groups and counts:
+- Bachelor: n=241
+- High School: n=104
+- Master: n=98
+- Graduate Professional Degree: n=45
+- PhD: n=16
+
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=3.604, p = .007.
+Group means (95% CI):
+- High School: n=104, M=0.052, CI=[-0.059, 0.163]
+- Bachelor: n=241, M=-0.208, CI=[-0.284, -0.132]
+- Master: n=98, M=-0.152, CI=[-0.279, -0.025]
+- Graduate Professional Degree: n=45, M=-0.169, CI=[-0.386, 0.048]
+- PhD: n=16, M=0.012, CI=[-0.259, 0.284]
+Pairwise Welch tests (Bonferroni-adjusted):
+- High School vs Bachelor: t=3.830, p=0.000, p_adj=0.002 **
+- High School vs Master: t=2.404, p=0.017, p_adj=0.171
+- High School vs Graduate Professional Degree: t=1.818, p=0.073, p_adj=0.734
+- High School vs PhD: t=0.283, p=0.780, p_adj=1.000
+- Bachelor vs Master: t=-0.749, p=0.455, p_adj=1.000
+- Bachelor vs Graduate Professional Degree: t=-0.341, p=0.735, p_adj=1.000
+- Bachelor vs PhD: t=-1.655, p=0.115, p_adj=1.000
+- Master vs Graduate Professional Degree: t=0.134, p=0.893, p_adj=1.000
+- Master vs PhD: t=-1.154, p=0.260, p_adj=1.000
+- Graduate Professional Degree vs PhD: t=-1.087, p=0.284, p_adj=1.000
+
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=2.891, p = .022.
+Group means (95% CI):
+- High School: n=104, M=-0.184, CI=[-0.274, -0.094]
+- Bachelor: n=241, M=-0.323, CI=[-0.381, -0.264]
+- Master: n=98, M=-0.195, CI=[-0.280, -0.110]
+- Graduate Professional Degree: n=45, M=-0.291, CI=[-0.410, -0.172]
+- PhD: n=16, M=-0.111, CI=[-0.414, 0.192]
+Pairwise Welch tests (Bonferroni-adjusted):
+- High School vs Bachelor: t=2.560, p=0.011, p_adj=0.112
+- High School vs Master: t=0.180, p=0.857, p_adj=1.000
+- High School vs Graduate Professional Degree: t=1.444, p=0.152, p_adj=1.000
+- High School vs PhD: t=-0.487, p=0.632, p_adj=1.000
+- Bachelor vs Master: t=-2.454, p=0.015, p_adj=0.150
+- Bachelor vs Graduate Professional Degree: t=-0.475, p=0.636, p_adj=1.000
+- Bachelor vs PhD: t=-1.459, p=0.164, p_adj=1.000
+- Master vs Graduate Professional Degree: t=1.322, p=0.190, p_adj=1.000
+- Master vs PhD: t=-0.566, p=0.579, p_adj=1.000
+- Graduate Professional Degree vs PhD: t=-1.172, p=0.255, p_adj=1.000
+
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=0.987, p = .414.
+Group means (95% CI):
+- High School: n=104, M=0.236, CI=[0.107, 0.365]
+- Bachelor: n=241, M=0.115, CI=[0.028, 0.201]
+- Master: n=98, M=0.043, CI=[-0.097, 0.183]
+- Graduate Professional Degree: n=45, M=0.122, CI=[-0.128, 0.373]
+- PhD: n=16, M=0.124, CI=[-0.357, 0.604]
+Pairwise Welch tests (Bonferroni-adjusted):
+- High School vs Bachelor: t=1.538, p=0.126, p_adj=1.000
+- High School vs Master: t=2.005, p=0.046, p_adj=0.463
+- High School vs Graduate Professional Degree: t=0.806, p=0.423, p_adj=1.000
+- High School vs PhD: t=0.477, p=0.639, p_adj=1.000
+- Bachelor vs Master: t=0.864, p=0.389, p_adj=1.000
+- Bachelor vs Graduate Professional Degree: t=-0.058, p=0.954, p_adj=1.000
+- Bachelor vs PhD: t=-0.038, p=0.970, p_adj=1.000
+- Master vs Graduate Professional Degree: t=-0.555, p=0.580, p_adj=1.000
+- Master vs PhD: t=-0.341, p=0.737, p_adj=1.000
+- Graduate Professional Degree vs PhD: t=-0.004, p=0.996, p_adj=1.000
+
+Condition-effect follow-up tests (Interactive vs Text):
+These tests are additive to the trust-change group comparisons above and evaluate condition effects overall and within each group category.
+
+Analytical Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
+Within-group condition tests:
+- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=0.089$, $M_{Text}=0.024$, $t=0.547$, $p = .586$, $\Delta(M_I-M_T)=0.065$.
+- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=-0.225$, $M_{Text}=-0.191$, $t=-0.442$, $p = .659$, $\Delta(M_I-M_T)=-0.034$.
+- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=-0.122$, $M_{Text}=-0.191$, $t=0.540$, $p = .590$, $\Delta(M_I-M_T)=0.069$.
+- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.250$, $M_{Text}=-0.076$, $t=-0.799$, $p = .429$, $\Delta(M_I-M_T)=-0.174$.
+- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=-0.012$, $M_{Text}=0.038$, $t=-0.190$, $p = .852$, $\Delta(M_I-M_T)=-0.050$.
+
+Emotional Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
+Within-group condition tests:
+- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=-0.133$, $M_{Text}=-0.222$, $t=0.964$, $p = .338$, $\Delta(M_I-M_T)=0.089$.
+- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=-0.324$, $M_{Text}=-0.321$, $t=-0.045$, $p = .964$, $\Delta(M_I-M_T)=-0.003$.
+- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=-0.202$, $M_{Text}=-0.186$, $t=-0.179$, $p = .858$, $\Delta(M_I-M_T)=-0.016$.
+- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.213$, $M_{Text}=-0.381$, $t=1.452$, $p = .154$, $\Delta(M_I-M_T)=0.168$.
+- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=-0.278$, $M_{Text}=0.056$, $t=-1.190$, $p = .254$, $\Delta(M_I-M_T)=-0.333$.
+
+Analytical - Emotional Change Difference overall condition effect (min n per condition = 8): $n_{Interactive}=252$, $n_{Text}=252$, $M_{Interactive}=0.109$, $M_{Text}=0.144$, $t=-0.558$, $p = .577$, $\Delta(M_I-M_T)=-0.035$.
+Within-group condition tests:
+- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=0.222$, $M_{Text}=0.246$, $t=-0.175$, $p = .861$, $\Delta(M_I-M_T)=-0.024$.
+- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=0.099$, $M_{Text}=0.130$, $t=-0.357$, $p = .721$, $\Delta(M_I-M_T)=-0.031$.
+- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=0.080$, $M_{Text}=-0.005$, $t=0.594$, $p = .554$, $\Delta(M_I-M_T)=0.085$.
+- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.037$, $M_{Text}=0.305$, $t=-1.385$, $p = .173$, $\Delta(M_I-M_T)=-0.342$.
+- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=0.265$, $M_{Text}=-0.018$, $t=0.615$, $p = .549$, $\Delta(M_I-M_T)=0.283$.

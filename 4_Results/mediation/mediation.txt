@@ -1,0 +1,23 @@
+\subsubsection{Mediation Of WEIRD Attributes By Condition}
+For each condition (Interactive and Text), separate mediation models tested whether each WEIRD-defining attribute mediated the association between WEIRD group membership and the analytical-vs-emotional change difference.
+Model per test: X = WEIRD indicator, M = attribute indicator, Y = analytical_change - emotional_change; indirect effect estimated by non-parametric bootstrap.
+
+Condition=Interactive, Mediator=Western residence indicator, n=252
+- a path (X->M): 0.7708; b path (M->Y | X): -0.1187; c total (X->Y): -0.2435; c' direct (X->Y | M): -0.1521
+- indirect (a*b): -0.0904, 95% CI [-0.2790, 0.0890], p = .323
+- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+
+Condition=Interactive, Mediator=English language indicator, n=252
+- a path (X->M): 0.7708; b path (M->Y | X): -0.0633; c total (X->Y): -0.2435; c' direct (X->Y | M): -0.1947
+- indirect (a*b): -0.0469, 95% CI [-0.2515, 0.1583], p = .650
+- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+
+Condition=Text, Mediator=Western residence indicator, n=252
+- a path (X->M): 0.8073; b path (M->Y | X): -0.0060; c total (X->Y): -0.2443; c' direct (X->Y | M): -0.2394
+- indirect (a*b): -0.0045, 95% CI [-0.1863, 0.1696], p = .966
+- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+
+Condition=Text, Mediator=English language indicator, n=252
+- a path (X->M): 0.7500; b path (M->Y | X): 0.0863; c total (X->Y): -0.2443; c' direct (X->Y | M): -0.3090
+- indirect (a*b): 0.0641, 95% CI [-0.1123, 0.2382], p = .486
+- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
