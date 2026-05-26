@@ -1,0 +1,1320 @@
+/* Copyright 2020 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+============================================================================== */
+
+
+
+
+.fill-in-the-blank-experiment{
+	max-width: 850px;
+	margin: 0 auto;
+	margin-top: 5px;
+	margin-bottom: 80px;
+  color: #3C4043;
+  font-weight: 300;
+	font-size: 16px;
+  font-family: Roboto, Helvetica, sans-serif;
+	line-height: 1.55em;
+	background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (width <= 760px){
+ .fill-in-the-blank-experiment{
+		padding: 5px;
+	}
+}
+
+.fill-in-the-blank-experiment p{
+  /* line-height: 28px; */
+  color: #3C4043;
+  font-size: 16px;
+	line-height: 1.55em;
+  letter-spacing: 0.1px;
+}
+
+.fill-in-the-blank-experiment a{
+	color: black;
+}
+
+.fill-in-the-blank-experiment .header{
+  position: relative;
+  height: 24px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding-left: 20px;
+  overflow: visible;
+  color: black;
+  font-weight: 100;
+  font-size: 20px;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.fill-in-the-blank-experiment .header-left{
+  width: 300px;
+  margin: 0 auto;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.fill-in-the-blank-experiment .header-left img{
+  position: relative;
+  top: 0;
+  width: 100px;
+  opacity: 1;
+}
+
+.fill-in-the-blank-experiment .header-left a:first-child{
+  float: left;
+}
+
+.fill-in-the-blank-experiment .header-left a:last-child{
+  position: relative;
+  top: 8px;
+  float: left;
+  margin-left: 20px;
+}
+
+.fill-in-the-blank-experiment .header-left a{
+  /* margin: 50px 0 0 50px; */
+  display: inline-block;
+  color: #00695C !important;
+  font-weight: 300;
+  font-size: 20px;
+  font-family: "Google Sans", sans-serif;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  text-align: right;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgb(255 255 255 / 0%);
+}
+
+.fill-in-the-blank-experiment .header-left a:hover{
+  color: #ff4081 !important;
+}
+
+@media (width <= 750px){
+  .fill-in-the-blank-experiment .header-right span{
+    opacity: 0;
+  }
+}
+
+.fill-in-the-blank-experiment .header a{
+	/* opacity: .5; */
+	text-decoration: none;
+}
+
+.fill-in-the-blank-experiment .header a:hover{
+	opacity: 1
+}
+
+/* TODO mobile padding? */
+
+.fill-in-the-blank-experiment h3{
+  max-width: 750px;
+  margin: 0 auto;
+  font-weight: 100;
+  line-height: 1.3em;
+}
+
+.fill-in-the-blank-experiment h1, .fill-in-the-blank-experiment h2, .fill-in-the-blank-experiment h3, .fill-in-the-blank-experiment h4, .fill-in-the-blank-experiment h5{
+	margin-top: 1.5em;
+	margin-bottom: .5em;
+  font-weight: 100;
+	font-family: 'Google Sans', sans-serif;
+}
+
+.fill-in-the-blank-experiment h1{
+  margin-top: 1.4em;
+	margin-bottom: .5em;
+	font-weight: 100;
+	font-size: 34px;
+  font-family: "Google Sans", sans-serif;
+  line-height: 1.3em;
+  text-align: center;
+
+  /* color: #00695C; */
+}
+
+.fill-in-the-blank-experiment h2, .fill-in-the-blank-experiment h3, .fill-in-the-blank-experiment h4, .fill-in-the-blank-experiment h5{
+	font-size: 22px;
+}
+
+/* wp classes */
+.fill-in-the-blank-experiment img.aligncenter{
+  display: block;
+  max-width: 750px;
+  margin: auto;
+}
+
+.fill-in-the-blank-experiment .full-width{
+  position: relative;
+  right: 50%;
+  left: 50%;
+  width: 100vw;
+  margin-right: -50vw;
+  margin-left: -50vw;
+  overflow: hidden;
+}
+
+.fill-in-the-blank-experiment .full-width img{
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.fill-in-the-blank-experiment .full-width.px980 img, .fill-in-the-blank-experiment .full-width.px980 div{
+  max-width: 980px;
+}
+
+.fill-in-the-blank-experiment .full-width > div, .fill-in-the-blank-experiment .full-width > div > div{
+  margin: 0 auto;
+}
+
+.fill-in-the-blank-experiment .full-width.px750 img, .fill-in-the-blank-experiment .full-width.px750 div{
+  max-width: 750px;
+}
+
+.fill-in-the-blank-experiment .draft{
+  display: none;
+
+  /* visibility: collapse; */
+}
+
+
+.fill-in-the-blank-experiment h1, .fill-in-the-blank-experiment .post-summary{
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.fill-in-the-blank-experiment .post-summary{
+  margin-bottom: 65px;
+  font-size: 19px;
+  line-height: 1.5em;
+}
+
+.fill-in-the-blank-experiment .post-tags{
+  font-style: italic;
+  line-height: 1.55em;
+}
+
+.fill-in-the-blank-experiment .thumbnail-caption{
+  font-style: italic;
+}
+
+
+
+
+
+
+/* graph scroll stuff */
+
+.fill-in-the-blank-experiment #container{
+  position: relative;
+  width: 900px;
+  margin-left: -25px;
+}
+
+.fill-in-the-blank-experiment #container h3{
+  line-height: 1.3em;
+}
+
+
+
+
+
+
+.fill-in-the-blank-experiment .tooltip{
+  position: fixed;
+  top: -1000px;
+  width: 300px;
+  padding: 10px;
+  background: rgb(255 255 255 / 90%);
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+
+.fill-in-the-blank-experiment .tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (width <= 590px){
+  .fill-in-the-blank-experiment div.tooltip{
+    inset: auto -1px -1px !important;
+    width: calc(100%);
+    width: auto !important;
+  }
+}
+
+
+
+
+.fill-in-the-blank-experiment .footend{
+  width: 10px;
+  margin-left: -9px;
+}
+
+
+.fill-in-the-blank-experiment .footstart, .fill-in-the-blank-experiment .footend{
+  text-decoration: none;
+}
+
+.fill-in-the-blank-experiment .footstart:hover, .fill-in-the-blank-experiment .footend:hover{
+  text-decoration: underline;
+}
+
+.fill-in-the-blank-experiment #recirc .img{
+  outline: 1px solid #ccc;
+}
+
+.fill-in-the-blank-experiment #recirc .post:hover .img{
+  outline: 1px solid #333;
+}
+
+.fill-in-the-blank-experiment #recirc .title{
+  margin-bottom: -10px;
+  font-weight: 500;
+
+  /* color: #00695C; */
+  font-size: 18px;
+
+  /* height: 10px !important; */
+
+  /* opacity: 0; */
+}
+
+.fill-in-the-blank-experiment #recirc .post:hover .title{
+  text-decoration: underline !important;
+}
+
+.fill-in-the-blank-experiment #recirc .post{
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Nav Style */
+.fill-in-the-blank-experiment #nav-container{
+  display: inline-block;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  /* display: none; */
+}
+
+.fill-in-the-blank-experiment #navigation{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 8px;
+  color: rgb(0 0 0 / 87%);
+  font-weight: 300;
+  font-size: 14px;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fill-in-the-blank-experiment .mdl-grid{
+  display: flexbox;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  margin: 0 auto;
+  -ms-flex-align: stretch;
+}
+
+.fill-in-the-blank-experiment .mdl-cell{
+  box-sizing: border-box;
+}
+
+.fill-in-the-blank-experiment .nav-links{
+  color: #4a4a4a;
+  font-size: 20px;
+  font-family: "Google Sans", sans-serif;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.fill-in-the-blank-experiment .nav-logo-small{
+  width: 110px;
+  margin: 42px 0 0;
+}
+
+.fill-in-the-blank-experiment .nav-links .selected{
+  color: #00695C !important;
+}
+
+/* .nav-links a:visited {
+  color: #4a4a4a;
+}
+a:visited {
+  color: #7B1FA2;
+}
+*/
+.fill-in-the-blank-experiment .nav-links a{
+  display: inline-block;
+  margin: 50px 0 0 50px;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media screen and (width <= 1035px){
+  .fill-in-the-blank-experiment .nav-links{
+    font-size: 16px;
+  }
+}
+
+@media (width <= 590px){
+  .fill-in-the-blank-experiment .footend{
+    width: 10px;
+    margin-left: 0;
+  }
+
+
+  .fill-in-the-blank-experiment div.tooltip{
+    position: fixed;
+    inset: auto -1px -1px !important;
+    display: none;
+    width: calc(100%);
+    width: auto !important;
+    transition: all 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+.fill-in-the-blank-experiment svg{
+  overflow: visible;
+}
+
+.fill-in-the-blank-experiment .domain{
+  display: none;
+}
+
+.fill-in-the-blank-experiment .tick{
+  display: none;
+}
+
+.fill-in-the-blank-experiment .bg-tick{
+  stroke: #eee;
+}
+
+.fill-in-the-blank-experiment text{
+  /* fill: #fff; */
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+  pointer-events: none;
+}
+
+.fill-in-the-blank-experiment .pair{
+  width: 820px;
+
+  /* height: 550px; */
+  margin: 0 auto;
+  margin-top: 25px !important
+}
+
+.fill-in-the-blank-experiment .nurse-name-zari-cda{
+  margin-bottom: 35px;
+}
+
+.fill-in-the-blank-experiment .pair > div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.fill-in-the-blank-experiment .pair .graph{
+  width: 500px;
+}
+
+.fill-in-the-blank-experiment .pair .options{
+  width: 250px;
+  padding-right: 20px;
+}
+
+.fill-in-the-blank-experiment .pair .warning{
+  width: 250px;
+
+  /* border: 1px solid orange; */
+
+  /* background: #fff9e4; */
+
+  /* padding: 10px; */
+  margin-top: 15px;
+  padding-left: 0;
+  font-size: 14px;
+  line-height: 1.25em;
+  opacity: 0;
+  transition: all .2s;
+}
+
+.fill-in-the-blank-experiment .pair .reset{
+  width: 58px;
+
+  /* border: 1px solid orange; */
+
+  /* background: #fff9e4; */
+
+  /* padding: 10px; */
+  margin-top: 15px;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 1.25em; 
+  outline: 1px solid #ccc;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s;
+  user-select: none;
+
+}
+
+.fill-in-the-blank-experiment .pair .reset span{
+  position: relative;
+  top: -1px;
+  padding-right: 4px;
+  padding-left: 1px;
+
+  /* font-size: ; */
+}
+
+.fill-in-the-blank-experiment .pair .reset:hover{
+  color:  #000;
+  background: #eee;
+  outline: 1px solid #000;
+}
+
+.fill-in-the-blank-experiment .options > *{
+  margin-right: 10px;
+}
+
+.fill-in-the-blank-experiment .options b{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+
+
+
+.fill-in-the-blank-experiment .flex-row{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  column-gap: 10px
+}
+
+.fill-in-the-blank-experiment .flex-row > *{
+  flex-grow: 1;
+  margin-right:  0 !important;
+}
+
+.fill-in-the-blank-experiment .pair textarea{
+  width: 100%;
+}
+
+.fill-in-the-blank-experiment .flex-row-textarea{
+  display: block;
+}
+
+@media (width <= 820px){
+  .fill-in-the-blank-experiment .pair{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .fill-in-the-blank-experiment .flex-row{
+    margin-bottom: -10px;
+  }
+
+  .fill-in-the-blank-experiment .flex-row-textarea{
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+
+  .fill-in-the-blank-experiment .pair .options{
+    width: auto;
+    padding-right: 0;
+  }
+
+  .fill-in-the-blank-experiment .warning{
+    display: none !important;
+  }
+
+  .fill-in-the-blank-experiment .reset{
+    display: none !important;
+  }
+
+  .fill-in-the-blank-experiment .pair .graph{
+    width: 100%;
+  }
+
+  .fill-in-the-blank-experiment .annotations{
+    display: none;
+  }
+}
+
+
+
+.fill-in-the-blank-experiment .pair.difference{
+  width: 1000px;
+  margin-left: 0;
+}
+
+.fill-in-the-blank-experiment .pair .options.wide{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.fill-in-the-blank-experiment .pair .options.wide > div{
+  display: inline-block;
+}
+
+.fill-in-the-blank-experiment .options.wide .option-type .button{
+  width: 78px !important;
+}
+
+.fill-in-the-blank-experiment .options.wide .option-model .button{
+  width: 40px !important;
+}
+
+.fill-in-the-blank-experiment .options.wide .update.button{
+  width: 80px !important;
+}
+
+.fill-in-the-blank-experiment textarea{
+  font-weight: 300;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Roboto, Helvetica, sans-serif;
+  line-height: 1.55em;
+  border: 1px #ccc solid;
+  resize: none;
+}
+
+.fill-in-the-blank-experiment .button.update{
+  width: 252px;
+
+  /* height: 20px; */
+
+  /* position: relative; */
+
+  /* top: -30px; */
+
+  /* margin-bottom: -10px; */
+
+  /* vertical-align: center; */
+  margin-top: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.fill-in-the-blank-experiment .button{
+  position: relative;
+  top: -12px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  outline: 1px solid #ccc;
+  cursor: pointer;
+  user-select: none; 
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fill-in-the-blank-experiment .button:hover{
+    outline-color: #000;
+  }
+}
+
+/* @media screen and (min-device-pixel-ratio:0) {
+  @media (width <= 900px) {
+    select,
+    textarea,
+    .fill-in-the-blank-experiment input{
+      font-size: 16px !important;
+    }
+  }
+
+  .fill-in-the-blank-experiment textarea{
+    height: 80px !important;
+  }
+} */
+
+
+.fill-in-the-blank-experiment .button.active{
+  color: #000;
+  background: #eee;
+
+  /* font-weight: 500; */
+}
+
+
+.fill-in-the-blank-experiment .button.loading i{
+  opacity: 1;
+}
+
+.fill-in-the-blank-experiment .button.loading{
+  pointer-events: none;
+
+  /* opacity: .6; */
+}
+
+.fill-in-the-blank-experiment .p-button{
+  /* position: relative; */
+
+  /* top: -3px; */
+
+  /* line-height:  10px; */
+
+  /* line-height: */
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.fill-in-the-blank-experiment .p-button-link{
+  padding-right: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.fill-in-the-blank-experiment .interesting-pair-alts .p-button-link{
+  display: block;
+  text-decoration: none;
+}
+
+.fill-in-the-blank-experiment .interesting-pair-alts .p-button-link div{
+  margin-top: 5px;
+  margin-bottom:  5px;
+  margin-left:  10px;
+  padding: 5px 10px;
+  outline: 1px solid #ccc;
+
+}
+
+.fill-in-the-blank-experiment .difference-difference-alts .p-button-link:hover div{
+  outline: 1px solid #000;
+}
+
+.fill-in-the-blank-experiment .difference-difference-alts .p-button-link{
+  display: block;
+  text-decoration: none;
+}
+
+.fill-in-the-blank-experiment .difference-difference-alts .p-button-link div{
+  margin-top: 5px;
+  margin-bottom:  5px;
+  margin-left:  10px;
+  padding: 5px 10px;
+  outline: 1px solid #ccc;
+
+}
+
+.fill-in-the-blank-experiment .wide .flex-row{
+  width: 220px;
+}
+
+.fill-in-the-blank-experiment .wide > *{
+  margin-right: 40px;
+}
+
+.fill-in-the-blank-experiment .wide textarea{
+  position: relative;
+  top: 12px;
+}
+
+
+@media (width <= 1100px){
+  .fill-in-the-blank-experiment .pair-container-overflow{
+    width: 100% !important;
+    overflow-x: scroll;
+  }
+
+  .fill-in-the-blank-experiment .pair.difference{
+    width: auto;
+    max-width: 2000px;
+  }
+
+  .fill-in-the-blank-experiment .pair.difference .options{
+    width: min(500px, 100%);
+    margin: 0 auto;
+    margin-left: max(50vh - 500px, 0px);
+  }
+
+}
+
+.fill-in-the-blank-experiment .pair-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 1000px;
+}
+
+@media (width <= 1100px){
+  .fill-in-the-blank-experiment .pair-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    width: auto;
+  }
+}
+
+
+
+
+
+.fill-in-the-blank-experiment .checkbox{
+  position: relative;
+  top: -10px;
+  display: inline-block;
+  margin-left: 10px;
+
+}
+
+.fill-in-the-blank-experiment circle:hover{
+  stroke: blue;
+}
+
+
+
+.fill-in-the-blank-experiment .hover text{
+  font-weight: 300;
+  fill: #000;
+
+  /* stroke-width: 2px; */
+
+  /* text-shadow: 0 2px 0 #000, 2px 0 0 #000, 0 -2px 0 #000, -2px 0 0 #000; */
+}
+
+.fill-in-the-blank-experiment #graph > div{
+  display: inline-block;
+}
+
+.fill-in-the-blank-experiment text.tiny{
+  font-size: 9px;
+  font-family: monospace;
+
+  /* fill: #555; */
+}
+
+.fill-in-the-blank-experiment input{
+  width: 900px;
+  overflow: hidden;
+  font-family: monospace;
+  background-color: rgb(0 0 0 / 0%);
+  border: 0;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.fill-in-the-blank-experiment .top-sents{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.fill-in-the-blank-experiment .sent{
+  margin-top: -15px;
+}
+
+.fill-in-the-blank-experiment .token-container{
+  line-height: 2em;
+  text-align: center;
+}
+
+.fill-in-the-blank-experiment .token{
+  display: inline-block;
+  margin: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px;
+  color: #000;
+  font-size: 20px;
+  font-family: monospace;
+  background: #fff;
+  border: 0;
+  outline: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.fill-in-the-blank-experiment .token:hover, .fill-in-the-blank-experiment .token.active{
+  outline: 1px solid #000;
+}
+
+
+.fill-in-the-blank-experiment .xy-only, .fill-in-the-blank-experiment .rotate-only{
+  opacity: 0;
+  transition: all .2s;
+}
+
+.fill-in-the-blank-experiment .annotations{
+  transition: opacity .2s;
+}
+
+.fill-in-the-blank-experiment .is-xy .xy-only{
+  opacity: 1 !important;
+}
+
+.fill-in-the-blank-experiment .is-rotate .rotate-only{
+  opacity: 1 !important;
+}
+
+.fill-in-the-blank-experiment .hamlet{
+  min-height: 304px;
+  margin-bottom: 20px;
+}
+
+.fill-in-the-blank-experiment .hamlet-edit .button{
+  color: #ccc;
+  pointer-events: none;
+}
+
+.fill-in-the-blank-experiment .hamlet-edit.changed .button{
+  color: #000;
+  pointer-events: all;
+}
+
+@media (width <= 500px){
+  .fill-in-the-blank-experiment .hamlet-edit .button{
+    top: 0 !important;
+    display: block;
+    width: 100%;
+    margin: 0 auto !important;
+    margin-top: 5px !important;
+    text-align: center;
+  }
+}
+
+
+
+.fill-in-the-blank-experiment .pair .update{
+  color: #ccc;
+  pointer-events: none;
+}
+
+.fill-in-the-blank-experiment .pair.changed .update{
+  color: #000;
+  pointer-events: all;
+}
+
+.fill-in-the-blank-experiment .difference-difference-list{
+  display: none;
+}
+
+.fill-in-the-blank-experiment .difference-difference textarea{
+  height: 52px;
+}
+
+.fill-in-the-blank-experiment .not-is-color-by .y-axis-label text, .fill-in-the-blank-experiment .not-is-color-by .sent-1 text, .fill-in-the-blank-experiment .not-is-color-by .x-axis-label{
+  fill: #444 !important;
+}
+
+.fill-in-the-blank-experiment .is-color-by .y-axis-label text, .fill-in-the-blank-experiment .is-color-by .sent-1 text, .fill-in-the-blank-experiment .is-color-by .x-axis-label{
+  font-weight: 400;
+
+  /* text-decoration: underline; */
+}
+
+
+
+.fill-in-the-blank-experiment .time-token.active path{
+  opacity:  1;
+  stroke:  #f0f;
+}
+
+.fill-in-the-blank-experiment .time-token.active text{
+  font-size: 14px;
+  opacity: 1 !important;
+  fill: #f0f !important;
+}
+
+.fill-in-the-blank-experiment .gender-over-time{
+  width:  1100px;
+  margin: 0 auto;
+  margin-left: -91px;
+  font-size:  14px;
+}
+
+.fill-in-the-blank-experiment .gender-over-time .tick{
+  display: block;
+}
+
+.fill-in-the-blank-experiment .gender-over-time .axis{
+  opacity:  .7;
+}
+
+.fill-in-the-blank-experiment .gender-over-time .sentence{
+  /* position: relative; */
+  width: 32%;
+}
+
+.fill-in-the-blank-experiment .gender-over-time .sentence .sentence-title{
+  position: relative;
+  right: 42px;
+  font-family: monospace;
+  text-align: right;
+  
+}
+
+.fill-in-the-blank-experiment .gender-over-time .sentence.is-bear .sentence-title{
+  /* text-align: center; */
+  right: 115px;
+}
+
+.fill-in-the-blank-experiment .gender-over-time .g-caption{
+  position: relative;
+  left: 365px;
+  width: 290px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+@media (width <= 1100px){
+  .fill-in-the-blank-experiment .gender-over-time{
+    width: 100%;
+    max-width: 500px;
+    margin:  0 auto;
+    margin-left: 0;
+  }
+
+  .fill-in-the-blank-experiment .gender-over-time .sentence{
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .fill-in-the-blank-experiment .gender-over-time .g-caption{
+    left: 0;
+    width: 100%;
+  }
+}
+
+.fill-in-the-blank-experiment .time-token text{
+  font-family: monospace;
+  cursor: default;
+  pointer-events: all !important;
+}
+
+
+
+.fill-in-the-blank-experiment img[src*="img/wiki-years.png"]{
+  width: 300px;
+}
+
+
+.fill-in-the-blank-experiment #more-explorables{
+  margin-top: 100px;
+}
+
+
+
+
+/* html{
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  background: transparent;
+}
+
+path{
+  display: none;
+} */
+
+
+.fill-in-the-blank-experiment button{
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  font-size: 1em;
+  font-family : inherit;
+  text-align: center;
+  text-decoration: none;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+
+}
+
+.fill-in-the-blank-experiment button:active{
+    transform: scale(0.99);
+}
+
+
+.fill-in-the-blank-experiment .info{
+  position: relative;
+  top: -1px;
+  left: 7px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 0em;
+  cursor: default;
+}
+
+.fill-in-the-blank-experiment .info:hover{
+  font-weight: 600;
+}
+
+/* Response text box styles */
+.fill-in-the-blank-experiment .response-section {
+  margin: 40px 0 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.fill-in-the-blank-experiment .response-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.fill-in-the-blank-experiment .response-textarea {
+  width: 100%;
+  padding: 12px;
+  color: #333;
+  font-size: 14px;
+  font-family: Roboto, Helvetica, sans-serif;
+  line-height: 1.5;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+  resize: vertical;
+}
+
+.fill-in-the-blank-experiment .response-textarea:focus {
+  border-color: #1e88e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(30 136 229 / 10%);
+}
+
+.fill-in-the-blank-experiment .response-warning {
+  margin: 8px 0 0;
+  color: #d32f2f;
+  font-size: 13px;
+}
+
+.fill-in-the-blank-experiment .interactive-notice {
+  margin: 30px 0 20px;
+  padding: 16px;
+  background-color: #e3f2fd;
+  border-left: 4px solid #1e88e5;
+  border-radius: 4px;
+}
+
+.fill-in-the-blank-experiment .interactive-notice-text {
+  margin: 0;
+  color: #0d47a1;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.fill-in-the-blank-experiment .nav-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.fill-in-the-blank-experiment .nav-button:disabled:hover {
+  background-color: #1e88e5;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Pagination styles */
+.fill-in-the-blank-experiment .section-progress {
+  max-width: 100%;
+  margin: 40px 0 30px;
+}
+
+.fill-in-the-blank-experiment .progress-bar {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.fill-in-the-blank-experiment .progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #00695c, #00897b);
+  transition: width 0.3s ease;
+}
+
+.fill-in-the-blank-experiment .progress-text {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fill-in-the-blank-experiment .section-content {
+  margin: 30px 0;
+  animation: fade-in 0.5s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fill-in-the-blank-experiment .section-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0 30px;
+}
+
+.fill-in-the-blank-experiment .nav-button {
+  display: inline-block;
+  min-width: 140px;
+  padding: 16px 40px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: Roboto, Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  background-color: #1e88e5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fill-in-the-blank-experiment .nav-button:hover {
+  background-color: #1565c0;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
+  transform: translateY(-2px);
+}
+
+.fill-in-the-blank-experiment .nav-button:active {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  transform: translateY(0);
+}
+
+.fill-in-the-blank-experiment .nav-button-back {
+  background-color: #757575;
+}
+
+.fill-in-the-blank-experiment .nav-button-back:hover {
+  background-color: #616161;
+}
+
+.fill-in-the-blank-experiment .nav-button-continue {
+  background-color: #1e88e5;
+}
+
+.fill-in-the-blank-experiment .nav-button-continue:hover {
+  background-color: #1565c0;
+}
+
+.fill-in-the-blank-experiment .nav-button-restart {
+  background-color: #388e3c;
+}
+
+.fill-in-the-blank-experiment .nav-button-restart:hover {
+  background-color: #2e7d32;
+}
+
+@media (width <= 600px) {
+  .fill-in-the-blank-experiment .section-navigation {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fill-in-the-blank-experiment .nav-button {
+    width: 100%;
+    min-width: unset;
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Completion page styles */
+.fill-in-the-blank-experiment .completion-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.fill-in-the-blank-experiment .completion-wrapper {
+  max-width: 500px;
+  padding: 60px 40px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+}
+
+.fill-in-the-blank-experiment .completion-title {
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.fill-in-the-blank-experiment .completion-message {
+  margin-bottom: 16px;
+  color: #555;
+  font-size: 18px;
+}
+
+.fill-in-the-blank-experiment .completion-code-display {
+  display: block;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  color: #1a73e8;
+  font-weight: 700;
+  font-size: 28px;
+  font-family: monospace;
+  letter-spacing: 2px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.fill-in-the-blank-experiment .completion-instructions {
+  color: #666;
+  font-size: 16px;
+}

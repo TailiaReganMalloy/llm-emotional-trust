@@ -1,0 +1,59 @@
+/* stylelint-disable no-duplicate-selectors */
+
+@media (width <= 590px){
+  .citeend{
+    width: 10px;
+    margin-left: 0;
+  }
+}
+
+.citestart, .citeend{
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.citestart{
+  position: relative;
+  top: -5px;
+  margin-right: 2px;
+  color: #999;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.citeend{
+  position: relative;
+}
+
+.citestart-p{
+  position: relative;
+}
+
+@media (width >= 830px){
+  .citeend{
+    position: absolute;
+    width:  auto;
+    margin-left: -10px;
+    transform: translate(-100%, -1px);
+  }
+}
+
+.citestart{
+  position: relative;
+  height: 8px !important;
+  line-height: 0em;
+}
+
+.paper-title-link{
+  display: block;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.paper-title-link:hover{
+  text-decoration: underline;
+}
+
+.citeend-content{
+  opacity: .6;
+}

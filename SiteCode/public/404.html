@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <noscript>
+      <h1>Page Not Found</h1>
+      <p>This site is a single-page application. Please go back to <a href="/">home</a>.</p>
+    </noscript>
+    <script>
+      // SPA fallback for GitHub Pages: capture current path & query then redirect to index preserving hash
+      (function() {
+        var l = window.location;
+        var path = l.pathname.replace(/^\/+/, '');
+        if (!path || path === 'index.html') return;
+        var search = l.search.replace(/^\?/, '');
+        var redirect = l.origin + '/?p=' + encodeURIComponent(path) + (search ? '&q=' + encodeURIComponent(search) : '') + l.hash;
+        l.replace(redirect);
+      })();
+    </script>
+  </body>
+</html>

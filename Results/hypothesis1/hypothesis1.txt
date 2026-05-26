@@ -1,0 +1,6 @@
+\subsubsection{Hypothesis 1 Results}
+Hypothesis 1 tested pre-post differences in aggregate overall trust, emotional trust, and analytical trust.
+
+1.1 Overall Trust: $n=504$, $M_{pre}=0.252$, $SD_{pre}=0.634$, $M_{post}=0.055$, $SD_{post}=0.480$, $t(503)=10.725$, $p < .001$, $W=30372.500$, $p_{W} < .001$, $d=-0.478$, $\Delta=-0.196$, subhypothesis supported.
+1.2 Analytical Trust: $n=504$, $M_{pre}=0.199$, $SD_{pre}=0.944$, $M_{post}=0.066$, $SD_{post}=0.924$, $t(503)=4.854$, $p < .001$, $W=35781.500$, $p_{W} < .001$, $d=-0.216$, $\Delta=-0.133$, subhypothesis supported.
+1.3 Emotional Trust: $n=504$, $M_{pre}=0.304$, $SD_{pre}=0.479$, $M_{post}=0.045$, $SD_{post}=0.102$, $t(503)=12.796$, $p < .001$, $W=15583.000$, $p_{W} < .001$, $d=-0.570$, $\Delta=-0.260$, subhypothesis supported.

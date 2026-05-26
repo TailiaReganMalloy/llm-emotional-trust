@@ -1,0 +1,51 @@
+.list{
+  padding: 0 !important;
+  line-height: 16px;
+  background: #eee;
+}
+
+.list table{
+  -webkit-border-vertical-spacing: 0;
+  -webkit-border-horizontal-spacing: 0;
+  width: 100%;
+}
+
+.list tr{
+  padding-bottom: 4px !important;
+}
+
+.list .header{
+  position: sticky;
+  top: 0;
+  padding-top: 0;
+  text-align: left;
+  background: #000;
+}
+
+th{
+  margin-top: px;
+  padding-top: 0;
+  color: #fff;
+  font-weight: 500;
+  border-spacing: 0;
+
+}
+
+td.num{
+  padding-right: 20px;
+  color: #999;
+}
+
+tr.sentence{
+  color:  #333;
+  scroll-margin-top: 17px
+}
+
+tr.sentence.active{
+  background: rgb(255 0 255 / 10%);
+} 
+
+tr td{
+  border-bottom: 3px solid #eee;
+}
+

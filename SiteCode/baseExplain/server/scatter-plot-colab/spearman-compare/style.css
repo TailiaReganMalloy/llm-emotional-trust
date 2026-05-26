@@ -1,0 +1,99 @@
+body{
+  width:  1130px; 
+  margin: 10px;
+  margin-top: 30px;
+  margin-left:  20px;
+  font-family: menlo, Consolas, 'Lucida Console', monospace;
+  background: #fff;
+}
+
+.container{
+  margin-top:  30px;
+}
+
+.tooltip {
+  position: fixed;
+  top: -1000px;
+  padding: 10px;
+  background: rgb(255 255 255 / 90%);
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+
+.tooltip-hidden{
+  opacity: 0;
+  transition: all .3s;
+  transition-delay: .1s;
+}
+
+@media (width <= 590px){
+  div.tooltip{
+    inset: auto -1px -1px !important;
+    width: calc(100%);
+    width: auto !important;
+  }
+}
+
+svg{
+  overflow: visible;
+}
+
+.domain{
+  display: none;
+}
+
+.axis{
+  opacity:  .7;
+}
+
+text{
+  /* pointer-events: none; */
+  text-shadow: 0 1.5px 0 #fff, 1.5px 0 0 #fff, 0 -1.5px 0 #fff, -1.5px 0 0 #fff;
+}
+
+
+#graph > div{
+  /* display: inline-block; */
+}
+
+.active path{
+  /* stroke-width:  2; */
+  opacity:  1;
+  stroke:  #f0f;
+}
+
+.active text{
+  font-size: 14px;
+  opacity: 1 !important;
+  fill: #f0f;
+
+}
+
+p{
+  max-width: 650px;
+}
+
+
+.bg-tick{
+  stroke: #eee;
+}
+
+.tick{
+  display: none;
+}
+
+text.tiny{
+  font-size: 9px;
+  font-family: monospace;
+}
+
+circle.sentence.active{
+  fill: #f0f;
+}
+
+.axis-label{
+  color:  #000;
+
+  /* font-weight: 600; */
+  font-size:  12px;
+}

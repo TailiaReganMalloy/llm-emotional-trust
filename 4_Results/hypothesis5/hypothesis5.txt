@@ -1,7 +1,0 @@
-\subsubsection{Hypothesis 5 Results}
-Hypothesis 5 compared WEIRD and NORMAL participants on standardized change metrics: emotional standardized change, analytical standardized change, and overall standardized change.
-
-5.1 WEIRD vs NORMAL emotional standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=0.367$, $M_{NORMAL}=-0.115$, $t=4.380$, $p < .001$, $\Delta(M_W-M_N)=0.482$.
-5.2 WEIRD vs NORMAL analytical standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=-0.030$, $M_{NORMAL}=0.010$, $t=-0.411$, $p = .682$, $\Delta(M_W-M_N)=-0.040$.
-5.3 WEIRD vs NORMAL overall standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=0.166$, $M_{NORMAL}=-0.052$, $t=2.170$, $p = .031$, $\Delta(M_W-M_N)=0.218$.
-Asterisk key: * p < .05, ** p < .01, *** p < .001.
