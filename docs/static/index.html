@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Experiment</title>
+    <link rel="stylesheet" href="../assets/site.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" id="app"></section>
+    </main>
+
+    <script>
+      const sections = [
+        {
+          title: "Section 1: Prompting and Model Output",
+          content:
+            "Language models transform input prompts into probable continuations. Read this section and summarize what stood out to you.",
+        },
+        {
+          title: "Section 2: Stability Across Prompt Changes",
+          content:
+            "Small wording differences can shift output patterns. Reflect on why specificity and ambiguity can change responses.",
+        },
+        {
+          title: "Section 3: Trust and Interpretation",
+          content:
+            "Model outputs can sound confident even when uncertain. Consider how explanation quality should shape trust.",
+        },
+      ];
+
+      let idx = 0;
+      let responses = Array(sections.length).fill("");
+      let completed = false;
+      const completionToken = Math.random().toString(36).slice(2, 12).toUpperCase();
+
+      const app = document.getElementById("app");
+
+      function progressPct() {
+        return ((idx + 1) / sections.length) * 100;
+      }
+
+      function render() {
+        if (completed) {
+          app.innerHTML = `
+            <h1>Thank you!</h1>
+            <p class="subtitle">Your completion code:</p>
+            <p><code>${completionToken}</code></p>
+            <p class="footer-note">No responses were transmitted or stored.</p>
+            <div class="actions"><a href="../" class="route-link">Back to home</a></div>
+          `;
+          return;
+        }
+
+        const section = sections[idx];
+        const isLast = idx === sections.length - 1;
+        const canContinue = responses[idx].trim().length > 0;
+
+        app.innerHTML = `
+          <h1>Static Experiment</h1>
+          <div class="progress"><div style="width:${progressPct()}%"></div></div>
+          <div class="row"><span>Section ${idx + 1} of ${sections.length}</span><span>No data saved</span></div>
+
+          <h2 class="section-title">${section.title}</h2>
+          <p class="section-content">${section.content}</p>
+
+          <label for="response"><strong>${isLast ? "What did you think overall?" : "What did you learn from this section?"}</strong></label>
+          <textarea id="response" placeholder="Share your thoughts...">${responses[idx]}</textarea>
+          ${responses[idx].trim() ? "" : '<div class="warning">Please write something before continuing.</div>'}
+
+          <div class="actions">
+            <button class="primary" id="nextBtn" ${canContinue ? "" : "disabled"}>
+              ${isLast ? "Submit & Finish" : "Continue"}
+            </button>
+          </div>
+        `;
+
+        const responseEl = document.getElementById("response");
+        const nextBtn = document.getElementById("nextBtn");
+
+        responseEl.addEventListener("input", () => {
+          responses[idx] = responseEl.value;
+          render();
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (!canContinue) return;
+          if (isLast) {
+            completed = true;
+          } else {
+            idx += 1;
+          }
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      render();
+    </script>
+  </body>
+</html>
