@@ -35,6 +35,30 @@ WESTERN_COUNTRIES = {
 	"Portugal",
 }
 
+HIGH_EDUCATION = {"Bachelor", "Master", "Graduate Professional Degree", "PhD"}
+WEIRD_EMPLOYMENT = {
+	"Full-Time",
+	"Not in paid work (e.g. homemaker', 'retired or disabled)",
+}
+
+
+def score_weird(row: pd.Series) -> int:
+	score = 0
+	if row.get("Country of residence") in WESTERN_COUNTRIES:
+		score += 1
+	if str(row.get("Language", "")).lower().startswith("english"):
+		score += 1
+	if row.get("Education") in HIGH_EDUCATION:
+		score += 1
+	if row.get("Employment status") in WEIRD_EMPLOYMENT:
+		score += 1
+	if str(row.get("Ethnicity simplified", "")).strip().lower() == "white":
+		score += 1
+	if (row.get("Nationality") in WESTERN_COUNTRIES
+			or row.get("Country of birth") in WESTERN_COUNTRIES):
+		score += 1
+	return score
+
 
 def normalize_condition(series: pd.Series) -> pd.Series:
 	mapped = (
@@ -102,10 +126,8 @@ def combine_first_numeric(df: pd.DataFrame, columns: list[str]) -> pd.Series:
 
 
 def assign_group(df: pd.DataFrame) -> pd.Series:
-	language = df["Language"].astype(str).str.strip().str.lower()
-	residence = df["Country of residence"].astype(str).str.strip()
-	weird_like = residence.isin(WESTERN_COUNTRIES) & language.str.startswith("english")
-	return pd.Series(np.where(weird_like, "WEIRD", "NORMAL"), index=df.index)
+	scores = df.apply(score_weird, axis=1)
+	return pd.Series(np.where(scores >= 4, "WEIRD", "NORMAL"), index=df.index)
 
 
 def build_summary(df: pd.DataFrame) -> pd.DataFrame:

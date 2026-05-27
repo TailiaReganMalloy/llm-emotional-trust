@@ -231,7 +231,7 @@ def main() -> None:
         "Emotional Trust": analyze_metric(emotional_pre, emotional_post),
     }
 
-    fig, axes = plt.subplots(1, 3, figsize=(18, 5.2), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)
     for ax, (name, stats) in zip(axes, results.items()):
         draw_subplot(ax, name, stats)
 

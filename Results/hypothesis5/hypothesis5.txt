@@ -1,7 +1,11 @@
 \subsubsection{Hypothesis 5 Results}
-Hypothesis 5 compared WEIRD and NORMAL participants on standardized change metrics: emotional standardized change, analytical standardized change, and overall standardized change.
+Hypothesis 5 focuses on contrasts that can explain directional differences between analytical and emotional trust outcomes. The figure includes four analyses in this order: analytical-emotional change contrast, pre-trust component source contrast, post-trust component source contrast, and change component source contrast.
 
-5.1 WEIRD vs NORMAL emotional standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=0.367$, $M_{NORMAL}=-0.115$, $t=4.380$, $p < .001$, $\Delta(M_W-M_N)=0.482$.
-5.2 WEIRD vs NORMAL analytical standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=-0.030$, $M_{NORMAL}=0.010$, $t=-0.411$, $p = .682$, $\Delta(M_W-M_N)=-0.040$.
-5.3 WEIRD vs NORMAL overall standardized change: $n_{WEIRD}=120$, $n_{NORMAL}=384$, $M_{WEIRD}=0.181$, $M_{NORMAL}=-0.056$, $t=2.345$, $p = .020$, $\Delta(M_W-M_N)=0.237$.
+5.1 Group contrast on $(\Delta_{analytical} - \Delta_{emotional})$: $n_{WEIRD}=157$, $n_{NORMAL}=347$, $M_{WEIRD}=0.031$, $M_{NORMAL}=0.170$, $t=-2.077$, $p = .039$, $\Delta(M_W-M_N)=-0.139$.
+5.2 Pre component source test (analytical pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.014$, $M_{NORMAL}=0.283$, $t=-2.950$, $p = .003$.
+5.3 Pre component source test (emotional pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.195$, $M_{NORMAL}=0.354$, $t=-3.384$, $p < .001$.
+5.4 Post component source test (analytical post, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.095$, $M_{NORMAL}=0.139$, $t=-2.608$, $p = .010$.
+5.5 Post component source test (emotional post, WEIRD vs non-WEIRD): $M_{WEIRD}=0.054$, $M_{NORMAL}=0.040$, $t=1.515$, $p = .131$.
+5.6 Change component source test (analytical change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.109$, $M_{NORMAL}=-0.144$, $t=0.629$, $p = .530$.
+5.7 Change component source test (emotional change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.140$, $M_{NORMAL}=-0.314$, $t=3.897$, $p < .001$.
 Asterisk key: * p < .05, ** p < .01, *** p < .001.

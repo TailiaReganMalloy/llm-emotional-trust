@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-SHARED_ANALYSIS_DIR = REPO_ROOT / "Supplementary" / "hypotheses"
+SHARED_ANALYSIS_DIR = REPO_ROOT / "Supplementary" / "mediations"
 if str(SHARED_ANALYSIS_DIR) not in sys.path:
     sys.path.insert(0, str(SHARED_ANALYSIS_DIR))
 

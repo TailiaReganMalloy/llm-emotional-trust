@@ -1,7 +1,7 @@
 \subsubsection{Hypothesis 2 Results}
 Hypothesis 2 tested WEIRD participants with four subtests: 2.1 overall pre-post significance, 2.2 analytical pre-post significance, 2.3 emotional pre-post significance, and 2.4 whether emotional and analytical standardized change differ.
 
-2.1 WEIRD Overall pre-post: $n=120$, $M_{pre}=0.069$, $M_{post}=-0.054$, $t(119)=3.418$, $p < .001$, $W=2198.500$, $p_{W} = .002$, $d=-0.312$, $\Delta=-0.122$.
-2.2 WEIRD Analytical pre-post: $n=120$, $M_{pre}=-0.017$, $M_{post}=-0.168$, $t(119)=3.014$, $p = .003$, $W=1638.000$, $p_{W} = .003$, $d=-0.275$, $\Delta=-0.152$.
-2.3 WEIRD Emotional pre-post: $n=120$, $M_{pre}=0.154$, $M_{post}=0.061$, $t(119)=2.058$, $p = .042$, $W=1890.000$, $p_{W} = .028$, $d=-0.188$, $\Delta=-0.093$.
-2.4 WEIRD emotional-vs-analytical standardized change: $n=120$, $M_{em,z}=0.367$, $M_{an,z}=-0.030$, $t(119)=3.301$, $p = .001$, $W=2436.000$, $p_{W} = .002$, $d=0.301$, $\Delta_{z}=0.398$. This supports the predicted significant difference test.
+2.1 WEIRD Overall pre-post: $n=157$, $M_{pre}=0.104$, $M_{post}=-0.020$, $t(156)=4.147$, $p < .001$, $W=3681.000$, $p_{W} < .001$, $d=-0.331$, $\Delta=-0.125$.
+2.2 WEIRD Analytical pre-post: $n=157$, $M_{pre}=0.014$, $M_{post}=-0.095$, $t(156)=2.514$, $p = .013$, $W=3296.000$, $p_{W} = .025$, $d=-0.201$, $\Delta=-0.109$.
+2.3 WEIRD Emotional pre-post: $n=157$, $M_{pre}=0.195$, $M_{post}=0.054$, $t(156)=3.697$, $p < .001$, $W=2599.500$, $p_{W} < .001$, $d=-0.295$, $\Delta=-0.140$.
+2.4 WEIRD emotional-vs-analytical standardized change: $n=157$, $M_{em,z}=0.263$, $M_{an,z}=0.039$, $t(156)=2.145$, $p = .033$, $W=5051.000$, $p_{W} = .044$, $d=0.171$, $\Delta_{z}=0.224$. This supports the predicted significant difference test.

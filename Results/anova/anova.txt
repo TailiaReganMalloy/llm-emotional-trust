@@ -1,0 +1,21 @@
+\subsection{ANOVA: Condition and Demographic Effects}
+A two-way ANOVA tested main effects of condition (Interactive vs. Text), demographic group (WEIRD vs. NORMAL), and their interaction for trust-change outcomes.
+Sample: $n=504$ ($n_{WEIRD}=157$, $n_{NORMAL}=347$).
+
+Overall Trust Change
+Condition main effect: $F(1, 500)=0.030$, $p = .862$, $\eta_p^2=0.000$, not significant.
+Demographic main effect (WEIRD vs NORMAL): $F(1, 500)=7.084$, $p = .008$, $\eta_p^2=0.014$, significant.
+Condition x Demographic interaction: $F(1, 500)=2.755$, $p = .098$, $\eta_p^2=0.005$, not significant.
+
+Emotional Trust Change
+Condition main effect: $F(1, 500)=0.512$, $p = .474$, $\eta_p^2=0.001$, not significant.
+Demographic main effect (WEIRD vs NORMAL): $F(1, 500)=16.608$, $p < .001$, $\eta_p^2=0.032$, significant.
+Condition x Demographic interaction: $F(1, 500)=4.395$, $p = .037$, $\eta_p^2=0.009$, significant.
+
+Analytical Trust Change
+Condition main effect: $F(1, 500)=0.084$, $p = .772$, $\eta_p^2=0.000$, not significant.
+Demographic main effect (WEIRD vs NORMAL): $F(1, 500)=0.320$, $p = .572$, $\eta_p^2=0.001$, not significant.
+Condition x Demographic interaction: $F(1, 500)=0.457$, $p = .499$, $\eta_p^2=0.001$, not significant.
+
+Interpretation summary:
+Significant ANOVA effects were detected for: Overall demographic, Emotional demographic, Emotional interaction.

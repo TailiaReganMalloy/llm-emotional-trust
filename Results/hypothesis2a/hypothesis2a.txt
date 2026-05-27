@@ -2,17 +2,17 @@
 Hypothesis 8 tested whether the main effect of condition differs across overall, emotional, and analytical trust change when analyzed separately within WEIRD and NORMAL participants.
 
 8.1 Main condition effect on overall change (split by WEIRD/NORMAL):
-- WEIRD: $n_{Interactive}=60$, $n_{Text}=60$, $M_{Interactive}=-0.142$, $M_{Text}=-0.102$, $t=-0.550$, $p = .583$, $\Delta(M_I-M_T)=-0.039$.
-- NORMAL: $n_{Interactive}=192$, $n_{Text}=192$, $M_{Interactive}=-0.214$, $M_{Text}=-0.225$, $t=0.268$, $p = .789$, $\Delta(M_I-M_T)=0.011$.
+- WEIRD: $n_{Interactive}=70$, $n_{Text}=87$, $M_{Interactive}=-0.171$, $M_{Text}=-0.087$, $t=-1.378$, $p = .170$, $\Delta(M_I-M_T)=-0.084$.
+- NORMAL: $n_{Interactive}=182$, $n_{Text}=165$, $M_{Interactive}=-0.207$, $M_{Text}=-0.253$, $t=1.035$, $p = .301$, $\Delta(M_I-M_T)=0.047$.
 Interpretation: no significant condition effect detected in either WEIRD or NORMAL.
 
 8.2 Main condition effect on emotional change (split by WEIRD/NORMAL):
-- WEIRD: $n_{Interactive}=60$, $n_{Text}=60$, $M_{Interactive}=-0.104$, $M_{Text}=-0.081$, $t=-0.246$, $p = .806$, $\Delta(M_I-M_T)=-0.022$.
-- NORMAL: $n_{Interactive}=192$, $n_{Text}=192$, $M_{Interactive}=-0.297$, $M_{Text}=-0.326$, $t=0.657$, $p = .511$, $\Delta(M_I-M_T)=0.029$.
+- WEIRD: $n_{Interactive}=70$, $n_{Text}=87$, $M_{Interactive}=-0.194$, $M_{Text}=-0.097$, $t=-1.270$, $p = .206$, $\Delta(M_I-M_T)=-0.097$.
+- NORMAL: $n_{Interactive}=182$, $n_{Text}=165$, $M_{Interactive}=-0.274$, $M_{Text}=-0.358$, $t=1.813$, $p = .071$, $\Delta(M_I-M_T)=0.085$.
 Interpretation: no significant condition effect detected in either WEIRD or NORMAL.
 
 8.3 Main condition effect on analytical change (split by WEIRD/NORMAL):
-- WEIRD: $n_{Interactive}=60$, $n_{Text}=60$, $M_{Interactive}=-0.180$, $M_{Text}=-0.123$, $t=-0.561$, $p = .576$, $\Delta(M_I-M_T)=-0.057$.
-- NORMAL: $n_{Interactive}=192$, $n_{Text}=192$, $M_{Interactive}=-0.130$, $M_{Text}=-0.124$, $t=-0.096$, $p = .923$, $\Delta(M_I-M_T)=-0.006$.
+- WEIRD: $n_{Interactive}=70$, $n_{Text}=87$, $M_{Interactive}=-0.149$, $M_{Text}=-0.077$, $t=-0.799$, $p = .426$, $\Delta(M_I-M_T)=-0.072$.
+- NORMAL: $n_{Interactive}=182$, $n_{Text}=165$, $M_{Interactive}=-0.140$, $M_{Text}=-0.148$, $t=0.129$, $p = .898$, $\Delta(M_I-M_T)=0.009$.
 Interpretation: no significant condition effect detected in either WEIRD or NORMAL.
 Asterisk key: * p < .05, ** p < .01, *** p < .001.

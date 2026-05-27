@@ -1,5 +1,0 @@
-Metric,Group,Condition,n,Mean,SD
-analytical vs emotional trust difference,WEIRD-like,Interactive,60,-0.22260878115613816,1.2101210123146435
-analytical vs emotional trust difference,WEIRD-like,Static (Text),60,-0.2931033329058915,1.1074843315867111
-analytical vs emotional trust difference,Non-WEIRD-like,Interactive,192,0.09560877548879339,1.2101606190346854
-analytical vs emotional trust difference,Non-WEIRD-like,Static (Text),192,0.0655512601555911,1.2310896194074818

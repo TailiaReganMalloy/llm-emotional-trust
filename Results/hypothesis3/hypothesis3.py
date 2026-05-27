@@ -19,9 +19,9 @@ ALPHA = 0.05
 ANALYTICAL_MAX = 10.0
 EMOTIONAL_MAX = 9.0
 
-SUBPLOT_TITLE_FONTSIZE = 19
-AXIS_LABEL_FONTSIZE = 16
-TICK_LABEL_FONTSIZE = 14
+SUBPLOT_TITLE_FONTSIZE = 22
+AXIS_LABEL_FONTSIZE = 20
+TICK_LABEL_FONTSIZE = 20
 
 PREPOST_COLORS = {
     "Pre": "#377eb8",
@@ -56,6 +56,30 @@ WESTERN_COUNTRIES = {
     "Spain",
     "Portugal",
 }
+
+HIGH_EDUCATION = {"Bachelor", "Master", "Graduate Professional Degree", "PhD"}
+WEIRD_EMPLOYMENT = {
+    "Full-Time",
+    "Not in paid work (e.g. homemaker', 'retired or disabled)",
+}
+
+
+def score_weird(row: pd.Series) -> int:
+    score = 0
+    if row.get("Country of residence") in WESTERN_COUNTRIES:
+        score += 1
+    if str(row.get("Language", "")).lower().startswith("english"):
+        score += 1
+    if row.get("Education") in HIGH_EDUCATION:
+        score += 1
+    if row.get("Employment status") in WEIRD_EMPLOYMENT:
+        score += 1
+    if str(row.get("Ethnicity simplified", "")).strip().lower() == "white":
+        score += 1
+    if (row.get("Nationality") in WESTERN_COUNTRIES
+            or row.get("Country of birth") in WESTERN_COUNTRIES):
+        score += 1
+    return score
 
 
 def p_to_stars(pvalue: float) -> str:
@@ -119,10 +143,8 @@ def safe_wilcoxon(a: pd.Series, b: pd.Series) -> tuple[float, float]:
 
 def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
     work = df.copy()
-    language = work["Language"].astype(str).str.strip().str.lower()
-    work["is_weird"] = work["Country of residence"].isin(WESTERN_COUNTRIES) & language.str.startswith(
-        "english"
-    )
+    work["weird_score"] = work.apply(score_weird, axis=1)
+    work["is_weird"] = work["weird_score"] >= 4
 
     work["analytical_pre"] = work["Total Analytical Trust"] / ANALYTICAL_MAX
     work["analytical_post"] = work["Total Analytical Trust Post"] / ANALYTICAL_MAX
@@ -424,11 +446,11 @@ def main() -> None:
     emotional_stats = paired_pre_post(weird["emotional_pre"], weird["emotional_post"])
     type_stats = compare_trust_type(weird)
 
-    fig, axes = plt.subplots(1, 4, figsize=(22, 5.8), constrained_layout=True)
+    fig, axes = plt.subplots(1, 4, figsize=(22, 6), constrained_layout=True)
     draw_pre_post_subplot(axes[0], "3.1 Overall Pre vs Post", overall_stats)
     draw_pre_post_subplot(axes[1], "3.2 Analytical Pre vs Post", analytical_stats)
     draw_pre_post_subplot(axes[2], "3.3 Emotional Pre vs Post", emotional_stats)
-    draw_type_subplot(axes[3], "3.4 Emotional vs Analytical Difference", type_stats)
+    draw_type_subplot(axes[3], "3.4 Emotional vs Analytical\n Change Difference", type_stats)
 
     axes[0].text(
         0.01,

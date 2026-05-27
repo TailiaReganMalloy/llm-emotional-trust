@@ -16,14 +16,14 @@ PLOT_OUTPUT_PATH = FIGURES_DIR / "hypothesis2a.png"
 REPORT_OUTPUT_PATH = OUTPUT_DIR / "hypothesis2a.txt"
 ALPHA = 0.05
 
-SUBPLOT_TITLE_FONTSIZE = 18
-AXIS_LABEL_FONTSIZE = 16
-TICK_LABEL_FONTSIZE = 13
+SUBPLOT_TITLE_FONTSIZE = 22
+AXIS_LABEL_FONTSIZE = 20
+TICK_LABEL_FONTSIZE = 20
 
 CONDITION_ORDER = ["Interactive", "Text"]
 CONDITION_LABELS = {
     "Interactive": "Interactive",
-    "Text": "Static (Text)",
+    "Text": "Static",
 }
 CONDITION_COLORS = {
     "Interactive": "#377eb8",
@@ -58,6 +58,30 @@ WESTERN_COUNTRIES = {
     "Spain",
     "Portugal",
 }
+
+HIGH_EDUCATION = {"Bachelor", "Master", "Graduate Professional Degree", "PhD"}
+WEIRD_EMPLOYMENT = {
+    "Full-Time",
+    "Not in paid work (e.g. homemaker', 'retired or disabled)",
+}
+
+
+def score_weird(row: pd.Series) -> int:
+    score = 0
+    if row.get("Country of residence") in WESTERN_COUNTRIES:
+        score += 1
+    if str(row.get("Language", "")).lower().startswith("english"):
+        score += 1
+    if row.get("Education") in HIGH_EDUCATION:
+        score += 1
+    if row.get("Employment status") in WEIRD_EMPLOYMENT:
+        score += 1
+    if str(row.get("Ethnicity simplified", "")).strip().lower() == "white":
+        score += 1
+    if (row.get("Nationality") in WESTERN_COUNTRIES
+            or row.get("Country of birth") in WESTERN_COUNTRIES):
+        score += 1
+    return score
 
 
 def significance_stars(p_value: float) -> str:
@@ -122,6 +146,11 @@ def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
         "Condition",
         "Country of residence",
         "Language",
+        "Education",
+        "Employment status",
+        "Ethnicity simplified",
+        "Nationality",
+        "Country of birth",
         "Total Analytical Trust",
         "Total Analytical Trust Post",
         "Total Emotional Trust",
@@ -135,13 +164,8 @@ def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
     work["Condition"] = normalize_condition(work["Condition"])
     work = work[work["Condition"].isin(CONDITION_ORDER)].copy()
 
-    language = work["Language"].astype(str).str.strip().str.lower()
-    residence = work["Country of residence"].astype(str).str.strip()
-    work["Group"] = np.where(
-        residence.isin(WESTERN_COUNTRIES) & language.str.startswith("english"),
-        "WEIRD",
-        "NORMAL",
-    )
+    work["weird_score"] = work.apply(score_weird, axis=1)
+    work["Group"] = np.where(work["weird_score"] >= 4, "WEIRD", "NORMAL")
 
     work["analytical_change"] = (
         (work["Total Analytical Trust Post"] - work["Total Analytical Trust"]) / 10.0
@@ -195,7 +219,7 @@ def add_pair_bracket(
     y_step: float,
 ) -> None:
     ax.plot([x1, x1, x2, x2], [y - y_step, y, y, y - y_step], color="black", lw=2.0, zorder=4)
-    ax.text((x1 + x2) / 2, y + 0.6 * y_step, label, ha="center", va="bottom", fontsize=16)
+    ax.text((x1 + x2) / 2, y + 0.6 * y_step, label, ha="center", va="bottom", fontsize=18)
 
 
 def draw_group_split_subplot(
@@ -299,7 +323,7 @@ def draw_group_split_subplot(
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=10,
+        fontsize=18,
         bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
     )
 
@@ -318,27 +342,28 @@ def draw_group_split_subplot(
 
     ax.text(
         0.5,
-        -0.14,
+        -0.08,
         GROUP_DISPLAY["WEIRD"],
         transform=ax.get_xaxis_transform(),
         ha="center",
         va="top",
-        fontsize=14,
+        fontsize=24,
     )
     ax.text(
         3.5,
-        -0.14,
+        -0.08,
         GROUP_DISPLAY["NORMAL"],
         transform=ax.get_xaxis_transform(),
         ha="center",
         va="top",
-        fontsize=14,
+        fontsize=24,
     )
 
     ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylim(y_min - 0.23 * y_span, y_max + 0.40 * y_span)
+    ax.set_ylim(-0.4, 0.2)
+    ax.set_yticks([-0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2])
 
 
 def interpretation_line(weird_test: dict[str, float | str], normal_test: dict[str, float | str]) -> str:
@@ -423,42 +448,31 @@ def main() -> None:
     }
 
     plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 3, figsize=(25, 9), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)
 
     draw_group_split_subplot(
         axes[0],
         overall_tests["WEIRD"],
         overall_tests["NORMAL"],
-        title="2a.1 Main Condition Effect: Overall Change (WEIRD vs non-WEIRD)",
+        title="2.1 Follow-Up Main Condition Effect:\nOverall Change (WEIRD vs non-WEIRD)",
         ylabel="Overall Change",
     )
     draw_group_split_subplot(
         axes[1],
         emotional_tests["WEIRD"],
         emotional_tests["NORMAL"],
-        title="2a.2 Main Condition Effect: Emotional Change (WEIRD vs non-WEIRD)",
+        title="2.2 Follow-Up Main Condition Effect:\nEmotional Change (WEIRD vs non-WEIRD)",
         ylabel="Emotional Change",
     )
     draw_group_split_subplot(
         axes[2],
         analytical_tests["WEIRD"],
         analytical_tests["NORMAL"],
-        title="2a.3 Main Condition Effect: Analytical Change (WEIRD vs non-WEIRD)",
+        title="2.3 Follow-Up Main Condition Effect:\nAnalytical Change (WEIRD vs non-WEIRD)",
         ylabel="Analytical Change",
     )
 
-    axes[0].text(
-        0.01,
-        0.90,
-        "Asterisks: * p < .05, ** p < .01, *** p < .001",
-        transform=axes[0].transAxes,
-        ha="left",
-        va="top",
-        fontsize=10,
-        color="black",
-    )
-
-    fig.suptitle("Hypothesis 2a: Condition Effects by WEIRD/non-WEIRD Across Trust Change Outcomes", fontsize=25)
+    fig.suptitle("Hypothesis 2 Follow-Up Condition Effects by WEIRD/non-WEIRD Across Trust Change Outcomes.", fontsize=30)
     fig.savefig(PLOT_OUTPUT_PATH, dpi=300)
     plt.close(fig)
 

@@ -53,6 +53,30 @@ WESTERN_COUNTRIES = {
     "Portugal",
 }
 
+HIGH_EDUCATION = {"Bachelor", "Master", "Graduate Professional Degree", "PhD"}
+WEIRD_EMPLOYMENT = {
+    "Full-Time",
+    "Not in paid work (e.g. homemaker', 'retired or disabled)",
+}
+
+
+def score_weird(row: pd.Series) -> int:
+    score = 0
+    if row.get("Country of residence") in WESTERN_COUNTRIES:
+        score += 1
+    if str(row.get("Language", "")).lower().startswith("english"):
+        score += 1
+    if row.get("Education") in HIGH_EDUCATION:
+        score += 1
+    if row.get("Employment status") in WEIRD_EMPLOYMENT:
+        score += 1
+    if str(row.get("Ethnicity simplified", "")).strip().lower() == "white":
+        score += 1
+    if (row.get("Nationality") in WESTERN_COUNTRIES
+            or row.get("Country of birth") in WESTERN_COUNTRIES):
+        score += 1
+    return score
+
 
 @dataclass
 class MediationResult:
@@ -180,14 +204,15 @@ def prepare_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
     work["Condition"] = normalize_condition(work["Condition"])
     work = work[work["Condition"].isin(CONDITION_ORDER)].copy()
 
+    work["weird_score"] = work.apply(score_weird, axis=1)
+    work["weird_like"] = (work["weird_score"] >= 4).astype(float)
+
+    # Scale by number of items so analytical and emotional trust deltas are comparable.
+    # Keep individual WEIRD-component columns for use as mediator variables.
     language = work["Language"].astype(str).str.strip().str.lower()
     residence = work["Country of residence"].astype(str).str.strip()
-
     work["western_residence"] = residence.isin(WESTERN_COUNTRIES).astype(float)
     work["english_language"] = language.str.startswith("english").astype(float)
-    work["weird_like"] = (
-        (work["western_residence"] == 1.0) & (work["english_language"] == 1.0)
-    ).astype(float)
 
     # Scale by number of items so analytical and emotional trust deltas are comparable.
     work["analytical_change"] = (

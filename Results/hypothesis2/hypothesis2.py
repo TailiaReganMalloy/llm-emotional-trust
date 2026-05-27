@@ -17,13 +17,13 @@ REPORT_OUTPUT_PATH = OUTPUT_DIR / "hypothesis2.txt"
 ALPHA = 0.05
 
 SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 22
-TICK_LABEL_FONTSIZE = 22
+AXIS_LABEL_FONTSIZE = 20
+TICK_LABEL_FONTSIZE = 20
 
 CONDITION_ORDER = ["Interactive", "Text"]
 CONDITION_LABELS = {
     "Interactive": "Interactive",
-    "Text": "Static (Text)",
+    "Text": "Static",
 }
 CONDITION_COLORS = {
     "Interactive": "#377eb8",
@@ -215,7 +215,7 @@ def draw_condition_subplot(
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=10,
+        fontsize=18,
         bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
     )
 
@@ -225,7 +225,8 @@ def draw_condition_subplot(
     ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylim(y_min - 0.18 * y_span, y_max + 0.40 * y_span)
+    ax.set_ylim(-0.5, 0.2)
+    ax.set_yticks([-0.4, -0.3, -0.2, -0.1, 0, 0.1])
 
 
 def write_report(
@@ -284,8 +285,7 @@ def write_report(
         lines.append("Interpretation: no significant main condition effect on analytical change.")
     else:
         lines.append("Interpretation: a significant main condition effect on analytical change.")
-
-    lines.append("Asterisk key: * p < .05, ** p < .01, *** p < .001.")
+        
     return "\n".join(lines) + "\n"
 
 
@@ -299,7 +299,7 @@ def main() -> None:
     analytical_test = condition_welch_test(analysis, "analytical_change")
 
     plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 3, figsize=(25, 8.5), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)
 
     draw_condition_subplot(
         axes[0],
@@ -318,17 +318,6 @@ def main() -> None:
         analytical_test,
         title="2.3 Main Condition Effect: Analytical Change",
         ylabel="Analytical Change",
-    )
-
-    axes[0].text(
-        0.01,
-        0.90,
-        "Asterisks: * p < .05, ** p < .01, *** p < .001",
-        transform=axes[0].transAxes,
-        ha="left",
-        va="top",
-        fontsize=10,
-        color="black",
     )
 
     fig.suptitle("Hypothesis 2: Main Condition Effects Across Trust Change Outcomes", fontsize=26)

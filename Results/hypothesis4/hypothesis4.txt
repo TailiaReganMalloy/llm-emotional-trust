@@ -1,7 +1,7 @@
 \subsubsection{Hypothesis 3 Results}
 Hypothesis 3 tested NORMAL/non-WEIRD participants with four subtests: 3.1 overall pre-post significance, 3.2 analytical pre-post significance, 3.3 emotional pre-post significance, and 3.4 whether emotional and analytical standardized change do not differ.
 
-3.1 NORMAL Overall pre-post: $n=384$, $M_{pre}=0.309$, $M_{post}=0.089$, $t(383)=10.373$, $p < .001$, $W=16342.500$, $p_{W} < .001$, $d=-0.529$, $\Delta=-0.220$.
-3.2 NORMAL Analytical pre-post: $n=384$, $M_{pre}=0.266$, $M_{post}=0.139$, $t(383)=3.928$, $p < .001$, $W=21999.000$, $p_{W} = .003$, $d=-0.200$, $\Delta=-0.127$.
-3.3 NORMAL Emotional pre-post: $n=384$, $M_{pre}=0.351$, $M_{post}=0.039$, $t(383)=14.183$, $p < .001$, $W=6247.500$, $p_{W} < .001$, $d=-0.724$, $\Delta=-0.312$.
-3.4 NORMAL emotional-vs-analytical standardized change: $n=384$, $M_{em,z}=-0.115$, $M_{an,z}=0.010$, $t(383)=-1.923$, $p = .055$, $W=32037.000$, $p_{W} = .024$, $d=-0.098$, $\Delta_{z}=-0.124$. This supports the predicted no-difference test.
+3.1 NORMAL Overall pre-post: $n=347$, $M_{pre}=0.318$, $M_{post}=0.089$, $t(346)=10.093$, $p < .001$, $W=13019.000$, $p_{W} < .001$, $d=-0.542$, $\Delta=-0.229$.
+3.2 NORMAL Analytical pre-post: $n=347$, $M_{pre}=0.283$, $M_{post}=0.139$, $t(346)=4.151$, $p < .001$, $W=17408.500$, $p_{W} = .001$, $d=-0.223$, $\Delta=-0.144$.
+3.3 NORMAL Emotional pre-post: $n=347$, $M_{pre}=0.354$, $M_{post}=0.040$, $t(346)=13.386$, $p < .001$, $W=5349.000$, $p_{W} < .001$, $d=-0.719$, $\Delta=-0.314$.
+3.4 NORMAL emotional-vs-analytical standardized change: $n=347$, $M_{em,z}=-0.119$, $M_{an,z}=-0.018$, $t(346)=-1.470$, $p = .143$, $W=26879.000$, $p_{W} = .077$, $d=-0.079$, $\Delta_{z}=-0.101$. This supports the predicted no-difference test.
