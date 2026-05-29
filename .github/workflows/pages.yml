@@ -39,8 +39,8 @@ jobs:
         run: npm run build
         working-directory: SiteCode
         env:
-          # anonymous.4open.science hosts this project under /anonymize/
-          VITE_BASE_PATH: /anonymize/
+          # Project Pages path for https://www.tailiamalloy.com/llm-emotional-trust/
+          VITE_BASE_PATH: /llm-emotional-trust/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
