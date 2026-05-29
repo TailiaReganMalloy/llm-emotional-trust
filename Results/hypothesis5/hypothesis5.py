@@ -14,6 +14,7 @@ OUTPUT_DIR = Path(__file__).resolve().parent
 TXT_PATH = OUTPUT_DIR / "hypothesis5.txt"
 FIGURES_DIR = REPO_ROOT / "Figures"
 PNG_PATH = FIGURES_DIR / "hypothesis5.png"
+ALPHA = 0.05
 
 ANALYTICAL_MAX = 10.0
 EMOTIONAL_MAX = 9.0
@@ -75,6 +76,28 @@ def p_text(pvalue: float) -> str:
     if pvalue < 0.001:
         return "< .001"
     return f"= {pvalue:.3f}".replace("0.", ".")
+
+
+def add_stat_box(ax: plt.Axes, lines: list[str]) -> None:
+    ax.text(
+        0.01,
+        0.99,
+        "\n".join(lines),
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=18,
+        bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        zorder=6,
+    )
+
+
+def sig_phrase(pvalue: float, label: str) -> str:
+    if pd.isna(pvalue):
+        return f"{label}: significance unavailable"
+    if pvalue < ALPHA:
+        return f"Significant {label}"
+    return f"No significant {label}"
 
 
 def mean_ci(series: pd.Series) -> tuple[float, float, float]:
@@ -148,13 +171,21 @@ def draw_diff_subplot(ax: plt.Axes, diff_group_test: dict[str, float]) -> None:
     y_span = max(y_max - y_min, 0.25)
     add_pair_bracket(ax, x[0], x[1], y_max + 0.10 * y_span, p_to_stars(diff_group_test["p"]), 0.03 * y_span)
 
+    add_stat_box(
+        ax,
+        [
+            f"t={diff_group_test['t']:.3f}, p {p_text(diff_group_test['p'])}",
+            sig_phrase(diff_group_test["p"], "group effect"),
+        ],
+    )
+
     ax.axhline(0.0, color="#4a4a4a", linewidth=1.2, zorder=1)
     ax.set_xticks(x)
     ax.set_xticklabels([GROUP_DISPLAY["WEIRD"], GROUP_DISPLAY["NORMAL"]], fontsize=TICK_LABEL_FONTSIZE)
     ax.set_ylabel("Analytical - Emotional Change", fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_title("Analytical-Emotional Change Contrast", fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylim(y_min - 0.22 * y_span, y_max + 0.36 * y_span)
+    ax.set_ylim(y_min - 0.22 * y_span, y_max + 0.80 * y_span)
 
 
 def draw_component_subplot(
@@ -179,6 +210,14 @@ def draw_component_subplot(
     add_pair_bracket(ax, x[0], x[1], y_max + 0.10 * y_span, p_to_stars(test_a["p"]), 0.03 * y_span)
     add_pair_bracket(ax, x[2], x[3], y_max + 0.10 * y_span, p_to_stars(test_b["p"]), 0.03 * y_span)
 
+    add_stat_box(
+        ax,
+        [
+            f"{label_a}: t={test_a['t']:.3f}, p {p_text(test_a['p'])}",
+            f"{label_b}: t={test_b['t']:.3f}, p {p_text(test_b['p'])}",
+        ],
+    )
+
     ax.axhline(0.0, color="#4a4a4a", linewidth=1.2, zorder=1)
     ax.set_xticks(x)
     ax.set_xticklabels(["WEIRD", "non-\nWEIRD", "WEIRD", "non-\nWEIRD"], fontsize=TICK_LABEL_FONTSIZE)
@@ -187,7 +226,7 @@ def draw_component_subplot(
     ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylim(y_min - 0.22 * y_span, y_max + 0.36 * y_span)
+    ax.set_ylim(y_min - 0.22 * y_span, y_max + 0.95 * y_span)
 
 
 def write_report(

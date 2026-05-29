@@ -173,7 +173,22 @@ def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
         zorder=4,
     )
     ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
-    ax.set_ylim(bottom=y_low, top=y_high)
+
+    interpretation = "Significant pre-post effect" if float(stats["p"]) < ALPHA else "No significant pre-post effect"
+    summary = f"t={stats['t']:.3f}, p {p_text(float(stats['p']))}\n{interpretation}"
+    ax.text(
+        0.01,
+        0.99,
+        summary,
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=18,
+        bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        zorder=6,
+    )
+
+    ax.set_ylim(bottom=0, top=0.5)
 
 
 def write_report(results: dict[str, dict[str, float]]) -> None:

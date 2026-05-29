@@ -1,0 +1,21 @@
+IC3 analysis summary
+===================
+Total participants: 504
+Full-sample IC split: n_individualistic=168, n_collectivist=168
+
+Left panel (full-sample trust-change comparisons, Collectivist - Individualistic):
+- Overall: p=0.007440, d=0.294
+- Analytical: p=0.360276, d=0.100
+- Emotional: p=0.000328, d=0.396
+
+Middle panel counts (using full-sample IC split):
+- WEIRD: individualistic=51, collectivist=52
+- non-WEIRD: individualistic=117, collectivist=116
+
+Right panel ANCOVA model:
+Outcome = analytical_minus_emotional_change; predictors = IC score, Group (WEIRD vs non-WEIRD), Condition (Interactive vs Text), and IC x Group
+- n=504
+- IC main effect: beta=-0.1236, p=0.552963
+- Group main effect: beta=-0.4254, p=0.054563
+- Condition covariate: beta=-0.0807, p=0.485582
+- IC x Group interaction: beta=-0.1833, p=0.627479

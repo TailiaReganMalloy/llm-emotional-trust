@@ -41,15 +41,25 @@ def score_weird(row: pd.Series) -> int:
     return score
 
 CONDITIONS = ["Interactive", "Text"]
+GENDER_ROWS = ["Man", "Woman", "NB/GD"]
 
 
 def classify_gender(value: object) -> str:
     v = str(value).strip().lower() if not (isinstance(value, float) and np.isnan(value)) else ""
-    if "man (including trans male" in v or v == "man":
-        return "Male"
-    if "woman (including trans female" in v or v == "woman":
-        return "Female"
-    return "Non-binary / Not specified"
+    if v.startswith("man") or v == "male":
+        return "Man"
+    if v.startswith("woman") or v == "female":
+        return "Woman"
+    return "NB/GD"
+
+
+def select_age_column(df: pd.DataFrame) -> str:
+    for col in ["Age", "Age (Demographics)"]:
+        if col in df.columns:
+            numeric = pd.to_numeric(df[col], errors="coerce")
+            if numeric.notna().any():
+                return col
+    raise KeyError("Expected an age column: 'Age (Demographics)' or 'Age'")
 
 
 def build_df() -> pd.DataFrame:
@@ -57,46 +67,70 @@ def build_df() -> pd.DataFrame:
     df["Condition"] = df["Condition"].str.strip()
     df["weird_score"] = df.apply(score_weird, axis=1)
     df["is_weird"] = df["weird_score"] >= 4
-    df["Group"] = np.where(df["is_weird"], "WEIRD", "Normal")
     df["Gender_cat"] = df["Gender"].map(classify_gender)
+    age_col = select_age_column(df)
+    df["Age_numeric"] = pd.to_numeric(df[age_col], errors="coerce")
     return df
 
 
-def counts_table(df: pd.DataFrame, category_col: str, categories: list[str]) -> pd.DataFrame:
-    rows = {}
-    for cat in categories:
-        row: dict[str, int] = {}
-        for cond in CONDITIONS:
-            n = int(((df["Condition"] == cond) & (df[category_col] == cat)).sum())
-            row[cond] = n
-        row["Total"] = int((df[category_col] == cat).sum())
-        rows[cat] = row
-    result = pd.DataFrame(rows).T
-    result.loc["Total"] = result.sum()
-    return result[CONDITIONS + ["Total"]]
+def fmt_mean(value: float) -> str:
+    if pd.isna(value):
+        return "--"
+    return f"{float(value):.2f}"
 
 
-def latex_table(df_counts: pd.DataFrame, caption: str, label: str) -> str:
-    n_cols = len(df_counts.columns)
-    col_spec = "l" + "r" * n_cols
-    col_header = " & ".join(df_counts.columns.tolist())
+def demographics_rows(df: pd.DataFrame) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for condition in CONDITIONS:
+        for gender in GENDER_ROWS:
+            subset = df[(df["Condition"] == condition) & (df["Gender_cat"] == gender)]
+            total_n = int(len(subset))
+            weird_subset = subset[subset["is_weird"]]
+            normal_subset = subset[~subset["is_weird"]]
+            weird_n = int(len(weird_subset))
+            normal_n = int(len(normal_subset))
+
+            weird_pct = (100.0 * weird_n / total_n) if total_n else 0.0
+            normal_pct = (100.0 * normal_n / total_n) if total_n else 0.0
+
+            rows.append(
+                {
+                    "Condition": condition,
+                    "Gender": gender,
+                    "Total n": str(total_n),
+                    "WEIRD n (%)": f"{weird_n} ({weird_pct:.2f}\\%)",
+                    "WEIRD Avg Age": fmt_mean(weird_subset["Age_numeric"].mean()),
+                    "non-WEIRD n (%)": f"{normal_n} ({normal_pct:.2f}\\%)",
+                    "non-WEIRD Avg Age": fmt_mean(normal_subset["Age_numeric"].mean()),
+                }
+            )
+    return rows
+
+
+def latex_table(rows: list[dict[str, str]], caption: str, label: str) -> str:
     lines = [
-        r"\begin{table}[ht]",
-        r"\centering",
+        r"\begin{table}",
         f"\\caption{{{caption}}}",
         f"\\label{{{label}}}",
-        f"\\begin{{tabular}}{{{col_spec}}}",
-        r"\hline",
-        f"\\textbf{{Group}} & {col_header} \\\\",
-        r"\hline",
+        r"\begin{tabular}{llrllll}",
+        r"\toprule",
+        r"Condition & Gender & Total n & WEIRD n (\%) & WEIRD Avg Age & non-WEIRD n (\%) & non-WEIRD Avg Age \\",
+        r"\midrule",
     ]
-    for i, (row_label, row) in enumerate(df_counts.iterrows()):
-        if row_label == "Total":
-            lines.append(r"\hline")
-        values = " & ".join(str(int(v)) for v in row)
-        lines.append(f"{row_label} & {values} \\\\")
+    for row in rows:
+        lines.append(
+            "{} & {} & {} & {} & {} & {} & {} \\\\".format(
+                row["Condition"],
+                row["Gender"],
+                row["Total n"],
+                row["WEIRD n (%)"],
+                row["WEIRD Avg Age"],
+                row["non-WEIRD n (%)"],
+                row["non-WEIRD Avg Age"],
+            )
+        )
     lines += [
-        r"\hline",
+        r"\bottomrule",
         r"\end{tabular}",
         r"\end{table}",
     ]
@@ -106,30 +140,17 @@ def latex_table(df_counts: pd.DataFrame, caption: str, label: str) -> str:
 def main() -> None:
     df = build_df()
 
-    gender_cats = ["Male", "Female", "Non-binary / Not specified"]
-    gender_counts = counts_table(df, "Gender_cat", gender_cats)
+    rows = demographics_rows(df)
+    output = latex_table(
+        rows,
+        caption="WEIRD and non-WEIRD composition by gender within each condition, with average age.",
+        label="tab:weird-normal-gender-condition",
+    ) + "\n"
 
-    group_cats = ["WEIRD", "Normal"]
-    group_counts = counts_table(df, "Group", group_cats)
-
-    gender_tex = latex_table(
-        gender_counts,
-        caption="Participant gender breakdown by experiment condition.",
-        label="tab:demographics_gender",
-    )
-    group_tex = latex_table(
-        group_counts,
-        caption="Participant WEIRD/Normal population breakdown by experiment condition.",
-        label="tab:demographics_group",
-    )
-
-    output = "\n\n".join([gender_tex, group_tex]) + "\n"
     OUTPUT_PATH.write_text(output)
     print(f"Saved: {OUTPUT_PATH}")
-    print("\nGender counts:")
-    print(gender_counts.to_string())
-    print("\nGroup counts:")
-    print(group_counts.to_string())
+    print("\nRows:")
+    print(pd.DataFrame(rows).to_string(index=False))
 
 
 if __name__ == "__main__":

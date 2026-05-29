@@ -102,6 +102,26 @@ def p_text(pvalue: float) -> str:
     return f"= {pvalue:.3f}".replace("0.", ".")
 
 
+def add_stat_box(ax: plt.Axes, stats: dict[str, float], effect_label: str) -> None:
+    pvalue = float(stats["p"]) if pd.notna(stats.get("p")) else np.nan
+    tvalue = float(stats["t"]) if pd.notna(stats.get("t")) else np.nan
+    interpretation = (
+        f"Significant {effect_label}" if pd.notna(pvalue) and pvalue < ALPHA else f"No significant {effect_label}"
+    )
+    summary = f"t={tvalue:.3f}, p {p_text(pvalue)}\n{interpretation}" if pd.notna(tvalue) else f"t=NA, p {p_text(pvalue)}\n{interpretation}"
+    ax.text(
+        0.01,
+        0.99,
+        summary,
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=18,
+        bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        zorder=6,
+    )
+
+
 def mean_ci(series: pd.Series) -> tuple[float, float]:
     values = series.dropna().astype(float)
     if values.empty:
@@ -291,7 +311,7 @@ def draw_pre_post_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> 
     y_bracket = y_top + 0.07 * y_span
     y_text = y_bracket + 0.02 * y_span
     y_low = y_bottom - 0.15 * y_span
-    y_high = y_bracket + 0.20 * y_span
+    y_high = y_bracket + 0.50 * y_span
 
     ax.plot(
         [0, 0, 1, 1],
@@ -301,7 +321,8 @@ def draw_pre_post_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> 
         zorder=4,
     )
     ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
-    ax.set_ylim(bottom=y_low, top=0.5)
+    add_stat_box(ax, stats, "pre-post effect")
+    ax.set_ylim(bottom=y_low, top=y_high)
 
 
 def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
@@ -346,7 +367,7 @@ def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None
     y_bracket = y_top + 0.10 * y_span
     y_text = y_bracket + 0.03 * y_span
     y_low = y_bottom - 0.18 * y_span
-    y_high = y_bracket + 0.22 * y_span
+    y_high = y_bracket + 0.52 * y_span
 
     ax.plot(
         [0, 0, 1, 1],
@@ -356,7 +377,8 @@ def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None
         zorder=4,
     )
     ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
-    ax.set_ylim(bottom=y_low, top=0.5)
+    add_stat_box(ax, stats, "trust-type difference")
+    ax.set_ylim(bottom=y_low, top=y_high)
 
 
 def write_report(

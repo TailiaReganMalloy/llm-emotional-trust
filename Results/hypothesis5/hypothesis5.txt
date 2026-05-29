@@ -1,11 +1,11 @@
-\subsubsection{Hypothesis 5 Results}
-Hypothesis 5 focuses on contrasts that can explain directional differences between analytical and emotional trust outcomes. The figure includes four analyses in this order: analytical-emotional change contrast, pre-trust component source contrast, post-trust component source contrast, and change component source contrast.
+For Hypothesis 5 (Shown graphically in Figure \ref{fig:hypothesis5}), we tested whether WEIRD and non-WEIRD participants differ in the relative pattern of analytical and emotional trust outcomes across four planned contrasts: the analytical-versus-emotional change contrast, pre-trust component source contrast, post-trust component source contrast, and change component source contrast. All tests below use two-sided Welch independent-samples $t$-tests at $\alpha=.05$.
 
-5.1 Group contrast on $(\Delta_{analytical} - \Delta_{emotional})$: $n_{WEIRD}=157$, $n_{NORMAL}=347$, $M_{WEIRD}=0.031$, $M_{NORMAL}=0.170$, $t=-2.077$, $p = .039$, $\Delta(M_W-M_N)=-0.139$.
-5.2 Pre component source test (analytical pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.014$, $M_{NORMAL}=0.283$, $t=-2.950$, $p = .003$.
-5.3 Pre component source test (emotional pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.195$, $M_{NORMAL}=0.354$, $t=-3.384$, $p < .001$.
-5.4 Post component source test (analytical post, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.095$, $M_{NORMAL}=0.139$, $t=-2.608$, $p = .010$.
-5.5 Post component source test (emotional post, WEIRD vs non-WEIRD): $M_{WEIRD}=0.054$, $M_{NORMAL}=0.040$, $t=1.515$, $p = .131$.
-5.6 Change component source test (analytical change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.109$, $M_{NORMAL}=-0.144$, $t=0.629$, $p = .530$.
-5.7 Change component source test (emotional change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.140$, $M_{NORMAL}=-0.314$, $t=3.897$, $p < .001$.
-Asterisk key: * p < .05, ** p < .01, *** p < .001.
+\noindent \textbf{Sub-hypothesis 5.1} compares WEIRD versus non-WEIRD participants on the analytical-emotional change contrast $(\Delta_{analytical} - \Delta_{emotional})$. The analysis showed $n_{WEIRD}=157$, $n_{non-WEIRD}=347$, $M_{WEIRD}=0.031$, $M_{non-WEIRD}=0.170$, $t=-2.077$, $p = .039$, and $\Delta(M_W-M_N)=-0.139$, indicating a significant group difference; sub-hypothesis supported.
+
+\noindent \textbf{Sub-hypothesis 5.2} compares pre-trust component sources across groups. For analytical pre-trust, the comparison showed $M_{WEIRD}=0.014$ and $M_{non-WEIRD}=0.283$, $t=-2.950$, $p = .003$. For emotional pre-trust, the comparison showed $M_{WEIRD}=0.195$ and $M_{non-WEIRD}=0.354$, $t=-3.384$, $p < .001$. Both pre-component contrasts are significant, so this sub-hypothesis is supported.
+
+\noindent \textbf{Sub-hypothesis 5.3} compares post-trust component sources across groups. For analytical post-trust, the comparison showed $M_{WEIRD}=-0.095$ and $M_{non-WEIRD}=0.139$, $t=-2.608$, $p = .010$, indicating a significant group difference. For emotional post-trust, the comparison showed $M_{WEIRD}=0.054$ and $M_{non-WEIRD}=0.040$, $t=1.515$, $p = .131$, indicating no significant group difference. This yields partial support for the sub-hypothesis.
+
+\noindent \textbf{Sub-hypothesis 5.4} compares change component sources across groups. For analytical change, the comparison showed $M_{WEIRD}=-0.109$ and $M_{non-WEIRD}=-0.144$, $t=0.629$, $p = .530$, indicating no significant group difference. For emotional change, the comparison showed $M_{WEIRD}=-0.140$ and $M_{non-WEIRD}=-0.314$, $t=3.897$, $p < .001$, indicating a significant group difference. This sub-hypothesis is therefore partially supported.
+
+Taken together, these results show that the strongest and most consistent group separations occur in the pre-trust baselines and in emotional change, while post-emotional and analytical-change contrasts are weaker or non-significant. The overall pattern supports a cross-cultural difference in how analytical and emotional trust components are organized, with effects concentrated in specific trust components rather than uniformly across all measures.

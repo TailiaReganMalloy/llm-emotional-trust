@@ -1,23 +1,23 @@
-\subsubsection{Mediation Of WEIRD Attributes By Condition}
-For each condition (Interactive and Text), separate mediation models tested whether each WEIRD-defining attribute mediated the association between WEIRD group membership and the analytical-vs-emotional change difference.
+\subsubsection{Mediation Of WEIRD Attributes Across Conditions}
+Across both conditions combined (Interactive and Text), separate mediation models tested whether each WEIRD-defining attribute mediated the association between WEIRD group membership and the analytical-vs-emotional change difference.
 Model per test: X = WEIRD indicator, M = attribute indicator, Y = analytical_change - emotional_change; indirect effect estimated by non-parametric bootstrap.
 
-Condition=Interactive, Mediator=Western residence indicator, n=252
-- a path (X->M): 0.7538; b path (M->Y | X): -0.2850; c total (X->Y): -0.0889; c' direct (X->Y | M): 0.1260
-- indirect (a*b): -0.2154, 95% CI [-0.4231, -0.0180], p = .033
-- Interpretation: evidence of mediation (bootstrap CI excludes zero).
+For the western geographic indicator (residence or origin) as a mediator, analysis of (n=504) showed an a path (X->M) of 0.6986, a b path (M->Y | X) of -0.1277, a c total path (X->Y) of -0.2286, and a c' direct path (X->Y | M) of -0.1393.
+The estimated indirect effect (a*b) was -0.0893, with a 95% CI of [-0.1878, 0.0093] and p = .071.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-Condition=Interactive, Mediator=English language indicator, n=252
-- a path (X->M): 0.4967; b path (M->Y | X): -0.1748; c total (X->Y): -0.0889; c' direct (X->Y | M): -0.0020
-- indirect (a*b): -0.0857, 95% CI [-0.1905, 0.0113], p = .090
-- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+For the english language indicator as a mediator, analysis of (n=504) showed an a path (X->M) of 0.5023, a b path (M->Y | X) of -0.0738, a c total path (X->Y) of -0.2286, and a c' direct path (X->Y | M) of -0.1915.
+The estimated indirect effect (a*b) was -0.0366, with a 95% CI of [-0.1079, 0.0300] and p = .288.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-Condition=Text, Mediator=Western residence indicator, n=252
-- a path (X->M): 0.8341; b path (M->Y | X): -0.0090; c total (X->Y): -0.1897; c' direct (X->Y | M): -0.1822
-- indirect (a*b): -0.0069, 95% CI [-0.3456, 0.3144], p = .990
-- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+For the high education indicator as a mediator, analysis of (n=504) showed an a path (X->M) of 0.1927, a b path (M->Y | X) of -0.1025, a c total path (X->Y) of -0.2286, and a c' direct path (X->Y | M) of -0.2088.
+The estimated indirect effect (a*b) was -0.0203, with a 95% CI of [-0.0519, 0.0072] and p = .166.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-Condition=Text, Mediator=English language indicator, n=252
-- a path (X->M): 0.3812; b path (M->Y | X): -0.0215; c total (X->Y): -0.1897; c' direct (X->Y | M): -0.1815
-- indirect (a*b): -0.0084, 95% CI [-0.0786, 0.0615], p = .816
-- Interpretation: no clear mediation evidence (bootstrap CI includes zero).
+For the weird employment indicator as a mediator, analysis of (n=504) showed an a path (X->M) of 0.4435, a b path (M->Y | X) of 0.0657, a c total path (X->Y) of -0.2286, and a c' direct path (X->Y | M) of -0.2577.
+The estimated indirect effect (a*b) was 0.0284, with a 95% CI of [-0.0249, 0.0823] and p = .276.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
+
+For the white ethnicity indicator as a mediator, analysis of (n=504) showed an a path (X->M) of 0.3675, a b path (M->Y | X) of -0.0503, a c total path (X->Y) of -0.2286, and a c' direct path (X->Y | M) of -0.2101.
+The estimated indirect effect (a*b) was -0.0184, with a 95% CI of [-0.0695, 0.0319] and p = .460.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
