@@ -1,0 +1,3 @@
+SiteCode/dist/*
+SiteCode/node_modules/
+SiteCode/.vite/

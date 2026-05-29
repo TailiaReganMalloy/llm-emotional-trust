@@ -3,7 +3,60 @@
 This repository contains merged survey + demographics data for an AI trust/emotion study.
 
 Main dataset:
-- data/Combined.csv
+- Dataset/Combined.csv
+
+## Repository map
+
+Top-level folders and files:
+
+- Dataset/: Source and processed study data plus helper scripts.
+    - Dataset/Combined.csv: Main merged analysis table used by result scripts.
+    - Dataset/Metrics.csv, Dataset/Metrics.md: Derived metric table and metric notes.
+    - Dataset/metrics.py, Dataset/stats.py: Dataset-level computation and descriptive stats scripts.
+    - Dataset/raw/: Raw exports and join inputs (demographics, responses, submissions, and database snapshots).
+
+- Methodology/: Materials and scripts used to describe methods.
+    - Methodology/Participants/: Participant/demographic analysis and TeX section content.
+    - Methodology/Measures/: Trust measure definitions, scoring code, and TeX write-up.
+    - Methodology/Experimentation/: Experiment flow or design artifacts.
+    - Methodology/Platform/: Platform-facing assets/components used by study flows.
+
+- Results/: Analysis pipelines and output summaries by hypothesis/topic.
+    - Results/anova/, Results/bias/: Shared/diagnostic statistical analyses.
+    - Results/hypothesis1/ ... Results/hypothesis5/: Per-hypothesis scripts and text outputs.
+    - Results/hypothesis2a/: Additional follow-up hypothesis analysis.
+    - Results/mediation/: Mediation analysis scripts and subgroup subfolders (age, education, gender, etc.).
+    - Results/qualitative/: Qualitative and sentiment/IC analysis scripts, TeX fragments, and README notes.
+    - Results/summary/: Combined summary outputs and paper-ready table snippets.
+
+- Figures/: Generated figures (PNG) used in paper/results reporting.
+
+- Supplementary/: Supplementary manuscript content and additional mediation scripts/outputs.
+
+- SiteCode/: Web app used for study delivery/explanatory pages.
+    - SiteCode/src/: Main Vue application source.
+    - SiteCode/public/: Static assets copied directly to build output.
+    - SiteCode/baseExplain/, SiteCode/staticExplain/: Explanation page pipelines and server-side assets.
+    - SiteCode/dist/: Built frontend artifacts (generated).
+    - SiteCode/node_modules/: Frontend dependencies (generated).
+    - SiteCode/package.json: Frontend scripts/dependencies.
+
+- .github/workflows/: CI or automation workflows.
+- .vscode/: Workspace/editor settings.
+- .venv/: Local Python virtual environment (generated, machine-specific).
+- .env: Local environment variables and secrets (should remain local/private).
+
+Top-level scripts/config:
+
+- runAll.sh: Convenience script to run the main analysis pipeline.
+- requirements.txt: Python dependency list for analysis scripts.
+- README.md: Data dictionary and repository documentation.
+
+Practical notes:
+
+- Generated directories (.venv, SiteCode/node_modules, SiteCode/dist) are environment/build artifacts and should not be edited manually.
+- Large raw files in Dataset/raw include sensitive fields and should be handled as restricted research data.
+- Figure and text outputs in Figures/ and Results/ are generally reproducible from the scripts in Results/ and Dataset/.
 
 ## Combined.csv column dictionary
 
@@ -163,61 +216,5 @@ The snippet below creates a simple bar plot of mean pre-study AI Trust by condit
 
 Optional extension:
 - If you want, I can also add a second example that compares pre vs post trust in one figure (long-format reshape + seaborn pointplot).
-
-17 February 2026
-AI Ethics: A Psychological Perspective
-Submission deadline: 31 May 2026
-This Special Issue particularly invites empirical contributions, grounded in behavioral science and psychology, that examine how AI shapes ethical judgment, values, and behavior. Submissions using experimental and observational methods are especially encouraged.
-
-Guest editors:
-
-Margarita Leib, PhD - Tilburg University, Netherlands
-
-Nils Köbis, PhD - University Duisburg-Essen, Germany
-
-Ivan Soraperra, PhD - Max Planck Institute for Human Development,Berlin, Germany
-
-Special issue information:
-
-Motivation and Relevance to Computers in Human Behavior
-
-Artificial Intelligence actively shapes how people work, communicate, make decisions, and form relationships. As AI becomes increasingly embedded in everyday life, it plays a consequential role in ethically relevant situations, influencing how individuals think, feel, and behave.
-
-Debates in AI ethics have largely centered on normative questions such as how AI should be designed to embody moral values. Yet, much less attention has been given to how interactions with AI actually shape human ethical judgment, values, and behavior. This Special Issue addresses this empirical gap, opens the field and serves as a catalyst for more work on the human side of AI ethics. It will both gather emerging work on the way in which AI influences human ethics, as well as advance theoretical understanding of ethical behavior in the face of technological advancement and innovation in artificial intelligence.
-
-This Special Issue particularly invites empirical contributions, grounded in behavioral science and psychology, that examine how AI shapes ethical judgment, values, and behavior. Submissions using experimental and observational methods are especially encouraged. The Special Issue aims to shift attention from normative to descriptive and causal evidence, highlighting how people interpret, follow, resist, or justify AI outputs in ethically complex settings. The SI will cover both self-reports and hypothetical scenarios, but will also emphasize the value of experimental, behavioral, and field-based approaches for capturing ethical decisions. By covering diverse methodologies, the contributions will offer a more comprehensive view of how AI shapes human ethics.
-
-The Special Issue will deepen our understanding of classic theories in social psychology, ethical decision-making, and related disciplines in the domain of human-AI interactions. Contribution may expand theories of mind perception, agency, social norms, moral cognition, and moral emotions (e.g., guilt, outrage, and compassion), as well as trust, accountability, and responsibility attribution. Taken together, these articles will not only refine and expand existing theories but also begin to develop novel theories tailored to hybrid human–AI contexts.
-
-The Special Issue will also highlight the importance of interdisciplinary exchange and work that bridges psychology, computer science, economics, and communication studies. By integrating insights across these fields and having contributors who are experts in these different domains, the Special Issue will provide a strong theoretical and empirical foundation for understanding the ethical implications of AI in human life.
-
-The theme of the Special Issue is nicely aligned with the mission of Computers in Human Behavior, which aims to understand the psychological and social consequences of technology use. The journal has been a platform to showcase research on how digital environments influence cognition, emotion, and behavior. AI presents a new and urgent frontier within this field, with high stakes in domains such as healthcare, education, employment, and justice, where ethical decision-making is central.
-
-The Special Issue will appeal to the readership of Computers in Human Behavior because it addresses a timely and pressing topic, highlights human-centered outcomes (focusing on how AI influenced human ethics rather than machine ethics), and offers practical implications. Insights generated here may inform interventions and policies that support and enhance ethical decision-making in settings where humans and AI interact.
-
-We welcome submissions that address a broad set of questions, including (but not limited to): 
-
-How do people interpret and evaluate the morality of AI outputs?
-When do people follow, resist, or justify (un)ethical recommendations from AI systems?
-What psychological mechanisms (e.g., social norms, perceived agency, mind attribution) underlie human responses to AI in morally significant situations?
-How does AI affect moral emotions such as guilt, outrage, or compassion?
-Do individual differences (e.g., political ideology, cognitive style, technological aptitude) moderate the influence of AI on ethical decision-making?
-How do factors like transparency, anthropomorphism, or control over AI output shape people’s  ethical responses?
-How does delegating decisions to AI shape ethical behavior and judgment?
-By systematically examining their and related questions, this Special Issue seeks to deepen our understanding of the human side of AI ethics and provide the field with timely, interdisciplinary, theory-driven insights.
-
-Manuscript submission information:
-
-All interested researchers are invited to submit their manuscripts before 31.5.2026. The Journal’s submission system is open for receiving submissions to our Special Issue. To ensure that all manuscripts are correctly identified for inclusion into the special issue, please select “VSI: AIEP” when you reach the “Article Type” step in the submission process. Full manuscripts will undergo double-blind peer review in accordance with the journal’s standard procedures.
-
-Check out the FAQs on special issues.
-
-Learn more about the benefits of publishing in a special issue.
-
-Interested in becoming a guest editor? Discover the benefits of guest editing a special issue and the valuable contribution that you can make to your field.
-
-
-# What we are doing:
-
 
 
