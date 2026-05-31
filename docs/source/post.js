@@ -13,6 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+function assetPath(path) {
+  var basePath = (window.__ASSET_BASE__ || '/').replace(/\/?$/, '/');
+  return basePath + path.replace(/^\/+/, '');
+}
+
 async function post(route, obj) {
   var body = JSON.stringify(obj);
   var cacheKey = body + route;
@@ -24,7 +29,7 @@ async function post(route, obj) {
   if (postCache[cacheKey]) return postCache[cacheKey];
 
   if (cacheKey2filename[cacheKey]) {
-    var res = await fetch('/source/data/' + cacheKey2filename[cacheKey]);
+    var res = await fetch(assetPath('source/data/' + cacheKey2filename[cacheKey]));
   } else {
     // var root = 'http://' + location.hostname + ':5004/'
     var root = 'https://helloworld-66dm2fxl4a-uk.a.run.app/';

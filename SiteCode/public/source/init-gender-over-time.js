@@ -13,10 +13,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+function assetPath(path) {
+  var basePath = (window.__ASSET_BASE__ || '/').replace(/\/?$/, '/');
+  return basePath + path.replace(/^\/+/, '');
+}
+
 window.initGenderOverTime = async () => {
   if (!window.genderOverTimeData) {
     window.genderOverTimeData = await (
-      await fetch('/source/data/gender-over-time.json')
+      await fetch(assetPath('source/data/gender-over-time.json'))
     ).json();
   }
 

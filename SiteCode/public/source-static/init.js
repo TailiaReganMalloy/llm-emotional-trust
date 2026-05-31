@@ -484,6 +484,11 @@ window.sents = [
 sents.push({class: 'texas', str: pairs[0].s1.replace('_', 'things')});
 sents.push({class: 'new-york', str: pairs[0].s0.replace('_', 'things')});
 
+function assetPath(path) {
+  var basePath = (window.__ASSET_BASE__ || '/').replace(/\/?$/, '/');
+  return basePath + path.replace(/^\/+/, '');
+}
+
 window.init = async function () {
   try {
     window.regltick.cancel();
@@ -495,7 +500,7 @@ window.init = async function () {
   }
 
   if (!window.bertLargeVocab) {
-    var text = await (await fetch('/source-static/data/bert_large_vocab.txt')).text();
+    var text = await (await fetch(assetPath('source-static/data/bert_large_vocab.txt'))).text();
     window.bertLargeVocab = text.split('\n');
   }
 

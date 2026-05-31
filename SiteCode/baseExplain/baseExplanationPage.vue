@@ -396,21 +396,27 @@ onMounted(async () => {
 
 // Dynamically load all the JS dependencies from source and third_party
 function loadExperimentScripts() {
+  const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+  const withBase = (path) => `${basePath}${path.replace(/^\/+/, '')}`;
+
+  // Expose runtime base path so legacy public scripts can fetch data correctly.
+  window.__ASSET_BASE__ = basePath;
+
   const scripts = [
-    '/third_party/regl.min.js',
-    '/third_party/d3_.js',
-    '/third_party/d3-scale-chromatic.v1.min.js',
-    '/third_party/params.js',
+    withBase('third_party/regl.min.js'),
+    withBase('third_party/d3_.js'),
+    withBase('third_party/d3-scale-chromatic.v1.min.js'),
+    withBase('third_party/params.js'),
     // Experiment source scripts
-    '/source/data/cachekey2filename.js',
-    '/source/post.js',
-    '/source/tokenizer.js',
-    '/source/scatter.js',
-    '/source/init-pair.js',
-    '/source/init-diff.js',
-    '/source/init-sent.js',
-    '/source/init-gender-over-time.js',
-    '/source/init.js',
+    withBase('source/data/cachekey2filename.js'),
+    withBase('source/post.js'),
+    withBase('source/tokenizer.js'),
+    withBase('source/scatter.js'),
+    withBase('source/init-pair.js'),
+    withBase('source/init-diff.js'),
+    withBase('source/init-sent.js'),
+    withBase('source/init-gender-over-time.js'),
+    withBase('source/init.js'),
   ];
   
   // Load scripts sequentially

@@ -118,9 +118,14 @@ class BertTokenizer {
   }
 
   async loadVocab() {
+    function assetPath(path) {
+      const basePath = (window.__ASSET_BASE__ || '/').replace(/\/?$/, '/');
+      return basePath + path.replace(/^\/+/, '');
+    }
+
     if (!window.bertProcessedVocab) {
       window.bertProcessedVocab = await (
-        await fetch('/source/data/processed_vocab.json')
+        await fetch(assetPath('source/data/processed_vocab.json'))
       ).json();
     }
     return window.bertProcessedVocab;
