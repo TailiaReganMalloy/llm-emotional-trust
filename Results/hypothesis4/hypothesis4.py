@@ -472,7 +472,7 @@ def main() -> None:
     draw_pre_post_subplot(axes[0], "4.1 Overall Pre vs Post", overall_stats)
     draw_pre_post_subplot(axes[1], "4.2 Analytical Pre vs Post", analytical_stats)
     draw_pre_post_subplot(axes[2], "4.3 Emotional Pre vs Post", emotional_stats)
-    draw_type_subplot(axes[3], "4.4 Emotional vs Analytical Difference", type_stats)
+    draw_type_subplot(axes[3], "4.4 Emotional vs Analytical\n Change Difference", type_stats)
 
     fig.suptitle("Hypothesis 4: non-WEIRD Trust Change Pattern", fontsize=27)
     fig.savefig(PNG_PATH, dpi=300)

@@ -39,6 +39,11 @@ except ModuleNotFoundError:
 
 ic_mod = import_module("Results.qualitative.1c3")
 
+SUBPLOT_TITLE_FONTSIZE = 22
+AXIS_LABEL_FONTSIZE = 20
+TICK_LABEL_FONTSIZE = 20
+STAT_BOX_FONTSIZE = 16
+
 
 def add_ic_orientation(df: pd.DataFrame) -> pd.DataFrame:
     work = df.copy()
@@ -114,9 +119,10 @@ def _box_with_points(
 
     ax.axhline(0.0, color="#333333", linewidth=1.0)
     ax.set_xticks(positions)
-    ax.set_xticklabels(labels, fontsize=10)
-    ax.set_title(title, fontsize=13)
-    ax.set_ylabel(ylabel, fontsize=11)
+    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
 
 
 def _regression_panel(
@@ -188,10 +194,11 @@ def _regression_panel(
         ax.plot(x_line_n, y_line_n, color="#8f4f1d", linewidth=1.8, linestyle="--", label="non-WEIRD fit")
 
     ax.axhline(0.0, color="#333333", linewidth=1.0)
-    ax.set_title(title, fontsize=13)
-    ax.set_xlabel(x_label, fontsize=11)
-    ax.set_ylabel("Analytical - Emotional change (z)", fontsize=11)
-    ax.legend(loc="lower left", fontsize=9)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.set_xlabel(x_label, fontsize=AXIS_LABEL_FONTSIZE)
+    ax.set_ylabel("Analytical - Emotional change (z)", fontsize=AXIS_LABEL_FONTSIZE)
+    ax.tick_params(axis="both", labelsize=TICK_LABEL_FONTSIZE)
+    ax.legend(loc="lower left", fontsize=10)
 
     weird_slope_txt = f"{weird_lr.slope:.3f}" if weird_lr is not None else "NA"
     weird_p_txt = format_p_text(float(weird_lr.pvalue)) if weird_lr is not None else "NA"
@@ -213,8 +220,8 @@ def _regression_panel(
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=9,
-        bbox={"facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
     )
 
     return {
@@ -230,7 +237,7 @@ def _regression_panel(
 
 def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dict[str, float]]:
     plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 4, figsize=(25, 6.8), constrained_layout=True)
+    fig, axes = plt.subplots(1, 4, figsize=(26, 7.4), constrained_layout=True)
 
     # Panel 1: sentiment score distributions by WEIRD vs non-WEIRD.
     sent = df[df["sentiment_mean"].notna()].copy()
@@ -261,8 +268,8 @@ def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dic
         transform=axes[0].transAxes,
         ha="left",
         va="top",
-        fontsize=9,
-        bbox={"facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
     )
 
     # Panel 2: IC score distributions by WEIRD vs non-WEIRD.
@@ -294,8 +301,8 @@ def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dic
         transform=axes[1].transAxes,
         ha="left",
         va="top",
-        fontsize=9,
-        bbox={"facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
     )
 
     # Panels 3 and 4: regressions predicting analytical-emotional change.
@@ -304,17 +311,17 @@ def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dic
         df,
         x_col="sentiment_mean",
         x_label="Mean sentiment score",
-        title="Regression: A-E Change ~ Sentiment",
+        title="Regression: A-E\nChange ~ Sentiment",
     )
     reg_ic = _regression_panel(
         axes[3],
         df,
         x_col="ic_mean",
         x_label="Collectivity score (IC)",
-        title="Regression: A-E Change ~ Collectivity",
+        title="Regression: A-E\nChange ~ Collectivity",
     )
 
-    fig.suptitle("Qualitative1: Distribution Tests and Regression Models", fontsize=18)
+    fig.suptitle("Qualitative: Distribution Tests and Regression Models", fontsize=26)
     fig.savefig(output_path, dpi=250)
     plt.close(fig)
 

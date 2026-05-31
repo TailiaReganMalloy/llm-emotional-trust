@@ -54,6 +54,10 @@ Use these pages in the browser:
 - Interactive experiment entry: `http://localhost:5173/baseExplain`
 - Interactive experiment study page: `http://localhost:5173/baseExplain/study`
 
+## Model and visualization pipeline
+
+The experiment pages are built around a BERT-style masked language model trained on Wikipedia and books. The explanatory content and interactive examples use a fill-in-the-blank workflow: a sentence is converted into subword tokens with a WordPiece-style tokenizer, lower-cased, and wrapped with the standard BERT boundary markers `[` `CLS` `]` and `[` `SEP` `]` before being sent through the completion pipeline. For masked-token probes, the site requests the top candidate token predictions and associated probabilities, then renders those ranked completions back into the UI. The visualizations are drawn client-side with JavaScript and D3, combining HTML controls with SVG charts to show token completions, paired sentence comparisons, difference plots, and the gender-over-time views. In practice, the Vue pages load the explanatory markdown, then sequentially load the legacy experiment scripts in `source/`, `source-static/`, and `third_party/`, which transform the model outputs into the interactive graphics shown to participants.
+
 ## Optional API configuration
 
 The Vue pages submit responses to `/api/...` by default.

@@ -42,6 +42,11 @@ OUTCOME_LABELS = {
     "emotional_change": "Emotional",
 }
 
+SUBPLOT_TITLE_FONTSIZE = 22
+AXIS_LABEL_FONTSIZE = 20
+TICK_LABEL_FONTSIZE = 20
+STAT_BOX_FONTSIZE = 16
+
 
 def profile_mean(df: pd.DataFrame, group_col: str, group_value: str) -> np.ndarray:
     return np.array(
@@ -157,14 +162,35 @@ def plot_two_group_panel(
 
     ax.axhline(0.0, color="#333333", linewidth=1.1)
     ax.set_xticks(x)
-    ax.set_xticklabels([OUTCOME_LABELS[o] for o in OUTCOMES], fontsize=11)
-    ax.set_title(title, fontsize=14)
+    ax.set_xticklabels([OUTCOME_LABELS[o] for o in OUTCOMES], fontsize=TICK_LABEL_FONTSIZE)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.set_ylabel("Normalized trust change (z-score)", fontsize=AXIS_LABEL_FONTSIZE)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+
+    summary_lines = []
+    for outcome, label in zip(OUTCOMES, ["Overall", "Analytical", "Emotional"]):
+        left_vals = df.loc[df[group_col] == left_label, outcome]
+        right_vals = df.loc[df[group_col] == right_label, outcome]
+        p_value = welch_group_test(left_vals, right_vals)
+        summary_lines.append(f"{label}: p {ic_mod.format_p_text(p_value)} ({ic_mod.significance_stars(p_value)})")
+
+    ax.text(
+        0.02,
+        0.98,
+        "\n".join(summary_lines),
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
+        zorder=6,
+    )
 
     if show_legend:
         if legend_groups_only:
-            ax.legend([left_bar, right_bar], [left_label.capitalize(), right_label.capitalize()], loc="lower left", fontsize=9)
+            ax.legend([left_bar, right_bar], [left_label.capitalize(), right_label.capitalize()], loc="lower left", fontsize=10)
         else:
-            ax.legend(loc="lower left", fontsize=9)
+            ax.legend(loc="lower left", fontsize=10)
 
 
 def plot_similarity_panel(
@@ -203,12 +229,13 @@ def plot_similarity_panel(
     )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(["WEIRD", "non-WEIRD"], fontsize=11)
+    ax.set_xticklabels(["WEIRD", "non-WEIRD"], fontsize=TICK_LABEL_FONTSIZE)
     ax.set_ylim(-1.0, 1.0)
     ax.axhline(0.0, color="#333333", linewidth=1.0)
-    ax.set_title(title, fontsize=14)
-    ax.set_ylabel("Cosine similarity", fontsize=11)
-    ax.legend(loc="lower left", fontsize=9)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.set_ylabel("Cosine similarity", fontsize=AXIS_LABEL_FONTSIZE)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+    ax.legend(loc="lower left", fontsize=10)
 
     ax.text(
         0.02,
@@ -220,8 +247,8 @@ def plot_similarity_panel(
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=9,
-        bbox={"facecolor": "white", "alpha": 0.75, "edgecolor": "none"},
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
     )
 
 
@@ -361,11 +388,12 @@ def plot_profile_summary_panel(
 
     ax.axhline(0.0, color="#333333", linewidth=1.0)
     ax.set_xticks(x)
-    ax.set_xticklabels([label for _, label in categories], fontsize=11)
+    ax.set_xticklabels([label for _, label in categories], fontsize=TICK_LABEL_FONTSIZE)
     ax.set_ylim(-1.05, 1.05)
-    ax.set_ylabel("Profile contrast", fontsize=11)
-    ax.set_title("Profile Contrast Summary", fontsize=14)
-    ax.legend(loc="lower left", fontsize=9)
+    ax.set_ylabel("Profile contrast", fontsize=AXIS_LABEL_FONTSIZE)
+    ax.set_title("Profile Contrast Summary", fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+    ax.legend(loc="lower left", fontsize=10)
 
     for idx, (column, _) in enumerate(categories):
         weird_vals = contrast_df.loc[contrast_df["Group"] == "WEIRD", column]
@@ -380,7 +408,7 @@ def plot_profile_summary_panel(
 
 def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
     plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 3, figsize=(20, 6.8), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 7.2), constrained_layout=True)
 
     weird_line, non_weird_line = compute_group_lines(df)
     weird_profile = profile_mean(df, "Group", "WEIRD")
@@ -432,9 +460,9 @@ def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
         collectivist_profile=collectivist_profile,
     )
 
-    axes[0].set_ylabel("Normalized trust change (z-score)", fontsize=13)
-    axes[1].set_ylabel("Normalized trust change (z-score)", fontsize=13)
-    fig.suptitle("Qualitative Trust-Change and Profile Summary", fontsize=18)
+    axes[0].set_ylabel("Normalized trust change (z-score)", fontsize=AXIS_LABEL_FONTSIZE)
+    axes[1].set_ylabel("Normalized trust change (z-score)", fontsize=AXIS_LABEL_FONTSIZE)
+    fig.suptitle("Qualitative Trust-Change and Profile Summary", fontsize=26)
 
     fig.savefig(output_path, dpi=250)
     plt.close(fig)
