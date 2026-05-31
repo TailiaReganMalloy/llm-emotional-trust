@@ -214,7 +214,6 @@ The snippet below creates a simple bar plot of mean pre-study AI Trust by condit
     plt.tight_layout()
     plt.show()
 
-Optional extension:
-- If you want, I can also add a second example that compares pre vs post trust in one figure (long-format reshape + seaborn pointplot).
+
 
 
