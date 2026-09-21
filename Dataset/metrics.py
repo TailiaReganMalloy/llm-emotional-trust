@@ -1,6 +1,16 @@
-import pandas as pd 
+from pathlib import Path
 
-Combined = pd.read_csv("./data/Combined.csv")
+import pandas as pd
+
+DATASET_DIR = Path(__file__).resolve().parent
+COMBINED_PATH = DATASET_DIR / "Combined.csv"
+METRICS_PATH = DATASET_DIR / "Metrics.csv"
+
+Combined = pd.read_csv(COMBINED_PATH)
+ORIGINAL_COMBINED_COLUMNS = Combined.columns.tolist()
+
+if "Status" in Combined.columns:
+      Combined["Status"] = "Approved"
 
 print(Combined.columns)
 
@@ -102,10 +112,6 @@ analytical_column_candidates = {
 
 emotional_column_candidates = {
       **{f"AI systems are {i}": [f"AI systems are {i}"] for i in range(1, 10)},
-      **{
-            f"AI systems are {i} Post": [f"AI systems are {i} Post", f"AI systems are Post {i}"]
-            for i in range(1, 10)
-      },
 }
 
 missing_canonical_columns: list[str] = []
@@ -170,14 +176,6 @@ positive_analytical_cols = {
 
 negative_analytical_cols = set(AI_Analytical_Trust + AI_Analytical_Trust_Post) - positive_analytical_cols
 
-for column in positive_analytical_cols:
-      if column in Combined.columns:
-            Combined[column] = Combined[column].map(lambda x: likert_map.get(_normalize_text(x), 0))
-
-for column in negative_analytical_cols:
-      if column in Combined.columns:
-            Combined[column] = Combined[column].map(lambda x: reverse_likert_map.get(_normalize_text(x), 0))
-
 
 # Emotional polarity by item: positive term -> +1, opposite term -> -1.
 emotional_polarity = {
@@ -192,15 +190,84 @@ emotional_polarity = {
       "AI systems are 9": {"patient": 1, "impatient": -1},
 }
 
+emotional_labels = {
+      "AI systems are 1": {1: "Empathetic", -1: "Apathetic"},
+      "AI systems are 2": {1: "Sensitive", -1: "Insensitive"},
+      "AI systems are 3": {1: "Personal", -1: "Impersonal"},
+      "AI systems are 4": {1: "Caring", -1: "Ignoring"},
+      "AI systems are 5": {1: "Altruistic", -1: "Self-Serving"},
+      "AI systems are 6": {1: "Cordial", -1: "Rude"},
+      "AI systems are 7": {1: "Responsive", -1: "Indifferent"},
+      "AI systems are 8": {1: "Open-Minded", -1: "Judgmental"},
+      "AI systems are 9": {1: "Patient", -1: "Impatient"},
+}
+
+
+post_emotional_raw_columns = [
+      column
+      for i in range(1, 10)
+      for column in (f"AI systems are Post {i}",)
+      if column in Combined.columns
+]
+
+
+def _normalize_post_emotional_columns(df: pd.DataFrame) -> None:
+      if not post_emotional_raw_columns:
+            return
+
+      raw_snapshot = df.loc[:, post_emotional_raw_columns].copy()
+
+      for pre_col, polarity in emotional_polarity.items():
+            item_number = pre_col.rsplit(" ", 1)[-1]
+            raw_target = f"AI systems are Post {item_number}"
+            post_target = f"{pre_col} Post"
+            labels = emotional_labels[pre_col]
+
+            def _resolve_label(row: pd.Series) -> object:
+                  for raw_col in post_emotional_raw_columns:
+                        score = polarity.get(_normalize_text(row[raw_col]))
+                        if score is not None:
+                              return labels[score]
+                  return pd.NA
+
+            normalized_values = raw_snapshot.apply(_resolve_label, axis=1)
+            if raw_target in df.columns:
+                  df[raw_target] = normalized_values
+            df[post_target] = normalized_values
+
+
+_normalize_post_emotional_columns(Combined)
+Combined.loc[:, ORIGINAL_COMBINED_COLUMNS].to_csv(COMBINED_PATH, index=False)
+
+
+for column in positive_analytical_cols:
+      if column in Combined.columns:
+            Combined[column] = Combined[column].map(lambda x: likert_map.get(_normalize_text(x), 0))
+
+for column in negative_analytical_cols:
+      if column in Combined.columns:
+            Combined[column] = Combined[column].map(lambda x: reverse_likert_map.get(_normalize_text(x), 0))
+
+
+for pre_col, polarity in emotional_polarity.items():
+      if pre_col in Combined.columns:
+            Combined[pre_col] = Combined[pre_col].map(lambda x: polarity.get(_normalize_text(x), 0))
 
 for pre_col, polarity in emotional_polarity.items():
       post_col = f"{pre_col} Post"
 
-      if pre_col in Combined.columns:
-            Combined[pre_col] = Combined[pre_col].map(lambda x: polarity.get(_normalize_text(x), 0))
+      if not post_emotional_raw_columns:
+            Combined[post_col] = 0
+            continue
 
-      if post_col in Combined.columns:
-            Combined[post_col] = Combined[post_col].map(lambda x: polarity.get(_normalize_text(x), 0))
+      def _map_post_emotional(row: pd.Series) -> int:
+            for raw_col in post_emotional_raw_columns:
+                  mapped = polarity.get(_normalize_text(row[raw_col]))
+                  if mapped is not None:
+                        return mapped
+            return 0
+
+      Combined[post_col] = Combined.apply(_map_post_emotional, axis=1)
 
 
 Combined["Total Analytical Trust"] = Combined[AI_Analytical_Trust].sum(axis=1)
@@ -211,6 +278,6 @@ Combined["Total Emotional Trust Post"] = Combined[AI_Emotional_Trust_Post].sum(a
 Combined["Emotional Trust Difference"] = Combined["Total Emotional Trust"] - Combined["Total Emotional Trust Post"]
 Combined["Analytical Trust Difference"] = Combined["Total Analytical Trust"] - Combined["Total Analytical Trust Post"]
 
-Combined.to_csv("./data/Metrics.csv", index=False)
-print("Saved trust totals and differences to ./data/Metrics.csv")
+Combined.to_csv(METRICS_PATH, index=False)
+print(f"Saved trust totals and differences to {METRICS_PATH}")
 

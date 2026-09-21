@@ -1,14 +1,18 @@
-\subsubsection{Hypothesis 7 Results}
-Hypothesis 7 tested whether there is a main effect of condition across three trust-change outcomes: overall change, emotional change, and analytical change.
+\subsection{Hypothesis 2}
+\begin{center}
+\centering
+\includegraphics[width=\linewidth]{Figures/hypothesis2.png}
+\vspace{-20pt}
+\captionof{figure}{Visualization for Hypothesis 2.}
+\label{fig:hypothesis2}
+\end{center}
 
-7.1 Main condition effect on overall change:
-Overall change condition effect: $M_{Interactive}=-0.197$, $M_{Text}=-0.196$, $t=-0.020$, $p = .984$, $\Delta(M_I-M_T)=-0.001$.
-Interpretation: no significant main condition effect on overall change.
+Hypothesis 2 tested whether experimental condition changed the magnitude of trust change across analytical, emotional, and overall trust outcomes. Figure \ref{fig:hypothesis2} summarizes the mean change scores for the Interactive and Static conditions, and the primary analyses used Welch's two-sample t-tests to compare conditions for each outcome.
 
-7.2 Main condition effect on emotional change:
-Emotional change condition effect: $M_{Interactive}=-0.251$, $M_{Text}=-0.268$, $t=0.412$, $p = .680$, $\Delta(M_I-M_T)=0.017$.
-Interpretation: no significant main condition effect on emotional change.
+Across $n_{Interactive}=223$ and $n_{Text}=231$ participants, analytical trust change was $M_{Interactive}=-0.155$ (95\% CI [-0.237, -0.073]) in the Interactive condition and $M_{Text}=-0.101$ (95\% CI [-0.175, -0.028]) in the Static condition, Welch's $t(444.81)=-0.967$, $p = .334$, and $\Delta(M_I-M_T)=-0.054$. Sub-hypothesis 2.1 was not statistically significant.
 
-7.3 Main condition effect on analytical change:
-Analytical change condition effect: $M_{Interactive}=-0.142$, $M_{Text}=-0.124$, $t=-0.333$, $p = .739$, $\Delta(M_I-M_T)=-0.018$.
-Interpretation: no significant main condition effect on analytical change.
+Emotional trust change followed the same pattern: $M_{Interactive}=-0.067$ (95\% CI [-0.120, -0.013]) for Interactive participants and $M_{Text}=-0.038$ (95\% CI [-0.086, 0.009]) for Static participants, Welch's $t(444.20)=-0.776$, $p = .438$, and $\Delta(M_I-M_T)=-0.028$. Sub-hypothesis 2.2 was not statistically significant.
+
+Overall trust change also did not differ meaningfully by condition, with $M_{Interactive}=-0.111$ (95\% CI [-0.167, -0.055]) in the Interactive condition and $M_{Text}=-0.070$ (95\% CI [-0.120, -0.020]) in the Static condition, Welch's $t(444.21)=-1.075$, $p = .283$, and $\Delta(M_I-M_T)=-0.041$. Sub-hypothesis 2.3 was not statistically significant. Taken together, these results indicate that the Interactive and Static conditions produced comparable changes in trust, so Hypothesis 2 was not supported.
+
+\textbf{Benjamini-Hochberg Procedure:} Using the Benjamini-Hochberg procedure at false discovery rate $q=0.05$ for the three primary sub-hypothesis tests, sub-hypothesis 2.1 was not statistically significant, sub-hypothesis 2.2 was not statistically significant, and sub-hypothesis 2.3 was not statistically significant.

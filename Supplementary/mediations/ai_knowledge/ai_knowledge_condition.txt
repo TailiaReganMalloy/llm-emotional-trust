@@ -1,0 +1,25 @@
+\subsubsection{AI-Knowledge Trust-Change Comparison Condition-Effect Results}
+Condition-effect tests (Interactive vs Text) were run within each AI Knowledge category for analytical change, emotional change, and analytical-minus-emotional difference.
+
+Analytical Change (Post - Pre, per-item) (min n per condition = 8):
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.367$, $M_{Text}=-0.100$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.467$, NA.
+- Beginner: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.073$, $M_{Text}=-0.007$, $t=-0.657$, $p = .513$, $\Delta(M_I-M_T)=-0.066$, ns.
+- Conceptual: $n_{Interactive}=110$, $n_{Text}=108$, $M_{Interactive}=-0.188$, $M_{Text}=-0.104$, $t=-1.055$, $p = .293$, $\Delta(M_I-M_T)=-0.084$, ns.
+- Advanced: $n_{Interactive}=51$, $n_{Text}=60$, $M_{Interactive}=-0.182$, $M_{Text}=-0.188$, $t=0.048$, $p = .962$, $\Delta(M_I-M_T)=0.006$, ns.
+- Expert: $n_{Interactive}=7$, $n_{Text}=5$, $M_{Interactive}=-0.271$, $M_{Text}=-0.080$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.191$, NA.
+
+Emotional Change (Post - Pre, per-item) (min n per condition = 8):
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.222$, $M_{Text}=0.222$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.000$, NA.
+- Beginner: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.004$, $M_{Text}=0.004$, $t=-0.144$, $p = .886$, $\Delta(M_I-M_T)=-0.008$, ns.
+- Conceptual: $n_{Interactive}=110$, $n_{Text}=108$, $M_{Interactive}=-0.097$, $M_{Text}=-0.062$, $t=-0.619$, $p = .537$, $\Delta(M_I-M_T)=-0.035$, ns.
+- Advanced: $n_{Interactive}=51$, $n_{Text}=60$, $M_{Interactive}=-0.096$, $M_{Text}=-0.070$, $t=-0.345$, $p = .731$, $\Delta(M_I-M_T)=-0.025$, ns.
+- Expert: $n_{Interactive}=7$, $n_{Text}=5$, $M_{Interactive}=0.032$, $M_{Text}=0.311$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.279$, NA.
+
+Analytical - Emotional Change Difference (min n per condition = 8):
+- No knowledge: $n_{Interactive}=3$, $n_{Text}=1$, $M_{Interactive}=0.144$, $M_{Text}=-0.322$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.467$, NA.
+- Beginner: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.069$, $M_{Text}=-0.011$, $t=-0.593$, $p = .555$, $\Delta(M_I-M_T)=-0.058$, ns.
+- Conceptual: $n_{Interactive}=110$, $n_{Text}=108$, $M_{Interactive}=-0.091$, $M_{Text}=-0.042$, $t=-0.605$, $p = .546$, $\Delta(M_I-M_T)=-0.049$, ns.
+- Advanced: $n_{Interactive}=51$, $n_{Text}=60$, $M_{Interactive}=-0.086$, $M_{Text}=-0.118$, $t=0.278$, $p = .782$, $\Delta(M_I-M_T)=0.031$, ns.
+- Expert: $n_{Interactive}=7$, $n_{Text}=5$, $M_{Interactive}=-0.303$, $M_{Text}=-0.391$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.088$, NA.
+
+Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

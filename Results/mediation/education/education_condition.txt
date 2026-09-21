@@ -2,24 +2,24 @@
 Condition-effect tests (Interactive vs Text) were run within each Education category for analytical change, emotional change, and analytical-minus-emotional difference.
 
 Analytical Change (Post - Pre, per-item) (min n per condition = 8):
-- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=0.089$, $M_{Text}=0.024$, $t=0.547$, $p = .586$, $\Delta(M_I-M_T)=0.065$, ns.
-- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=-0.225$, $M_{Text}=-0.191$, $t=-0.442$, $p = .659$, $\Delta(M_I-M_T)=-0.034$, ns.
-- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=-0.122$, $M_{Text}=-0.191$, $t=0.540$, $p = .590$, $\Delta(M_I-M_T)=0.069$, ns.
-- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.250$, $M_{Text}=-0.076$, $t=-0.799$, $p = .429$, $\Delta(M_I-M_T)=-0.174$, ns.
-- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=-0.012$, $M_{Text}=0.038$, $t=-0.190$, $p = .852$, $\Delta(M_I-M_T)=-0.050$, ns.
+- High School: $n_{Interactive}=40$, $n_{Text}=58$, $M_{Interactive}=0.055$, $M_{Text}=0.024$, $t=0.242$, $p = .810$, $\Delta(M_I-M_T)=0.031$, ns.
+- Bachelor: $n_{Interactive}=107$, $n_{Text}=110$, $M_{Interactive}=-0.226$, $M_{Text}=-0.148$, $t=-1.022$, $p = .308$, $\Delta(M_I-M_T)=-0.078$, ns.
+- Master: $n_{Interactive}=49$, $n_{Text}=37$, $M_{Interactive}=-0.124$, $M_{Text}=-0.195$, $t=0.520$, $p = .605$, $\Delta(M_I-M_T)=0.070$, ns.
+- Graduate Professional Degree: $n_{Interactive}=21$, $n_{Text}=18$, $M_{Interactive}=-0.295$, $M_{Text}=-0.089$, $t=-0.916$, $p = .366$, $\Delta(M_I-M_T)=-0.206$, ns.
+- PhD: $n_{Interactive}=6$, $n_{Text}=8$, $M_{Interactive}=-0.050$, $M_{Text}=0.038$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.087$, NA.
 
 Emotional Change (Post - Pre, per-item) (min n per condition = 8):
-- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=-0.133$, $M_{Text}=-0.222$, $t=0.964$, $p = .338$, $\Delta(M_I-M_T)=0.089$, ns.
-- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=-0.324$, $M_{Text}=-0.321$, $t=-0.045$, $p = .964$, $\Delta(M_I-M_T)=-0.003$, ns.
-- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=-0.202$, $M_{Text}=-0.186$, $t=-0.179$, $p = .858$, $\Delta(M_I-M_T)=-0.016$, ns.
-- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.213$, $M_{Text}=-0.381$, $t=1.452$, $p = .154$, $\Delta(M_I-M_T)=0.168$, ns.
-- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=-0.278$, $M_{Text}=0.056$, $t=-1.190$, $p = .254$, $\Delta(M_I-M_T)=-0.333$, ns.
+- High School: $n_{Interactive}=40$, $n_{Text}=58$, $M_{Interactive}=0.006$, $M_{Text}=-0.042$, $t=0.549$, $p = .584$, $\Delta(M_I-M_T)=0.048$, ns.
+- Bachelor: $n_{Interactive}=107$, $n_{Text}=110$, $M_{Interactive}=-0.108$, $M_{Text}=-0.057$, $t=-0.941$, $p = .348$, $\Delta(M_I-M_T)=-0.051$, ns.
+- Master: $n_{Interactive}=49$, $n_{Text}=37$, $M_{Interactive}=-0.041$, $M_{Text}=0.000$, $t=-0.544$, $p = .588$, $\Delta(M_I-M_T)=-0.041$, ns.
+- Graduate Professional Degree: $n_{Interactive}=21$, $n_{Text}=18$, $M_{Interactive}=-0.095$, $M_{Text}=-0.099$, $t=0.032$, $p = .975$, $\Delta(M_I-M_T)=0.004$, ns.
+- PhD: $n_{Interactive}=6$, $n_{Text}=8$, $M_{Interactive}=0.074$, $M_{Text}=0.194$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=-0.120$, NA.
 
 Analytical - Emotional Change Difference (min n per condition = 8):
-- High School: $n_{Interactive}=45$, $n_{Text}=59$, $M_{Interactive}=0.222$, $M_{Text}=0.246$, $t=-0.175$, $p = .861$, $\Delta(M_I-M_T)=-0.024$, ns.
-- Bachelor: $n_{Interactive}=120$, $n_{Text}=121$, $M_{Interactive}=0.099$, $M_{Text}=0.130$, $t=-0.357$, $p = .721$, $\Delta(M_I-M_T)=-0.031$, ns.
-- Master: $n_{Interactive}=55$, $n_{Text}=43$, $M_{Interactive}=0.080$, $M_{Text}=-0.005$, $t=0.594$, $p = .554$, $\Delta(M_I-M_T)=0.085$, ns.
-- Graduate Professional Degree: $n_{Interactive}=24$, $n_{Text}=21$, $M_{Interactive}=-0.037$, $M_{Text}=0.305$, $t=-1.385$, $p = .173$, $\Delta(M_I-M_T)=-0.342$, ns.
-- PhD: $n_{Interactive}=8$, $n_{Text}=8$, $M_{Interactive}=0.265$, $M_{Text}=-0.018$, $t=0.615$, $p = .549$, $\Delta(M_I-M_T)=0.283$, ns.
+- High School: $n_{Interactive}=40$, $n_{Text}=58$, $M_{Interactive}=0.049$, $M_{Text}=0.066$, $t=-0.139$, $p = .890$, $\Delta(M_I-M_T)=-0.017$, ns.
+- Bachelor: $n_{Interactive}=107$, $n_{Text}=110$, $M_{Interactive}=-0.118$, $M_{Text}=-0.092$, $t=-0.349$, $p = .727$, $\Delta(M_I-M_T)=-0.027$, ns.
+- Master: $n_{Interactive}=49$, $n_{Text}=37$, $M_{Interactive}=-0.084$, $M_{Text}=-0.195$, $t=0.900$, $p = .371$, $\Delta(M_I-M_T)=0.111$, ns.
+- Graduate Professional Degree: $n_{Interactive}=21$, $n_{Text}=18$, $M_{Interactive}=-0.200$, $M_{Text}=0.010$, $t=-0.974$, $p = .337$, $\Delta(M_I-M_T)=-0.210$, ns.
+- PhD: $n_{Interactive}=6$, $n_{Text}=8$, $M_{Interactive}=-0.124$, $M_{Text}=-0.157$, $t=nan$, $p NA$, $\Delta(M_I-M_T)=0.033$, NA.
 
 Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

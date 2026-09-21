@@ -1,0 +1,115 @@
+\subsubsection{Ethnicity-Based Trust-Change Comparison Results}
+Compared analytical trust change, emotional trust change, and their difference across Ethnicity categories.
+
+Included groups and counts:
+- White: n=188
+- Black: n=75
+- Asian: n=74
+- Mixed: n=55
+- Other: n=45
+- Prefer not to say: n=17
+
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=0.723, p = .606.
+Group means (95% CI):
+- White: n=188, M=-0.131, CI=[-0.221, -0.041]
+- Asian: n=74, M=-0.178, CI=[-0.301, -0.056]
+- Black: n=75, M=-0.136, CI=[-0.250, -0.022]
+- Mixed: n=55, M=-0.002, CI=[-0.132, 0.129]
+- Other: n=45, M=-0.189, CI=[-0.423, 0.045]
+- Prefer not to say: n=17, M=-0.082, CI=[-0.414, 0.249]
+Pairwise Welch tests (Bonferroni-adjusted):
+- White vs Asian: t=0.621, p=0.535, p_adj=1.000
+- White vs Black: t=0.070, p=0.944, p_adj=1.000
+- White vs Mixed: t=-1.624, p=0.107, p_adj=1.000
+- White vs Other: t=0.465, p=0.644, p_adj=1.000
+- White vs Prefer not to say: t=-0.297, p=0.769, p_adj=1.000
+- Asian vs Black: t=-0.505, p=0.614, p_adj=1.000
+- Asian vs Mixed: t=-1.973, p=0.051, p_adj=0.761
+- Asian vs Other: t=0.080, p=0.936, p_adj=1.000
+- Asian vs Prefer not to say: t=-0.571, p=0.574, p_adj=1.000
+- Black vs Mixed: t=-1.549, p=0.124, p_adj=1.000
+- Black vs Other: t=0.409, p=0.684, p_adj=1.000
+- Black vs Prefer not to say: t=-0.322, p=0.751, p_adj=1.000
+- Mixed vs Other: t=1.405, p=0.164, p_adj=1.000
+- Mixed vs Prefer not to say: t=0.475, p=0.639, p_adj=1.000
+- Other vs Prefer not to say: t=-0.547, p=0.588, p_adj=1.000
+
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=1.970, p = .082.
+Group means (95% CI):
+- White: n=188, M=-0.113, CI=[-0.174, -0.053]
+- Asian: n=74, M=-0.021, CI=[-0.110, 0.068]
+- Black: n=75, M=0.021, CI=[-0.072, 0.114]
+- Mixed: n=55, M=0.012, CI=[-0.048, 0.073]
+- Other: n=45, M=-0.069, CI=[-0.165, 0.027]
+- Prefer not to say: n=17, M=-0.000, CI=[-0.229, 0.229]
+Pairwise Welch tests (Bonferroni-adjusted):
+- White vs Asian: t=-1.699, p=0.091, p_adj=1.000
+- White vs Black: t=-2.403, p=0.018, p_adj=0.263
+- White vs Mixed: t=-2.914, p=0.004, p_adj=0.061
+- White vs Other: t=-0.780, p=0.438, p_adj=1.000
+- White vs Prefer not to say: t=-1.012, p=0.324, p_adj=1.000
+- Asian vs Black: t=-0.645, p=0.520, p_adj=1.000
+- Asian vs Mixed: t=-0.613, p=0.541, p_adj=1.000
+- Asian vs Other: t=0.734, p=0.465, p_adj=1.000
+- Asian vs Prefer not to say: t=-0.180, p=0.859, p_adj=1.000
+- Black vs Mixed: t=0.155, p=0.877, p_adj=1.000
+- Black vs Other: t=1.346, p=0.181, p_adj=1.000
+- Black vs Prefer not to say: t=0.177, p=0.861, p_adj=1.000
+- Mixed vs Other: t=1.437, p=0.155, p_adj=1.000
+- Mixed vs Prefer not to say: t=0.108, p=0.915, p_adj=1.000
+- Other vs Prefer not to say: t=-0.586, p=0.563, p_adj=1.000
+
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=1.127, p = .345.
+Group means (95% CI):
+- White: n=188, M=-0.017, CI=[-0.105, 0.070]
+- Asian: n=74, M=-0.157, CI=[-0.281, -0.033]
+- Black: n=75, M=-0.157, CI=[-0.263, -0.051]
+- Mixed: n=55, M=-0.014, CI=[-0.139, 0.112]
+- Other: n=45, M=-0.120, CI=[-0.331, 0.092]
+- Prefer not to say: n=17, M=-0.082, CI=[-0.548, 0.383]
+Pairwise Welch tests (Bonferroni-adjusted):
+- White vs Asian: t=1.830, p=0.069, p_adj=1.000
+- White vs Black: t=2.008, p=0.046, p_adj=0.693
+- White vs Mixed: t=-0.045, p=0.964, p_adj=1.000
+- White vs Other: t=0.898, p=0.373, p_adj=1.000
+- White vs Prefer not to say: t=0.290, p=0.775, p_adj=1.000
+- Asian vs Black: t=-0.008, p=0.994, p_adj=1.000
+- Asian vs Mixed: t=-1.626, p=0.107, p_adj=1.000
+- Asian vs Other: t=-0.308, p=0.759, p_adj=1.000
+- Asian vs Prefer not to say: t=-0.329, p=0.746, p_adj=1.000
+- Black vs Mixed: t=-1.738, p=0.085, p_adj=1.000
+- Black vs Other: t=-0.314, p=0.754, p_adj=1.000
+- Black vs Prefer not to say: t=-0.329, p=0.746, p_adj=1.000
+- Mixed vs Other: t=0.866, p=0.389, p_adj=1.000
+- Mixed vs Prefer not to say: t=0.300, p=0.768, p_adj=1.000
+- Other vs Prefer not to say: t=-0.154, p=0.879, p_adj=1.000
+
+Condition-effect follow-up tests (Interactive vs Text):
+These tests are additive to the trust-change group comparisons above and evaluate condition effects overall and within each group category.
+
+Analytical Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=223$, $n_{Text}=231$, $M_{Interactive}=-0.155$, $M_{Text}=-0.101$, $t=-0.967$, $p = .334$, $\Delta(M_I-M_T)=-0.054$.
+Within-group condition tests:
+- White: $n_{Interactive}=79$, $n_{Text}=109$, $M_{Interactive}=-0.114$, $M_{Text}=-0.143$, $t=0.303$, $p = .762$, $\Delta(M_I-M_T)=0.029$.
+- Asian: $n_{Interactive}=40$, $n_{Text}=34$, $M_{Interactive}=-0.278$, $M_{Text}=-0.062$, $t=-1.788$, $p = .078$, $\Delta(M_I-M_T)=-0.216$.
+- Black: $n_{Interactive}=41$, $n_{Text}=34$, $M_{Interactive}=-0.202$, $M_{Text}=-0.056$, $t=-1.315$, $p = .193$, $\Delta(M_I-M_T)=-0.147$.
+- Mixed: $n_{Interactive}=32$, $n_{Text}=23$, $M_{Interactive}=-0.025$, $M_{Text}=0.030$, $t=-0.437$, $p = .664$, $\Delta(M_I-M_T)=-0.055$.
+- Other: $n_{Interactive}=22$, $n_{Text}=23$, $M_{Interactive}=-0.250$, $M_{Text}=-0.130$, $t=-0.514$, $p = .610$, $\Delta(M_I-M_T)=-0.120$.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=0.011$, $M_{Text}=-0.188$, $t=0.606$, $p = .555$, $\Delta(M_I-M_T)=0.199$.
+
+Emotional Change (Post - Pre, per-item) overall condition effect (min n per condition = 8): $n_{Interactive}=223$, $n_{Text}=231$, $M_{Interactive}=-0.067$, $M_{Text}=-0.038$, $t=-0.776$, $p = .438$, $\Delta(M_I-M_T)=-0.028$.
+Within-group condition tests:
+- White: $n_{Interactive}=79$, $n_{Text}=109$, $M_{Interactive}=-0.141$, $M_{Text}=-0.094$, $t=-0.734$, $p = .464$, $\Delta(M_I-M_T)=-0.047$.
+- Asian: $n_{Interactive}=40$, $n_{Text}=34$, $M_{Interactive}=-0.044$, $M_{Text}=0.007$, $t=-0.567$, $p = .573$, $\Delta(M_I-M_T)=-0.051$.
+- Black: $n_{Interactive}=41$, $n_{Text}=34$, $M_{Interactive}=-0.022$, $M_{Text}=0.072$, $t=-1.039$, $p = .302$, $\Delta(M_I-M_T)=-0.094$.
+- Mixed: $n_{Interactive}=32$, $n_{Text}=23$, $M_{Interactive}=0.000$, $M_{Text}=0.029$, $t=-0.470$, $p = .640$, $\Delta(M_I-M_T)=-0.029$.
+- Other: $n_{Interactive}=22$, $n_{Text}=23$, $M_{Interactive}=-0.071$, $M_{Text}=-0.068$, $t=-0.032$, $p = .975$, $\Delta(M_I-M_T)=-0.003$.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=0.049$, $M_{Text}=-0.056$, $t=0.465$, $p = .650$, $\Delta(M_I-M_T)=0.105$.
+
+Analytical - Emotional Change Difference overall condition effect (min n per condition = 8): $n_{Interactive}=223$, $n_{Text}=231$, $M_{Interactive}=-0.088$, $M_{Text}=-0.063$, $t=-0.465$, $p = .642$, $\Delta(M_I-M_T)=-0.026$.
+Within-group condition tests:
+- White: $n_{Interactive}=79$, $n_{Text}=109$, $M_{Interactive}=0.027$, $M_{Text}=-0.049$, $t=0.805$, $p = .422$, $\Delta(M_I-M_T)=0.076$.
+- Asian: $n_{Interactive}=40$, $n_{Text}=34$, $M_{Interactive}=-0.233$, $M_{Text}=-0.068$, $t=-1.348$, $p = .182$, $\Delta(M_I-M_T)=-0.165$.
+- Black: $n_{Interactive}=41$, $n_{Text}=34$, $M_{Interactive}=-0.181$, $M_{Text}=-0.128$, $t=-0.488$, $p = .627$, $\Delta(M_I-M_T)=-0.053$.
+- Mixed: $n_{Interactive}=32$, $n_{Text}=23$, $M_{Interactive}=-0.025$, $M_{Text}=0.001$, $t=-0.209$, $p = .835$, $\Delta(M_I-M_T)=-0.026$.
+- Other: $n_{Interactive}=22$, $n_{Text}=23$, $M_{Interactive}=-0.179$, $M_{Text}=-0.063$, $t=-0.553$, $p = .583$, $\Delta(M_I-M_T)=-0.116$.
+- Prefer not to say: $n_{Interactive}=9$, $n_{Text}=8$, $M_{Interactive}=-0.038$, $M_{Text}=-0.132$, $t=0.202$, $p = .843$, $\Delta(M_I-M_T)=0.094$.

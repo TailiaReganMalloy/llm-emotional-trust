@@ -2,159 +2,159 @@
 Compared analytical trust change, emotional trust change, and their difference across Nationality categories.
 
 Included groups and counts:
-- Other: n=178
-- South Africa: n=73
-- India: n=49
-- United States: n=48
-- Canada: n=38
-- Mexico: n=37
-- United Kingdom: n=31
+- Other: n=158
+- South Africa: n=66
+- United States: n=46
+- Canada: n=37
+- India: n=36
+- Mexico: n=35
+- United Kingdom: n=30
 - Poland: n=25
-- Brazil: n=25
+- Germany: n=21
 
-Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=2.577, p = .009.
+Analytical Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=0.975, p = .455.
 Group means (95% CI):
-- Other: n=178, M=-0.069, CI=[-0.147, 0.008]
-- South Africa: n=73, M=-0.177, CI=[-0.336, -0.017]
-- India: n=49, M=-0.290, CI=[-0.486, -0.093]
-- United States: n=48, M=-0.085, CI=[-0.265, 0.094]
-- Canada: n=38, M=-0.205, CI=[-0.414, 0.004]
-- Mexico: n=37, M=0.046, CI=[-0.115, 0.207]
-- United Kingdom: n=31, M=-0.148, CI=[-0.340, 0.043]
+- Other: n=158, M=-0.158, CI=[-0.254, -0.062]
+- South Africa: n=66, M=-0.173, CI=[-0.335, -0.010]
+- United States: n=46, M=-0.115, CI=[-0.295, 0.065]
+- Canada: n=37, M=-0.222, CI=[-0.434, -0.009]
+- India: n=36, M=-0.131, CI=[-0.314, 0.053]
+- Mexico: n=35, M=0.089, CI=[-0.054, 0.232]
+- United Kingdom: n=30, M=-0.160, CI=[-0.357, 0.037]
 - Poland: n=25, M=-0.000, CI=[-0.260, 0.260]
-- Brazil: n=25, M=-0.512, CI=[-0.878, -0.146]
+- Germany: n=21, M=-0.081, CI=[-0.282, 0.120]
 Pairwise Welch tests (Bonferroni-adjusted):
-- Other vs South Africa: t=1.208, p=0.230, p_adj=1.000
-- Other vs India: t=2.094, p=0.040, p_adj=1.000
-- Other vs United States: t=0.167, p=0.868, p_adj=1.000
-- Other vs Canada: t=1.233, p=0.224, p_adj=1.000
-- Other vs Mexico: t=-1.302, p=0.198, p_adj=1.000
-- Other vs United Kingdom: t=0.779, p=0.440, p_adj=1.000
-- Other vs Poland: t=-0.524, p=0.604, p_adj=1.000
-- Other vs Brazil: t=2.440, p=0.022, p_adj=0.781
-- South Africa vs India: t=0.895, p=0.373, p_adj=1.000
-- South Africa vs United States: t=-0.762, p=0.448, p_adj=1.000
-- South Africa vs Canada: t=0.219, p=0.827, p_adj=1.000
-- South Africa vs Mexico: t=-1.979, p=0.051, p_adj=1.000
-- South Africa vs United Kingdom: t=-0.230, p=0.819, p_adj=1.000
-- South Africa vs Poland: t=-1.185, p=0.242, p_adj=1.000
-- South Africa vs Brazil: t=1.724, p=0.094, p_adj=1.000
-- India vs United States: t=-1.543, p=0.126, p_adj=1.000
-- India vs Canada: t=-0.595, p=0.554, p_adj=1.000
-- India vs Mexico: t=-2.668, p=0.009, p_adj=0.329
-- India vs United Kingdom: t=-1.043, p=0.300, p_adj=1.000
-- India vs Poland: t=-1.819, p=0.075, p_adj=1.000
-- India vs Brazil: t=1.098, p=0.279, p_adj=1.000
-- United States vs Canada: t=0.878, p=0.383, p_adj=1.000
-- United States vs Mexico: t=-1.100, p=0.274, p_adj=1.000
-- United States vs United Kingdom: t=0.486, p=0.629, p_adj=1.000
-- United States vs Poland: t=-0.554, p=0.582, p_adj=1.000
-- United States vs Brazil: t=2.149, p=0.038, p_adj=1.000
-- Canada vs Mexico: t=-1.931, p=0.058, p_adj=1.000
-- Canada vs United Kingdom: t=-0.408, p=0.685, p_adj=1.000
-- Canada vs Poland: t=-1.261, p=0.213, p_adj=1.000
-- Canada vs Brazil: t=1.496, p=0.143, p_adj=1.000
-- Mexico vs United Kingdom: t=1.582, p=0.119, p_adj=1.000
-- Mexico vs Poland: t=0.309, p=0.759, p_adj=1.000
-- Mexico vs Brazil: t=2.874, p=0.007, p_adj=0.251
-- United Kingdom vs Poland: t=-0.945, p=0.349, p_adj=1.000
-- United Kingdom vs Brazil: t=1.813, p=0.078, p_adj=1.000
-- Poland vs Brazil: t=2.356, p=0.023, p_adj=0.831
+- Other vs South Africa: t=0.153, p=0.879, p_adj=1.000
+- Other vs United States: t=-0.423, p=0.674, p_adj=1.000
+- Other vs Canada: t=0.549, p=0.585, p_adj=1.000
+- Other vs India: t=-0.269, p=0.789, p_adj=1.000
+- Other vs Mexico: t=-2.884, p=0.005, p_adj=0.187
+- Other vs United Kingdom: t=0.016, p=0.987, p_adj=1.000
+- Other vs Poland: t=-1.173, p=0.250, p_adj=1.000
+- Other vs Germany: t=-0.715, p=0.480, p_adj=1.000
+- South Africa vs United States: t=-0.476, p=0.635, p_adj=1.000
+- South Africa vs Canada: t=0.369, p=0.713, p_adj=1.000
+- South Africa vs India: t=-0.346, p=0.730, p_adj=1.000
+- South Africa vs Mexico: t=-2.427, p=0.017, p_adj=0.615
+- South Africa vs United Kingdom: t=-0.101, p=0.920, p_adj=1.000
+- South Africa vs Poland: t=-1.152, p=0.255, p_adj=1.000
+- South Africa vs Germany: t=-0.727, p=0.471, p_adj=1.000
+- United States vs Canada: t=0.773, p=0.442, p_adj=1.000
+- United States vs India: t=0.121, p=0.904, p_adj=1.000
+- United States vs Mexico: t=-1.792, p=0.077, p_adj=1.000
+- United States vs United Kingdom: t=0.341, p=0.734, p_adj=1.000
+- United States vs Poland: t=-0.747, p=0.459, p_adj=1.000
+- United States vs Germany: t=-0.261, p=0.795, p_adj=1.000
+- Canada vs India: t=-0.658, p=0.513, p_adj=1.000
+- Canada vs Mexico: t=-2.459, p=0.017, p_adj=0.602
+- Canada vs United Kingdom: t=-0.433, p=0.666, p_adj=1.000
+- Canada vs Poland: t=-1.354, p=0.182, p_adj=1.000
+- Canada vs Germany: t=-0.988, p=0.328, p_adj=1.000
+- India vs Mexico: t=-1.910, p=0.060, p_adj=1.000
+- India vs United Kingdom: t=0.223, p=0.824, p_adj=1.000
+- India vs Poland: t=-0.842, p=0.404, p_adj=1.000
+- India vs Germany: t=-0.375, p=0.709, p_adj=1.000
+- Mexico vs United Kingdom: t=2.084, p=0.042, p_adj=1.000
+- Mexico vs Poland: t=0.614, p=0.543, p_adj=1.000
+- Mexico vs Germany: t=1.419, p=0.164, p_adj=1.000
+- United Kingdom vs Poland: t=-1.010, p=0.318, p_adj=1.000
+- United Kingdom vs Germany: t=-0.580, p=0.565, p_adj=1.000
+- Poland vs Germany: t=0.510, p=0.612, p_adj=1.000
 
-Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=5.260, p < .001.
+Emotional Change (Post - Pre, per-item): ANOVA across groups with n >= 8: F=1.246, p = .270.
 Group means (95% CI):
-- Other: n=178, M=-0.230, CI=[-0.292, -0.168]
-- South Africa: n=73, M=-0.414, CI=[-0.518, -0.310]
-- India: n=49, M=-0.508, CI=[-0.623, -0.393]
-- United States: n=48, M=-0.181, CI=[-0.336, -0.026]
-- Canada: n=38, M=-0.158, CI=[-0.316, 0.000]
-- Mexico: n=37, M=-0.198, CI=[-0.347, -0.049]
-- United Kingdom: n=31, M=0.007, CI=[-0.162, 0.176]
-- Poland: n=25, M=-0.196, CI=[-0.362, -0.030]
-- Brazil: n=25, M=-0.329, CI=[-0.488, -0.170]
+- Other: n=158, M=-0.068, CI=[-0.121, -0.014]
+- South Africa: n=66, M=0.013, CI=[-0.075, 0.102]
+- United States: n=46, M=-0.014, CI=[-0.162, 0.133]
+- Canada: n=37, M=-0.126, CI=[-0.261, 0.009]
+- India: n=36, M=-0.123, CI=[-0.283, 0.036]
+- Mexico: n=35, M=-0.038, CI=[-0.153, 0.077]
+- United Kingdom: n=30, M=0.067, CI=[-0.076, 0.210]
+- Poland: n=25, M=-0.053, CI=[-0.211, 0.104]
+- Germany: n=21, M=-0.169, CI=[-0.364, 0.025]
 Pairwise Welch tests (Bonferroni-adjusted):
-- Other vs South Africa: t=3.028, p=0.003, p_adj=0.107
-- Other vs India: t=4.258, p=0.000, p_adj=0.002 **
-- Other vs United States: t=-0.590, p=0.557, p_adj=1.000
-- Other vs Canada: t=-0.852, p=0.398, p_adj=1.000
-- Other vs Mexico: t=-0.394, p=0.695, p_adj=1.000
-- Other vs United Kingdom: t=-2.675, p=0.011, p_adj=0.390
-- Other vs Poland: t=-0.395, p=0.695, p_adj=1.000
-- Other vs Brazil: t=1.191, p=0.242, p_adj=1.000
-- South Africa vs India: t=1.214, p=0.227, p_adj=1.000
-- South Africa vs United States: t=-2.510, p=0.014, p_adj=0.501
-- South Africa vs Canada: t=-2.728, p=0.008, p_adj=0.290
-- South Africa vs Mexico: t=-2.397, p=0.019, p_adj=0.689
-- South Africa vs United Kingdom: t=-4.308, p=0.000, p_adj=0.002 **
-- South Africa vs Poland: t=-2.279, p=0.027, p_adj=0.985
-- South Africa vs Brazil: t=-0.915, p=0.365, p_adj=1.000
-- India vs United States: t=-3.411, p=0.001, p_adj=0.035 *
-- India vs Canada: t=-3.614, p=0.001, p_adj=0.020 *
-- India vs Mexico: t=-3.326, p=0.001, p_adj=0.050 *
-- India vs United Kingdom: t=-5.120, p=0.000, p_adj=0.000 ***
-- India vs Poland: t=-3.164, p=0.003, p_adj=0.097
-- India vs Brazil: t=-1.865, p=0.068, p_adj=1.000
-- United States vs Canada: t=-0.206, p=0.837, p_adj=1.000
-- United States vs Mexico: t=0.166, p=0.869, p_adj=1.000
-- United States vs United Kingdom: t=-1.660, p=0.101, p_adj=1.000
-- United States vs Poland: t=0.135, p=0.893, p_adj=1.000
-- United States vs Brazil: t=1.361, p=0.178, p_adj=1.000
-- Canada vs Mexico: t=0.376, p=0.708, p_adj=1.000
-- Canada vs United Kingdom: t=-1.450, p=0.152, p_adj=1.000
-- Canada vs Poland: t=0.336, p=0.738, p_adj=1.000
-- Canada vs Brazil: t=1.558, p=0.125, p_adj=1.000
-- Mexico vs United Kingdom: t=-1.856, p=0.068, p_adj=1.000
-- Mexico vs Poland: t=-0.024, p=0.981, p_adj=1.000
-- Mexico vs Brazil: t=1.227, p=0.225, p_adj=1.000
-- United Kingdom vs Poland: t=1.756, p=0.085, p_adj=1.000
-- United Kingdom vs Brazil: t=2.971, p=0.004, p_adj=0.159
-- Poland vs Brazil: t=1.196, p=0.237, p_adj=1.000
+- Other vs South Africa: t=-1.556, p=0.122, p_adj=1.000
+- Other vs United States: t=-0.679, p=0.500, p_adj=1.000
+- Other vs Canada: t=0.817, p=0.418, p_adj=1.000
+- Other vs India: t=0.674, p=0.504, p_adj=1.000
+- Other vs Mexico: t=-0.469, p=0.641, p_adj=1.000
+- Other vs United Kingdom: t=-1.788, p=0.082, p_adj=1.000
+- Other vs Poland: t=-0.175, p=0.862, p_adj=1.000
+- Other vs Germany: t=1.049, p=0.305, p_adj=1.000
+- South Africa vs United States: t=0.326, p=0.745, p_adj=1.000
+- South Africa vs Canada: t=1.746, p=0.085, p_adj=1.000
+- South Africa vs India: t=1.519, p=0.134, p_adj=1.000
+- South Africa vs Mexico: t=0.717, p=0.476, p_adj=1.000
+- South Africa vs United Kingdom: t=-0.642, p=0.524, p_adj=1.000
+- South Africa vs Poland: t=0.757, p=0.453, p_adj=1.000
+- South Africa vs Germany: t=1.771, p=0.087, p_adj=1.000
+- United States vs Canada: t=1.129, p=0.262, p_adj=1.000
+- United States vs India: t=1.016, p=0.313, p_adj=1.000
+- United States vs Mexico: t=0.255, p=0.799, p_adj=1.000
+- United States vs United Kingdom: t=-0.801, p=0.426, p_adj=1.000
+- United States vs Poland: t=0.367, p=0.715, p_adj=1.000
+- United States vs Germany: t=1.307, p=0.198, p_adj=1.000
+- Canada vs India: t=-0.026, p=0.979, p_adj=1.000
+- Canada vs Mexico: t=-1.009, p=0.316, p_adj=1.000
+- Canada vs United Kingdom: t=-1.998, p=0.050, p_adj=1.000
+- Canada vs Poland: t=-0.720, p=0.475, p_adj=1.000
+- Canada vs Germany: t=0.377, p=0.708, p_adj=1.000
+- India vs Mexico: t=-0.883, p=0.381, p_adj=1.000
+- India vs United Kingdom: t=-1.809, p=0.075, p_adj=1.000
+- India vs Poland: t=-0.641, p=0.524, p_adj=1.000
+- India vs Germany: t=0.377, p=0.708, p_adj=1.000
+- Mexico vs United Kingdom: t=-1.165, p=0.249, p_adj=1.000
+- Mexico vs Poland: t=0.161, p=0.873, p_adj=1.000
+- Mexico vs Germany: t=1.204, p=0.237, p_adj=1.000
+- United Kingdom vs Poland: t=1.160, p=0.252, p_adj=1.000
+- United Kingdom vs Germany: t=2.025, p=0.050, p_adj=1.000
+- Poland vs Germany: t=0.964, p=0.341, p_adj=1.000
 
-Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=2.105, p = .034.
+Analytical - Emotional Change Difference: ANOVA across groups with n >= 8: F=1.533, p = .143.
 Group means (95% CI):
-- Other: n=178, M=0.161, CI=[0.071, 0.250]
-- South Africa: n=73, M=0.237, CI=[0.058, 0.417]
-- India: n=49, M=0.218, CI=[0.034, 0.402]
-- United States: n=48, M=0.095, CI=[-0.134, 0.325]
-- Canada: n=38, M=-0.047, CI=[-0.323, 0.229]
-- Mexico: n=37, M=0.244, CI=[0.031, 0.457]
-- United Kingdom: n=31, M=-0.156, CI=[-0.399, 0.088]
-- Poland: n=25, M=0.196, CI=[-0.130, 0.521]
-- Brazil: n=25, M=-0.183, CI=[-0.523, 0.157]
+- Other: n=158, M=-0.091, CI=[-0.177, -0.004]
+- South Africa: n=66, M=-0.186, CI=[-0.335, -0.037]
+- United States: n=46, M=-0.101, CI=[-0.332, 0.130]
+- Canada: n=37, M=-0.095, CI=[-0.291, 0.100]
+- India: n=36, M=-0.007, CI=[-0.199, 0.185]
+- Mexico: n=35, M=0.127, CI=[-0.047, 0.300]
+- United Kingdom: n=30, M=-0.227, CI=[-0.413, -0.040]
+- Poland: n=25, M=0.053, CI=[-0.197, 0.304]
+- Germany: n=21, M=0.088, CI=[-0.105, 0.281]
 Pairwise Welch tests (Bonferroni-adjusted):
-- Other vs South Africa: t=-0.762, p=0.448, p_adj=1.000
-- Other vs India: t=-0.564, p=0.575, p_adj=1.000
-- Other vs United States: t=0.533, p=0.596, p_adj=1.000
-- Other vs Canada: t=1.449, p=0.154, p_adj=1.000
-- Other vs Mexico: t=-0.731, p=0.468, p_adj=1.000
-- Other vs United Kingdom: t=2.480, p=0.018, p_adj=0.632
-- Other vs Poland: t=-0.213, p=0.833, p_adj=1.000
-- Other vs Brazil: t=2.011, p=0.054, p_adj=1.000
-- South Africa vs India: t=0.149, p=0.882, p_adj=1.000
-- South Africa vs United States: t=0.979, p=0.330, p_adj=1.000
-- South Africa vs Canada: t=1.745, p=0.085, p_adj=1.000
-- South Africa vs Mexico: t=-0.050, p=0.961, p_adj=1.000
-- South Africa vs United Kingdom: t=2.631, p=0.011, p_adj=0.382
-- South Africa vs Poland: t=0.230, p=0.819, p_adj=1.000
-- South Africa vs Brazil: t=2.239, p=0.031, p_adj=1.000
-- India vs United States: t=0.841, p=0.403, p_adj=1.000
-- India vs Canada: t=1.619, p=0.110, p_adj=1.000
-- India vs Mexico: t=-0.187, p=0.852, p_adj=1.000
-- India vs United Kingdom: t=2.487, p=0.016, p_adj=0.560
-- India vs Poland: t=0.124, p=0.902, p_adj=1.000
-- India vs Brazil: t=2.129, p=0.040, p_adj=1.000
-- United States vs Canada: t=0.802, p=0.425, p_adj=1.000
-- United States vs Mexico: t=-0.962, p=0.339, p_adj=1.000
-- United States vs United Kingdom: t=1.519, p=0.133, p_adj=1.000
-- United States vs Poland: t=-0.516, p=0.608, p_adj=1.000
-- United States vs Brazil: t=1.388, p=0.172, p_adj=1.000
-- Canada vs Mexico: t=-1.696, p=0.094, p_adj=1.000
-- Canada vs United Kingdom: t=0.598, p=0.552, p_adj=1.000
-- Canada vs Poland: t=-1.166, p=0.249, p_adj=1.000
-- Canada vs Brazil: t=0.635, p=0.528, p_adj=1.000
-- Mexico vs United Kingdom: t=2.518, p=0.014, p_adj=0.517
-- Mexico vs Poland: t=0.256, p=0.799, p_adj=1.000
-- Mexico vs Brazil: t=2.187, p=0.034, p_adj=1.000
-- United Kingdom vs Poland: t=-1.776, p=0.082, p_adj=1.000
-- United Kingdom vs Brazil: t=0.135, p=0.893, p_adj=1.000
-- Poland vs Brazil: t=1.660, p=0.104, p_adj=1.000
+- Other vs South Africa: t=1.104, p=0.272, p_adj=1.000
+- Other vs United States: t=0.082, p=0.935, p_adj=1.000
+- Other vs Canada: t=0.045, p=0.964, p_adj=1.000
+- Other vs India: t=-0.803, p=0.426, p_adj=1.000
+- Other vs Mexico: t=-2.263, p=0.028, p_adj=0.999
+- Other vs United Kingdom: t=1.343, p=0.186, p_adj=1.000
+- Other vs Poland: t=-1.116, p=0.273, p_adj=1.000
+- Other vs Germany: t=-1.749, p=0.091, p_adj=1.000
+- South Africa vs United States: t=-0.625, p=0.534, p_adj=1.000
+- South Africa vs Canada: t=-0.743, p=0.460, p_adj=1.000
+- South Africa vs India: t=-1.488, p=0.141, p_adj=1.000
+- South Africa vs Mexico: t=-2.756, p=0.007, p_adj=0.260
+- South Africa vs United Kingdom: t=0.343, p=0.732, p_adj=1.000
+- South Africa vs Poland: t=-1.680, p=0.100, p_adj=1.000
+- South Africa vs Germany: t=-2.309, p=0.025, p_adj=0.910
+- United States vs Canada: t=-0.035, p=0.972, p_adj=1.000
+- United States vs India: t=-0.630, p=0.530, p_adj=1.000
+- United States vs Mexico: t=-1.590, p=0.116, p_adj=1.000
+- United States vs United Kingdom: t=0.859, p=0.393, p_adj=1.000
+- United States vs Poland: t=-0.922, p=0.360, p_adj=1.000
+- United States vs Germany: t=-1.283, p=0.204, p_adj=1.000
+- Canada vs India: t=-0.654, p=0.515, p_adj=1.000
+- Canada vs Mexico: t=-1.722, p=0.089, p_adj=1.000
+- Canada vs United Kingdom: t=0.987, p=0.327, p_adj=1.000
+- Canada vs Poland: t=-0.959, p=0.342, p_adj=1.000
+- Canada vs Germany: t=-1.374, p=0.175, p_adj=1.000
+- India vs Mexico: t=-1.050, p=0.298, p_adj=1.000
+- India vs United Kingdom: t=1.671, p=0.100, p_adj=1.000
+- India vs Poland: t=-0.393, p=0.696, p_adj=1.000
+- India vs Germany: t=-0.722, p=0.474, p_adj=1.000
+- Mexico vs United Kingdom: t=2.825, p=0.006, p_adj=0.229
+- Mexico vs Poland: t=0.494, p=0.624, p_adj=1.000
+- Mexico vs Germany: t=0.304, p=0.762, p_adj=1.000
+- United Kingdom vs Poland: t=-1.843, p=0.072, p_adj=1.000
+- United Kingdom vs Germany: t=-2.423, p=0.019, p_adj=0.694
+- Poland vs Germany: t=-0.229, p=0.820, p_adj=1.000

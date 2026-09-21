@@ -19,9 +19,11 @@ ALPHA = 0.05
 ANALYTICAL_MAX = 10.0
 EMOTIONAL_MAX = 9.0
 
-SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 20
-TICK_LABEL_FONTSIZE = 20
+SUBPLOT_TITLE_FONTSIZE = 26
+AXIS_LABEL_FONTSIZE = 26
+TICK_LABEL_FONTSIZE = 26
+ANNOTATION_FONTSIZE = 24
+SIGNIFICANCE_FONTSIZE = 24
 
 PREPOST_COLORS = {
     "Pre": "#377eb8",
@@ -102,13 +104,10 @@ def p_text(pvalue: float) -> str:
     return f"= {pvalue:.3f}".replace("0.", ".")
 
 
-def add_stat_box(ax: plt.Axes, stats: dict[str, float], effect_label: str) -> None:
+def add_stat_box(ax: plt.Axes, stats: dict[str, float]) -> None:
     pvalue = float(stats["p"]) if pd.notna(stats.get("p")) else np.nan
     tvalue = float(stats["t"]) if pd.notna(stats.get("t")) else np.nan
-    interpretation = (
-        f"Significant {effect_label}" if pd.notna(pvalue) and pvalue < ALPHA else f"No significant {effect_label}"
-    )
-    summary = f"t={tvalue:.3f}, p {p_text(pvalue)}\n{interpretation}" if pd.notna(tvalue) else f"t=NA, p {p_text(pvalue)}\n{interpretation}"
+    summary = f"t = {tvalue:.3f} p {p_text(pvalue)}" if pd.notna(tvalue) else f"t = NA p {p_text(pvalue)}"
     ax.text(
         0.01,
         0.99,
@@ -116,7 +115,7 @@ def add_stat_box(ax: plt.Axes, stats: dict[str, float], effect_label: str) -> No
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=18,
+        fontsize=ANNOTATION_FONTSIZE,
         bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
         zorder=6,
     )
@@ -131,6 +130,27 @@ def mean_ci(series: pd.Series) -> tuple[float, float]:
         return mean, np.nan
     ci = 1.96 * float(values.std(ddof=1)) / np.sqrt(len(values))
     return mean, ci
+
+
+def ci_bounds(mean: float, ci: float) -> tuple[float, float]:
+    if np.isnan(mean) or np.isnan(ci):
+        return np.nan, np.nan
+    return mean - ci, mean + ci
+
+
+def pre_post_ylim(stats_list: list[dict[str, float]]) -> tuple[float, float]:
+    tops: list[float] = []
+    bottoms: list[float] = []
+    for stats in stats_list:
+        means = np.array([stats["pre_mean"], stats["post_mean"]], dtype=float)
+        cis = np.nan_to_num(np.array([stats["pre_ci"], stats["post_ci"]], dtype=float), nan=0.0)
+        tops.append(float(np.nanmax(means + cis)))
+        bottoms.append(float(np.nanmin(means - cis)))
+
+    y_top = max(tops)
+    y_bottom = min(bottoms)
+    y_span = max(y_top - y_bottom, 0.25)
+    return y_bottom - 0.15 * y_span, y_top + 0.20 * y_span
 
 
 def zscore(series: pd.Series) -> pd.Series:
@@ -177,8 +197,6 @@ def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
     work["analytical_change"] = work["analytical_post"] - work["analytical_pre"]
     work["emotional_change"] = work["emotional_post"] - work["emotional_pre"]
 
-    work["analytical_change_z"] = zscore(work["analytical_change"].astype(float))
-    work["emotional_change_z"] = zscore(work["emotional_change"].astype(float))
     return work
 
 
@@ -270,7 +288,13 @@ def compare_trust_type(df: pd.DataFrame) -> dict[str, float]:
     }
 
 
-def draw_pre_post_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
+def draw_pre_post_subplot(
+    ax: plt.Axes,
+    title: str,
+    stats: dict[str, float],
+    show_y_axis: bool,
+    ylim: tuple[float, float],
+) -> None:
     x = np.array([0.0, 1.0], dtype=float)
     labels = ["Pre", "Post"]
     means = np.array([stats["pre_mean"], stats["post_mean"]], dtype=float)
@@ -299,10 +323,14 @@ def draw_pre_post_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> 
         )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE)
-    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE, pad=14)
-    ax.set_ylabel("Trust Score (0-1)", fontsize=AXIS_LABEL_FONTSIZE)
-    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE + 2)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE + 2, pad=14)
+    if show_y_axis:
+        ax.set_ylabel("Trust Score (0-1)", fontsize=AXIS_LABEL_FONTSIZE + 2)
+        ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE + 2)
+    else:
+        ax.set_ylabel("")
+        ax.tick_params(axis="y", left=False, labelleft=False)
 
     y_top = float(np.nanmax(means + cis_clean))
     y_bottom = float(np.nanmin(means - cis_clean))
@@ -321,8 +349,8 @@ def draw_pre_post_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> 
         zorder=4,
     )
     ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
-    add_stat_box(ax, stats, "pre-post effect")
-    ax.set_ylim(bottom=y_low, top=y_high)
+    add_stat_box(ax, stats)
+    ax.set_ylim(bottom=0, top=0.6)
 
 
 def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
@@ -354,10 +382,10 @@ def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None
         )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE)
-    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE, pad=14)
-    ax.set_ylabel("Standardized Change", fontsize=AXIS_LABEL_FONTSIZE)
-    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE + 2)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE + 2, pad=14)
+    ax.set_ylabel("Standardized Change", fontsize=AXIS_LABEL_FONTSIZE + 2)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE + 2)
     ax.axhline(0.0, color=ERROR_COLOR, linewidth=1.6, zorder=1)
 
     y_top = float(np.nanmax(means + cis_clean))
@@ -376,8 +404,8 @@ def draw_type_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None
         lw=2.0,
         zorder=4,
     )
-    ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
-    add_stat_box(ax, stats, "trust-type difference")
+    ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=SIGNIFICANCE_FONTSIZE, zorder=5)
+    add_stat_box(ax, stats)
     ax.set_ylim(bottom=y_low, top=y_high)
 
 
@@ -385,71 +413,85 @@ def write_report(
     overall_stats: dict[str, float],
     analytical_stats: dict[str, float],
     emotional_stats: dict[str, float],
-    type_stats: dict[str, float],
 ) -> None:
+    def ci_text(mean: float, ci: float) -> str:
+        low, high = ci_bounds(mean, ci)
+        if np.isnan(low) or np.isnan(high):
+            return "95\\% CI [NA, NA]"
+        return f"95\\% CI [{low:.3f}, {high:.3f}]"
+
+    def significance_text(pvalue: float, threshold: float = ALPHA) -> str:
+        if np.isnan(pvalue):
+            return "was not testable"
+        if pvalue < threshold:
+            return "was statistically significant"
+        return "was not statistically significant"
+
+    def bh_significance_map(named_pvalues: list[tuple[str, float]]) -> dict[str, str]:
+        pvalues = np.array([np.inf if np.isnan(pvalue) else pvalue for _, pvalue in named_pvalues], dtype=float)
+        order = np.argsort(pvalues)
+        sorted_p = pvalues[order]
+        thresholds = ALPHA * (np.arange(1, len(named_pvalues) + 1, dtype=float) / len(named_pvalues))
+        rejected = np.zeros(len(named_pvalues), dtype=bool)
+        passing = np.where(sorted_p <= thresholds)[0]
+        if len(passing):
+            rejected[order[: passing[-1] + 1]] = True
+
+        results_map: dict[str, str] = {}
+        for idx, (name, pvalue) in enumerate(named_pvalues):
+            if np.isnan(pvalue):
+                results_map[name] = "was not testable"
+            elif rejected[idx]:
+                results_map[name] = "was statistically significant"
+            else:
+                results_map[name] = "was not statistically significant"
+        return results_map
+
     lines: list[str] = []
-    lines.append("\\subsubsection{Hypothesis 3 Results}")
+    bh_results = bh_significance_map([
+        ("4.1", analytical_stats["p"]),
+        ("4.2", emotional_stats["p"]),
+        ("4.3", overall_stats["p"]),
+    ])
+    n_pairs = int(overall_stats["n"]) if pd.notna(overall_stats["n"]) else 0
+    dfree = n_pairs - 1 if n_pairs >= 2 else np.nan
+
+    lines.append("\\subsection{Hypothesis 4}")
+    lines.append("\\begin{center}")
+    lines.append("\\centering")
+    lines.append("\\includegraphics[width=\\linewidth]{Figures/hypothesis4.png}")
+    lines.append("\\vspace{-20pt}")
+    lines.append("\\captionof{figure}{Visualization for Hypothesis 4.}")
+    lines.append("\\label{fig:hypothesis4}")
+    lines.append("\\end{center}")
+    lines.append("")
     lines.append(
-        "Hypothesis 3 tested NORMAL/non-WEIRD participants with four subtests: 3.1 overall pre-post significance, 3.2 analytical pre-post significance, 3.3 emotional pre-post significance, and 3.4 whether emotional and analytical standardized change do not differ."
+        "Hypothesis 4 tested whether Normal participants showed a distinct trust-change pattern across analytical, emotional, and overall trust. Figure \\ref{fig:hypothesis4} summarizes these three pre-post tests."
     )
     lines.append("")
 
     lines.append(
-        "3.1 NORMAL Overall pre-post: "
-        f"$n={int(overall_stats['n'])}$, "
-        f"$M_{{pre}}={overall_stats['pre_mean']:.3f}$, "
-        f"$M_{{post}}={overall_stats['post_mean']:.3f}$, "
-        f"$t({int(overall_stats['n'] - 1)})={overall_stats['t']:.3f}$, "
-        f"$p {p_text(overall_stats['p'])}$, "
-        f"$W={overall_stats['w']:.3f}$, "
-        f"$p_{{W}} {p_text(overall_stats['w_p'])}$, "
-        f"$d={overall_stats['d']:.3f}$, "
-        f"$\\Delta={overall_stats['delta_mean']:.3f}$."
+        f"Across ${n_pairs}$ Normal participants, analytical trust decreased from $M_{{pre}}={analytical_stats['pre_mean']:.3f}$ "
+        f"({ci_text(analytical_stats['pre_mean'], analytical_stats['pre_ci'])}) to $M_{{post}}={analytical_stats['post_mean']:.3f}$ "
+        f"({ci_text(analytical_stats['post_mean'], analytical_stats['post_ci'])}), $t({dfree})={analytical_stats['t']:.3f}$, "
+        f"$p {p_text(analytical_stats['p'])}$, $W={analytical_stats['w']:.3f}$, $p_{{W}} {p_text(analytical_stats['w_p'])}$, "
+        f"$d={analytical_stats['d']:.3f}$, and $\\Delta={analytical_stats['delta_mean']:.3f}$. Emotional trust changed from $M_{{pre}}={emotional_stats['pre_mean']:.3f}$ "
+        f"({ci_text(emotional_stats['pre_mean'], emotional_stats['pre_ci'])}) to $M_{{post}}={emotional_stats['post_mean']:.3f}$ "
+        f"({ci_text(emotional_stats['post_mean'], emotional_stats['post_ci'])}), $t({dfree})={emotional_stats['t']:.3f}$, $p {p_text(emotional_stats['p'])}$, "
+        f"$W={emotional_stats['w']:.3f}$, $p_{{W}} {p_text(emotional_stats['w_p'])}$, $d={emotional_stats['d']:.3f}$, and $\\Delta={emotional_stats['delta_mean']:.3f}$."
     )
 
+    lines.append("")
     lines.append(
-        "3.2 NORMAL Analytical pre-post: "
-        f"$n={int(analytical_stats['n'])}$, "
-        f"$M_{{pre}}={analytical_stats['pre_mean']:.3f}$, "
-        f"$M_{{post}}={analytical_stats['post_mean']:.3f}$, "
-        f"$t({int(analytical_stats['n'] - 1)})={analytical_stats['t']:.3f}$, "
-        f"$p {p_text(analytical_stats['p'])}$, "
-        f"$W={analytical_stats['w']:.3f}$, "
-        f"$p_{{W}} {p_text(analytical_stats['w_p'])}$, "
-        f"$d={analytical_stats['d']:.3f}$, "
-        f"$\\Delta={analytical_stats['delta_mean']:.3f}$."
+        f"Overall trust decreased from $M_{{pre}}={overall_stats['pre_mean']:.3f}$ ({ci_text(overall_stats['pre_mean'], overall_stats['pre_ci'])}) "
+        f"to $M_{{post}}={overall_stats['post_mean']:.3f}$ ({ci_text(overall_stats['post_mean'], overall_stats['post_ci'])}), $t({dfree})={overall_stats['t']:.3f}$, "
+        f"$p {p_text(overall_stats['p'])}$, $W={overall_stats['w']:.3f}$, $p_{{W}} {p_text(overall_stats['w_p'])}$, $d={overall_stats['d']:.3f}$, and $\\Delta={overall_stats['delta_mean']:.3f}$. "
+        f"Sub-hypothesis 4.1 {significance_text(analytical_stats['p'])}, sub-hypothesis 4.2 {significance_text(emotional_stats['p'])}, and sub-hypothesis 4.3 {significance_text(overall_stats['p'])}."
     )
 
+    lines.append("")
     lines.append(
-        "3.3 NORMAL Emotional pre-post: "
-        f"$n={int(emotional_stats['n'])}$, "
-        f"$M_{{pre}}={emotional_stats['pre_mean']:.3f}$, "
-        f"$M_{{post}}={emotional_stats['post_mean']:.3f}$, "
-        f"$t({int(emotional_stats['n'] - 1)})={emotional_stats['t']:.3f}$, "
-        f"$p {p_text(emotional_stats['p'])}$, "
-        f"$W={emotional_stats['w']:.3f}$, "
-        f"$p_{{W}} {p_text(emotional_stats['w_p'])}$, "
-        f"$d={emotional_stats['d']:.3f}$, "
-        f"$\\Delta={emotional_stats['delta_mean']:.3f}$."
-    )
-
-    no_difference = pd.notna(type_stats["p"]) and type_stats["p"] >= ALPHA
-    lines.append(
-        "3.4 NORMAL emotional-vs-analytical standardized change: "
-        f"$n={int(type_stats['n'])}$, "
-        f"$M_{{em,z}}={type_stats['em_mean']:.3f}$, "
-        f"$M_{{an,z}}={type_stats['an_mean']:.3f}$, "
-        f"$t({int(type_stats['n'] - 1)})={type_stats['t']:.3f}$, "
-        f"$p {p_text(type_stats['p'])}$, "
-        f"$W={type_stats['w']:.3f}$, "
-        f"$p_{{W}} {p_text(type_stats['w_p'])}$, "
-        f"$d={type_stats['d']:.3f}$, "
-        f"$\\Delta_{{z}}={type_stats['diff_mean']:.3f}$. "
-        + (
-            "This supports the predicted no-difference test."
-            if no_difference
-            else "This does not support the predicted no-difference test."
-        )
+        f"\\textbf{{Benjamini-Hochberg Procedure:}} Using the Benjamini-Hochberg procedure at false discovery rate $q={ALPHA:.2f}$ for the three primary sub-hypothesis tests, sub-hypothesis 4.1 {bh_results['4.1']}, sub-hypothesis 4.2 {bh_results['4.2']}, and sub-hypothesis 4.3 {bh_results['4.3']}."
     )
 
     TXT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -466,19 +508,18 @@ def main() -> None:
     overall_stats = paired_pre_post(normal["overall_pre"], normal["overall_post"])
     analytical_stats = paired_pre_post(normal["analytical_pre"], normal["analytical_post"])
     emotional_stats = paired_pre_post(normal["emotional_pre"], normal["emotional_post"])
-    type_stats = compare_trust_type(normal)
+    trust_ylim = pre_post_ylim([analytical_stats, emotional_stats, overall_stats])
 
-    fig, axes = plt.subplots(1, 4, figsize=(22, 6), constrained_layout=True)
-    draw_pre_post_subplot(axes[0], "4.1 Overall Pre vs Post", overall_stats)
-    draw_pre_post_subplot(axes[1], "4.2 Analytical Pre vs Post", analytical_stats)
-    draw_pre_post_subplot(axes[2], "4.3 Emotional Pre vs Post", emotional_stats)
-    draw_type_subplot(axes[3], "4.4 Emotional vs Analytical\n Change Difference", type_stats)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True, sharey=True)
+    draw_pre_post_subplot(axes[0], "Analytical Trust", analytical_stats, show_y_axis=True, ylim=trust_ylim)
+    draw_pre_post_subplot(axes[1], "Emotional Trust", emotional_stats, show_y_axis=False, ylim=trust_ylim)
+    draw_pre_post_subplot(axes[2], "Overall Trust", overall_stats, show_y_axis=False, ylim=trust_ylim)
 
-    fig.suptitle("Hypothesis 4: non-WEIRD Trust Change Pattern", fontsize=27)
+    fig.suptitle("Hypothesis 4: Normal Trust Change Pattern", fontsize=32)
     fig.savefig(PNG_PATH, dpi=300)
     plt.close(fig)
 
-    write_report(overall_stats, analytical_stats, emotional_stats, type_stats)
+    write_report(overall_stats, analytical_stats, emotional_stats)
 
     print(f"Saved report: {TXT_PATH}")
     print(f"Saved figure: {PNG_PATH}")

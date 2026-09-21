@@ -32,7 +32,7 @@ CONDITION_COLORS = {
 GROUP_ORDER = ["WEIRD", "NORMAL"]
 GROUP_DISPLAY = {
     "WEIRD": "WEIRD",
-    "NORMAL": "non-WEIRD",
+    "NORMAL": "Normal",
 }
 
 WESTERN_COUNTRIES = {
@@ -454,25 +454,25 @@ def main() -> None:
         axes[0],
         overall_tests["WEIRD"],
         overall_tests["NORMAL"],
-        title="2.1 Follow-Up Main Condition Effect:\nOverall Change (WEIRD vs non-WEIRD)",
+        title="2.1 Follow-Up Main Condition Effect:\nOverall Change (WEIRD vs Normal)",
         ylabel="Overall Change",
     )
     draw_group_split_subplot(
         axes[1],
         emotional_tests["WEIRD"],
         emotional_tests["NORMAL"],
-        title="2.2 Follow-Up Main Condition Effect:\nEmotional Change (WEIRD vs non-WEIRD)",
+        title="2.2 Follow-Up Main Condition Effect:\nEmotional Change (WEIRD vs Normal)",
         ylabel="Emotional Change",
     )
     draw_group_split_subplot(
         axes[2],
         analytical_tests["WEIRD"],
         analytical_tests["NORMAL"],
-        title="2.3 Follow-Up Main Condition Effect:\nAnalytical Change (WEIRD vs non-WEIRD)",
+        title="2.3 Follow-Up Main Condition Effect:\nAnalytical Change (WEIRD vs Normal)",
         ylabel="Analytical Change",
     )
 
-    fig.suptitle("Hypothesis 2 Follow-Up Condition Effects by WEIRD/non-WEIRD Across Trust Change Outcomes.", fontsize=30)
+    fig.suptitle("Hypothesis 2 Follow-Up Condition Effects by WEIRD/Normal Across Trust Change Outcomes.", fontsize=30)
     fig.savefig(PLOT_OUTPUT_PATH, dpi=300)
     plt.close(fig)
 

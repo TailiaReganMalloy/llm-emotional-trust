@@ -1,11 +1,24 @@
-\subsubsection{Hypothesis 5 Results}
-Hypothesis 5 focuses on contrasts that can explain directional differences between analytical and emotional trust outcomes. The figure includes four analyses in this order: analytical-emotional change contrast, pre-trust component source contrast, post-trust component source contrast, and change component source contrast.
+\subsection{Hypothesis 5}
+\begin{center}
+\centering
+\includegraphics[width=\linewidth]{Figures/hypothesis5.png}
+\vspace{-20pt}
+\captionof{figure}{Visualization for Hypothesis 5.}
+\label{fig:hypothesis5}
+\end{center}
 
-5.1 Group contrast on $(\Delta_{analytical} - \Delta_{emotional})$: $n_{WEIRD}=157$, $n_{NORMAL}=347$, $M_{WEIRD}=0.031$, $M_{NORMAL}=0.170$, $t=-2.077$, $p = .039$, $\Delta(M_W-M_N)=-0.139$.
-5.2 Pre component source test (analytical pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.014$, $M_{NORMAL}=0.283$, $t=-2.950$, $p = .003$.
-5.3 Pre component source test (emotional pre, WEIRD vs non-WEIRD): $M_{WEIRD}=0.195$, $M_{NORMAL}=0.354$, $t=-3.384$, $p < .001$.
-5.4 Post component source test (analytical post, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.095$, $M_{NORMAL}=0.139$, $t=-2.608$, $p = .010$.
-5.5 Post component source test (emotional post, WEIRD vs non-WEIRD): $M_{WEIRD}=0.054$, $M_{NORMAL}=0.040$, $t=1.515$, $p = .131$.
-5.6 Change component source test (analytical change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.109$, $M_{NORMAL}=-0.144$, $t=0.629$, $p = .530$.
-5.7 Change component source test (emotional change, WEIRD vs non-WEIRD): $M_{WEIRD}=-0.140$, $M_{NORMAL}=-0.314$, $t=3.897$, $p < .001$.
-Asterisk key: * p < .05, ** p < .01, *** p < .001.
+Hypothesis 5 tested whether WEIRD and Normal participants differed in analytical, emotional, and overall trust at the pre- and post-experiment timepoints. Figure \ref{fig:hypothesis5} shows the normalized trust scores for each group, with separate WEIRD-versus-Normal tests at pre and post within each trust domain.
+
+Across $n_{WEIRD}=150$ and $n_{Normal}=304$ participants, Analytical pre trust was $M_{WEIRD}=0.025$ (95\% CI [-0.128, 0.179]) for WEIRD participants and $M_{Normal}=0.294$ (95\% CI [0.190, 0.398]) for Normal participants, Welch's $t(287.54)=-2.862$, $p = .005$, and $\Delta(M_W-M_N)=-0.269$. Sub-hypothesis 5.1 was statistically significant. Analytical post trust was $M_{WEIRD}=-0.101$ (95\% CI [-0.254, 0.051]) for WEIRD participants and $M_{Normal}=0.166$ (95\% CI [0.063, 0.269]) for Normal participants, Welch's $t(288.30)=-2.866$, $p = .004$, and $\Delta(M_W-M_N)=-0.267$. Sub-hypothesis 5.2 was statistically significant.
+
+Emotional pre trust was $M_{WEIRD}=0.187$ (95\% CI [0.105, 0.268]) for WEIRD participants and $M_{Normal}=0.339$ (95\% CI [0.286, 0.392]) for Normal participants, Welch's $t(278.80)=-3.107$, $p = .002$, and $\Delta(M_W-M_N)=-0.153$. Sub-hypothesis 5.3 was statistically significant. Emotional post trust was $M_{WEIRD}=0.127$ (95\% CI [0.035, 0.220]) for WEIRD participants and $M_{Normal}=0.290$ (95\% CI [0.230, 0.351]) for Normal participants, Welch's $t(280.59)=-2.906$, $p = .004$, and $\Delta(M_W-M_N)=-0.163$. Sub-hypothesis 5.4 was statistically significant.
+
+Overall pre trust was $M_{WEIRD}=0.106$ (95\% CI [0.001, 0.211]) for WEIRD participants and $M_{Normal}=0.317$ (95\% CI [0.247, 0.386]) for Normal participants, Welch's $t(282.69)=-3.288$, $p = .001$, and $\Delta(M_W-M_N)=-0.211$. Sub-hypothesis 5.5 was statistically significant. Overall post trust was $M_{WEIRD}=0.013$ (95\% CI [-0.099, 0.125]) for WEIRD participants and $M_{Normal}=0.228$ (95\% CI [0.155, 0.301]) for Normal participants, Welch's $t(279.76)=-3.162$, $p = .002$, and $\Delta(M_W-M_N)=-0.215$. Sub-hypothesis 5.6 was statistically significant.
+
+\textbf{Benjamini-Hochberg Procedure:} Using the Benjamini-Hochberg procedure at false discovery rate $q=0.05$ for the six primary sub-hypothesis tests, sub-hypothesis 5.1 was statistically significant, sub-hypothesis 5.2 was statistically significant, sub-hypothesis 5.3 was statistically significant, sub-hypothesis 5.4 was statistically significant, sub-hypothesis 5.5 was statistically significant, and sub-hypothesis 5.6 was statistically significant.
+
+
+\textbf{Hypothesis 5.} WEIRD and Normal participants will differ in trust across three main domains, each evaluated at both the pre- and post-experiment timepoints.
+5.1 Analytical trust will differ between WEIRD and Normal participants at both the pre-experiment and post-experiment timepoints.
+5.2 Emotional trust will differ between WEIRD and Normal participants at both the pre-experiment and post-experiment timepoints.
+5.3 Overall trust will differ between WEIRD and Normal participants at both the pre-experiment and post-experiment timepoints.

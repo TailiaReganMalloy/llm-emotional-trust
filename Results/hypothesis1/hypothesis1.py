@@ -19,9 +19,11 @@ ALPHA = 0.05
 ANALYTICAL_MAX = 10.0
 EMOTIONAL_MAX = 9.0
 
-SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 22
-TICK_LABEL_FONTSIZE = 22
+SUBPLOT_TITLE_FONTSIZE = 26
+AXIS_LABEL_FONTSIZE = 26
+TICK_LABEL_FONTSIZE = 26
+ANNOTATION_FONTSIZE = 24
+SIGNIFICANCE_FONTSIZE = 24
 
 PREPOST_COLORS = {
     "Pre": "#377eb8",
@@ -59,6 +61,12 @@ def mean_ci(series: pd.Series) -> tuple[float, float]:
         return mean, np.nan
     ci = 1.96 * float(values.std(ddof=1)) / np.sqrt(len(values))
     return mean, ci
+
+
+def ci_bounds(mean: float, ci: float) -> tuple[float, float]:
+    if np.isnan(mean) or np.isnan(ci):
+        return np.nan, np.nan
+    return mean - ci, mean + ci
 
 
 def cohens_d_paired(pre: pd.Series, post: pd.Series) -> float:
@@ -122,7 +130,7 @@ def analyze_metric(pre: pd.Series, post: pd.Series) -> dict[str, float]:
     }
 
 
-def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
+def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float], show_y_axis: bool) -> None:
     x = np.array([0.0, 1.0], dtype=float)
     labels = ["Pre", "Post"]
     means = np.array([stats["pre_mean"], stats["post_mean"]], dtype=float)
@@ -151,10 +159,14 @@ def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
         )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE)
-    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE, pad=14)
-    ax.set_ylabel("Trust Score (0-1)", fontsize=AXIS_LABEL_FONTSIZE)
-    ax.tick_params(axis='y', labelsize=TICK_LABEL_FONTSIZE)
+    ax.set_xticklabels(labels, fontsize=TICK_LABEL_FONTSIZE + 2)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE + 2, pad=14)
+    if show_y_axis:
+        ax.set_ylabel("Trust Score (0-1)", fontsize=AXIS_LABEL_FONTSIZE + 2)
+        ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE + 2)
+    else:
+        ax.set_ylabel("")
+        ax.tick_params(axis="y", left=False, labelleft=False)
 
     y_top = float(np.nanmax(means + cis_clean))
     y_bottom = float(np.nanmin(means - cis_clean))
@@ -172,10 +184,10 @@ def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
         lw=2.0,
         zorder=4,
     )
-    ax.text(0.5, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=24, zorder=5)
+    ax.text(0.4, y_text, p_to_stars(stats["p"]), ha="center", va="bottom", fontsize=SIGNIFICANCE_FONTSIZE, zorder=5)
 
     interpretation = "Significant pre-post effect" if float(stats["p"]) < ALPHA else "No significant pre-post effect"
-    summary = f"t={stats['t']:.3f}, p {p_text(float(stats['p']))}\n{interpretation}"
+    summary = f"t = {stats['t']:.3f} p {p_text(float(stats['p']))}"
     ax.text(
         0.01,
         0.99,
@@ -183,47 +195,100 @@ def draw_subplot(ax: plt.Axes, title: str, stats: dict[str, float]) -> None:
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=18,
+        fontsize=SIGNIFICANCE_FONTSIZE,
         bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
         zorder=6,
     )
 
-    ax.set_ylim(bottom=0, top=0.5)
+    ax.set_ylim(bottom=0, top=0.45)
 
 
 def write_report(results: dict[str, dict[str, float]]) -> None:
+    def ci_text(mean: float, ci: float) -> str:
+        low, high = ci_bounds(mean, ci)
+        if np.isnan(low) or np.isnan(high):
+            return "95\\% CI [NA, NA]"
+        return f"95\\% CI [{low:.3f}, {high:.3f}]"
+
+    def significance_text(pvalue: float, threshold: float = ALPHA) -> str:
+        if np.isnan(pvalue):
+            return "was not testable"
+        if pvalue < threshold:
+            return "was statistically significant"
+        return "was not statistically significant"
+
+    def bh_significance_map(named_pvalues: list[tuple[str, float]]) -> dict[str, str]:
+        pvalues = np.array([np.inf if np.isnan(pvalue) else pvalue for _, pvalue in named_pvalues], dtype=float)
+        order = np.argsort(pvalues)
+        sorted_p = pvalues[order]
+        thresholds = ALPHA * (np.arange(1, len(named_pvalues) + 1, dtype=float) / len(named_pvalues))
+        rejected = np.zeros(len(named_pvalues), dtype=bool)
+        passing = np.where(sorted_p <= thresholds)[0]
+        if len(passing):
+            rejected[order[: passing[-1] + 1]] = True
+
+        results_map: dict[str, str] = {}
+        for idx, (name, pvalue) in enumerate(named_pvalues):
+            if np.isnan(pvalue):
+                results_map[name] = "was not testable"
+            elif rejected[idx]:
+                results_map[name] = "was statistically significant"
+            else:
+                results_map[name] = "was not statistically significant"
+        return results_map
+
     lines: list[str] = []
-    lines.append("\\subsubsection{Hypothesis 1 Results}")
+    lines.append("\\subsection{Hypothesis 1}")
+    lines.append("\\begin{center}")
+    lines.append("\\centering")
+    lines.append("\\includegraphics[width=\\linewidth]{Figures/hypothesis1.png}")
+    lines.append("\\vspace{-20pt}")
+    lines.append("\\captionof{figure}{Visualization for Hypothesis 1.}")
+    lines.append("\\label{fig:hypothesis1}")
+    lines.append("\\end{center}")
+    lines.append("")
     lines.append(
-        "Hypothesis 1 tested pre-post differences in aggregate overall trust, emotional trust, and analytical trust."
+        "Hypothesis 1 tested whether trust changed from pre- to post-experiment across analytical, emotional, and overall trust dimensions. Figure \\ref{fig:hypothesis1} summarizes the pre-post means, and all analyses used paired-samples t-tests with two-sided Wilcoxon signed-rank tests as a robustness check."
     )
     lines.append("")
 
-    order = [
-        ("Overall Trust", "1.1"),
-        ("Analytical Trust", "1.2"),
-        ("Emotional Trust", "1.3"),
-    ]
+    overall = results["Overall Trust"]
+    analytical = results["Analytical Trust"]
+    emotional = results["Emotional Trust"]
+    n_pairs = int(overall["n"]) if pd.notna(overall["n"]) else 0
+    dfree = n_pairs - 1 if n_pairs >= 2 else np.nan
+    bh_results = bh_significance_map([
+        ("1.1", analytical["p"]),
+        ("1.2", emotional["p"]),
+        ("1.3", overall["p"]),
+    ])
 
-    for metric, label in order:
-        r = results[metric]
-        dfree = int(r["n"] - 1) if pd.notna(r["n"]) and r["n"] >= 2 else np.nan
-        support_text = "supported" if pd.notna(r["p"]) and r["p"] < ALPHA else "not supported"
-        lines.append(
-            f"{label} {metric}: "
-            f"$n={int(r['n'])}$, "
-            f"$M_{{pre}}={r['pre_mean']:.3f}$, "
-            f"$SD_{{pre}}={r['pre_sd']:.3f}$, "
-            f"$M_{{post}}={r['post_mean']:.3f}$, "
-            f"$SD_{{post}}={r['post_sd']:.3f}$, "
-            f"$t({dfree})={r['t']:.3f}$, "
-            f"$p {p_text(r['p'])}$, "
-            f"$W={r['w']:.3f}$, "
-            f"$p_{{W}} {p_text(r['w_p'])}$, "
-            f"$d={r['d']:.3f}$, "
-            f"$\\Delta={r['delta_mean']:.3f}$, "
-            f"subhypothesis {support_text}."
-        )
+    lines.append(
+        f"Across ${n_pairs}$ paired responses, analytical trust decreased from $M_{{pre}}={analytical['pre_mean']:.3f}$ "
+        f"({ci_text(analytical['pre_mean'], analytical['pre_ci'])}) to $M_{{post}}={analytical['post_mean']:.3f}$ "
+        f"({ci_text(analytical['post_mean'], analytical['post_ci'])}), $t({dfree})={analytical['t']:.3f}$, "
+        f"$p {p_text(analytical['p'])}$, $W={analytical['w']:.3f}$, $p_{{W}} {p_text(analytical['w_p'])}$, "
+        f"$d={analytical['d']:.3f}$, and $\\Delta={analytical['delta_mean']:.3f}$. Emotional trust also declined from "
+        f"$M_{{pre}}={emotional['pre_mean']:.3f}$ ({ci_text(emotional['pre_mean'], emotional['pre_ci'])}) to "
+        f"$M_{{post}}={emotional['post_mean']:.3f}$ ({ci_text(emotional['post_mean'], emotional['post_ci'])}), "
+        f"$t({dfree})={emotional['t']:.3f}$, $p {p_text(emotional['p'])}$, $W={emotional['w']:.3f}$, "
+        f"$p_{{W}} {p_text(emotional['w_p'])}$, $d={emotional['d']:.3f}$, and $\\Delta={emotional['delta_mean']:.3f}$."
+    )
+
+    lines.append("")
+    lines.append(
+        f"Overall trust decreased from $M_{{pre}}={overall['pre_mean']:.3f}$ ({ci_text(overall['pre_mean'], overall['pre_ci'])}) "
+        f"to $M_{{post}}={overall['post_mean']:.3f}$ ({ci_text(overall['post_mean'], overall['post_ci'])}), $t({dfree})={overall['t']:.3f}$, "
+        f"$p {p_text(overall['p'])}$, $W={overall['w']:.3f}$, $p_{{W}} {p_text(overall['w_p'])}$, $d={overall['d']:.3f}$, "
+        f"and $\\Delta={overall['delta_mean']:.3f}$. Sub-hypothesis 1.1 {significance_text(analytical['p'])}, sub-hypothesis 1.2 {significance_text(emotional['p'])}, and sub-hypothesis 1.3 {significance_text(overall['p'])}, so all three components support Hypothesis 1."
+    )
+
+    lines.append("")
+    lines.append(
+        f"\\textbf{{Benjamini-Hochberg Procedure:}} Using the Benjamini-Hochberg procedure at false discovery rate $q={ALPHA:.2f}$ "
+        f"for the three primary sub-hypothesis tests, sub-hypothesis 1.1 {bh_results['1.1']}, "
+        f"sub-hypothesis 1.2 {bh_results['1.2']}, and sub-hypothesis 1.3 {bh_results['1.3']}."
+    )
 
     TXT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -241,16 +306,16 @@ def main() -> None:
     overall_post = (analytical_post + emotional_post) / 2.0
 
     results = {
-        "Overall Trust": analyze_metric(overall_pre, overall_post),
         "Analytical Trust": analyze_metric(analytical_pre, analytical_post),
         "Emotional Trust": analyze_metric(emotional_pre, emotional_post),
+        "Overall Trust": analyze_metric(overall_pre, overall_post),
     }
 
     fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)
-    for ax, (name, stats) in zip(axes, results.items()):
-        draw_subplot(ax, name, stats)
+    for idx, (ax, (name, stats)) in enumerate(zip(axes, results.items())):
+        draw_subplot(ax, name, stats, show_y_axis=idx == 0)
 
-    fig.suptitle("Hypothesis 1: Pre vs Post Experiment Trust Questionnaire", fontsize=28)
+    fig.suptitle("Hypothesis 1: Pre vs Post Experiment Trust Questionnaire", fontsize=32)
     fig.savefig(PNG_PATH, dpi=300)
     plt.close(fig)
 

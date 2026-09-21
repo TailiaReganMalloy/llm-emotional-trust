@@ -1,3 +1,53 @@
+2.1  Describe participant exclusion criteria more explicitly.
+\begin{itemize}
+\item[Response:] Records without a completion timestamp were removed before response-time analysis ($n=49$). Among the remaining completed records, response time had a mean of 3,633.25 seconds and a sample standard deviation of 51,083.46 seconds. Participants were then excluded when response time fell outside the mean $\pm$ two standard deviations, corresponding to an upper cutoff of 105,800.17 seconds; one approved Interactive record with a response time of 1,089,866 seconds (approximately 12.6 days) was excluded as an outlier. No below-lower-bound outliers were identified. No other participant-level exclusion criteria were applied. The full flow is reported in Section~3.1.2 and Figure~\ref{fig:participant-flow}.
+\end{itemize}
+
+2.2  Clarify randomization procedures for participant assignment.
+\begin{itemize}
+\item[Response:] Participants were analyzed in the Interactive and Text conditions recorded in the compiled study data. The repository does not preserve a randomization seed or document the assignment mechanism, so no stronger claim about the randomization procedure is made here; the resulting condition counts and exclusions are shown in Section~3.1.2 and Figure~\ref{fig:participant-flow}.
+\end{itemize}
+
+2.3  Describe data preprocessing and missing-data handling.
+\begin{itemize}
+\item[Response:] The source exports were merged and trust responses were mapped to the analysis scales by the dataset preprocessing script. Records missing a completion timestamp were removed before calculating response-time bounds, and the one completed response-time outlier beyond the mean $\pm$ two standard deviations was removed. Other missing values were retained in the analysis dataset and omitted only when a particular statistical test required the corresponding variable.
+\end{itemize}
+
+2.4  State software versions and package dependencies used for statistical analyses.
+\begin{itemize}
+\item[Response:] Analyses were implemented in Python using the dependencies listed in \texttt{requirements.txt}: pandas (\textgreater=1.3), NumPy (\textgreater=1.21), SciPy (\textgreater=1.7), statsmodels (\textgreater=0.14), seaborn (\textgreater=0.12), matplotlib (\textgreater=3.5), Jinja2 (\textgreater=3.1), and vaderSentiment (\textgreater=3.3.2). The repository records minimum supported package versions rather than a frozen environment file.
+\end{itemize}
+
+2.5  Consider including a preregistered protocol or clearly explain why preregistration was not performed.
+\begin{itemize}
+\item[Response:] No preregistered protocol is included in the repository. The study materials, preprocessing scripts, analysis scripts, and generated outputs are retained in the project for transparency, and the results should therefore be interpreted in light of the absence of a preregistration record.
+\end{itemize}
+
+\subsubsection{Participant flow}\label{sec:participant-flow}
+The compiled dataset contained 504 records. Forty-nine records without a completion timestamp were removed before response-time analysis, leaving 455 completed records. One completed record, an approved Interactive submission with a response time of 1,089,866 seconds, exceeded the upper mean-plus-two-standard-deviations cutoff and was excluded. The final analysis cohort comprised 454 participants: 223 in the Interactive condition and 231 in the Text condition. Figure~\ref{fig:participant-flow} summarizes this flow.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\begin{minipage}{0.78\linewidth}
+\centering
+	extbf{Compiled records: $n=504$}\\[0.5em]
+$\downarrow$\\[0.5em]
+Records without completion timestamp excluded: $n=49$\\[0.5em]
+$\downarrow$\\[0.5em]
+Completed records assessed for response-time outliers: $n=455$\\[0.5em]
+$\downarrow$\\[0.5em]
+Response-time outlier excluded: $n=1$\\[0.5em]
+$\downarrow$\\[0.5em]
+Final analysis cohort: $n=454$\\
+Interactive: $n=223$; Text: $n=231$
+\end{minipage}}
+\caption{Participant flow from the compiled dataset to the final analysis cohort.}
+\label{fig:participant-flow}
+\end{figure}
+
+
+Records without a completion timestamp were removed before response-time analysis ($n=49$). Among the remaining completed records, response time had a mean of 3,633.25 seconds and a sample standard deviation of 51,083.46 seconds. Participants were then excluded when response time fell outside the mean $\pm$ two standard deviations, corresponding to an upper cutoff of 105,800.17 seconds; one approved Interactive record with a response time of 1,089,866 seconds (approximately 12.6 days) was excluded as an outlier. No below-lower-bound outliers were identified.
+
 \begin{table}
 \caption{WEIRD and non-WEIRD composition by gender within each condition, with average age.}
 \label{tab:weird-normal-gender-condition}
@@ -5,12 +55,12 @@
 \toprule
 Condition & Gender & Total n & WEIRD n (\%) & WEIRD Avg Age & non-WEIRD n (\%) & non-WEIRD Avg Age \\
 \midrule
-Interactive & Man & 52 & 11 (21.15\%) & 42.55 & 41 (78.85\%) & 32.02 \\
-Interactive & Woman & 58 & 17 (29.31\%) & 38.71 & 41 (70.69\%) & 29.10 \\
-Interactive & NB/GD & 142 & 42 (29.58\%) & 35.02 & 100 (70.42\%) & 30.34 \\
-Text & Man & 46 & 6 (13.04\%) & 43.67 & 40 (86.96\%) & 30.10 \\
-Text & Woman & 50 & 6 (12.00\%) & 34.33 & 44 (88.00\%) & 30.64 \\
-Text & NB/GD & 156 & 75 (48.08\%) & 36.21 & 81 (51.92\%) & 29.64 \\
+Interactive & Man & 74 & 18 (24.32\%) & 38.72 & 56 (75.68\%) & 31.84 \\
+Interactive & Woman & 80 & 25 (31.25\%) & 39.24 & 55 (68.75\%) & 28.51 \\
+Interactive & NB/GD & 69 & 21 (30.43\%) & 32.86 & 48 (69.57\%) & 30.00 \\
+Text & Man & 86 & 37 (43.02\%) & 36.22 & 49 (56.98\%) & 29.65 \\
+Text & Woman & 87 & 37 (42.53\%) & 39.73 & 50 (57.47\%) & 30.12 \\
+Text & NB/GD & 58 & 12 (20.69\%) & 27.08 & 46 (79.31\%) & 31.83 \\
 \bottomrule
 \end{tabular}
 \end{table}

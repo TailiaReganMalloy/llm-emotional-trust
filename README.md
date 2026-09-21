@@ -23,7 +23,7 @@ Top-level folders and files:
 
 - Results/: Analysis pipelines and output summaries by hypothesis/topic.
     - Results/anova/, Results/bias/: Shared/diagnostic statistical analyses.
-    - Results/hypothesis1/ ... Results/hypothesis5/: Per-hypothesis scripts and text outputs.
+    - Results/hypothesis1/ ... Results/hypothesis6/: Per-hypothesis scripts and text outputs.
     - Results/hypothesis2a/: Additional follow-up hypothesis analysis.
     - Results/mediation/: Mediation analysis scripts and subgroup subfolders (age, education, gender, etc.).
     - Results/qualitative/: Qualitative and sentiment/IC analysis scripts, TeX fragments, and README notes.
@@ -32,6 +32,8 @@ Top-level folders and files:
 - Figures/: Generated figures (PNG) used in paper/results reporting.
 
 - Supplementary/: Supplementary manuscript content and additional mediation scripts/outputs.
+
+- NonAnonymous.zip: Restricted archive containing non-public study materials that are not intended for the anonymized repository snapshot, including the IRB application and approval, the experiment protocol, and the preregistration.
 
 - SiteCode/: Web app used for study delivery/explanatory pages.
     - SiteCode/src/: Main Vue application source.
@@ -56,6 +58,7 @@ Practical notes:
 
 - Generated directories (.venv, SiteCode/node_modules, SiteCode/dist) are environment/build artifacts and should not be edited manually.
 - Large raw files in Dataset/raw include sensitive fields and should be handled as restricted research data.
+- IRB documents and other administrative study records are stored in NonAnonymous.zip so they can travel with the project without being mixed into the anonymized folder structure.
 - Figure and text outputs in Figures/ and Results/ are generally reproducible from the scripts in Results/ and Dataset/.
 
 ## Combined.csv column dictionary

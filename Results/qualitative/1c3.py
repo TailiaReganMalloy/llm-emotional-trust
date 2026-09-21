@@ -433,7 +433,7 @@ def draw_middle_panel_counts(ax: plt.Axes, df: pd.DataFrame) -> None:
     )
 
     ax.set_xticks(x)
-    ax.set_xticklabels(["WEIRD", "non-WEIRD"], fontsize=11)
+    ax.set_xticklabels(["WEIRD", "Normal"], fontsize=11)
     ax.set_ylabel("Participants", fontsize=12)
     ax.set_title("IC Orientation Counts by Demographic Group", fontsize=14)
     ax.legend(loc="upper right", fontsize=9)
@@ -474,7 +474,7 @@ def draw_right_panel_ancova(ax: plt.Axes, df: pd.DataFrame) -> dict[str, float |
         s=18,
         alpha=0.35,
         color="#c26a26",
-        label="non-WEIRD",
+        label="Normal",
     )
 
     x_grid = np.linspace(float(model_df["ic_mean"].min()), float(model_df["ic_mean"].max()), 200)

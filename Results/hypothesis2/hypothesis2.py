@@ -16,9 +16,11 @@ PLOT_OUTPUT_PATH = FIGURES_DIR / "hypothesis2.png"
 REPORT_OUTPUT_PATH = OUTPUT_DIR / "hypothesis2.txt"
 ALPHA = 0.05
 
-SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 20
-TICK_LABEL_FONTSIZE = 20
+SUBPLOT_TITLE_FONTSIZE = 26
+AXIS_LABEL_FONTSIZE = 26
+TICK_LABEL_FONTSIZE = 26
+ANNOTATION_FONTSIZE = 24
+SIGNIFICANCE_FONTSIZE = 24
 
 CONDITION_ORDER = ["Interactive", "Text"]
 CONDITION_LABELS = {
@@ -81,6 +83,24 @@ def mean_ci(values: pd.Series, confidence: float = 0.95) -> tuple[float, float, 
     return mean_val, mean_val - margin, mean_val + margin
 
 
+def welch_df(sample_a: pd.Series, sample_b: pd.Series) -> float:
+    a = sample_a.dropna().astype(float)
+    b = sample_b.dropna().astype(float)
+    if len(a) < 2 or len(b) < 2:
+        return np.nan
+
+    var_a = float(a.var(ddof=1))
+    var_b = float(b.var(ddof=1))
+    n_a = len(a)
+    n_b = len(b)
+
+    numerator = (var_a / n_a + var_b / n_b) ** 2
+    denominator = ((var_a / n_a) ** 2) / (n_a - 1) + ((var_b / n_b) ** 2) / (n_b - 1)
+    if denominator <= np.finfo(float).tiny:
+        return np.nan
+    return float(numerator / denominator)
+
+
 def build_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
     required = {
         "Condition",
@@ -118,8 +138,10 @@ def condition_welch_test(data: pd.DataFrame, value_col: str) -> dict[str, float]
     if len(interactive_vals) < 2 or len(text_vals) < 2:
         t_stat = np.nan
         p_value = np.nan
+        dfree = np.nan
     else:
         t_stat, p_value = ttest_ind(interactive_vals, text_vals, equal_var=False, nan_policy="omit")
+        dfree = welch_df(interactive_vals, text_vals)
 
     return {
         "n_interactive": float(len(interactive_vals)),
@@ -130,6 +152,7 @@ def condition_welch_test(data: pd.DataFrame, value_col: str) -> dict[str, float]
         "ci_high_interactive": i_high,
         "ci_low_text": t_low,
         "ci_high_text": t_high,
+        "df": dfree,
         "t": float(t_stat) if pd.notna(t_stat) else np.nan,
         "p": float(p_value) if pd.notna(p_value) else np.nan,
         "delta_interactive_minus_text": i_mean - t_mean,
@@ -143,16 +166,29 @@ def add_pair_bracket(
     y: float,
     star_text: str,
     y_step: float,
+    text_above: bool = True,
+    point_up: bool = False,
 ) -> None:
-    ax.plot([x1, x1, x2, x2], [y - y_step, y, y, y - y_step], color="black", lw=2.0, zorder=4)
-    ax.text((x1 + x2) / 2, y + 0.6 * y_step, star_text or "ns", ha="center", va="bottom", fontsize=18)
+    y_ends = [y + y_step, y, y, y + y_step] if point_up else [y - y_step, y, y, y - y_step]
+    ax.plot([x1, x1, x2, x2], y_ends, color="black", lw=2.0, zorder=4)
+    text_y = y + 0.6 * y_step if text_above else y - 0.6 * y_step
+    va = "bottom" if text_above else "top"
+    ax.text(
+        (x1 + x2) / 2,
+        text_y,
+        star_text or "ns",
+        ha="center",
+        va=va,
+        fontsize=SIGNIFICANCE_FONTSIZE,
+        zorder=5,
+    )
 
 
 def draw_condition_subplot(
     ax: plt.Axes,
     test_result: dict[str, float],
     title: str,
-    ylabel: str,
+    show_y_axis: bool,
 ) -> None:
     x = np.array([0.0, 1.0])
     means = np.array([test_result["mean_interactive"], test_result["mean_text"]], dtype=float)
@@ -193,21 +229,20 @@ def draw_condition_subplot(
         y_max = float(np.nanmax(finite_highs))
 
     y_span = max(y_max - y_min, 0.2)
+    y_bracket = y_min - 0.10 * y_span
 
     add_pair_bracket(
         ax,
         x[0],
         x[1],
-        y_max + 0.10 * y_span,
+        y_bracket,
         significance_stars(float(test_result["p"])),
         0.03 * y_span,
+        text_above=False,
+        point_up=True,
     )
 
-    interpretation = "No significant main condition effect" if float(test_result["p"]) >= ALPHA else "Significant main condition effect"
-    summary = (
-        f"t={test_result['t']:.3f}, p {format_p(float(test_result['p']))}\n"
-        f"{interpretation}"
-    )
+    summary = f"t = {test_result['t']:.3f} p {format_p(float(test_result['p']))}"
     ax.text(
         0.01,
         0.99,
@@ -215,18 +250,23 @@ def draw_condition_subplot(
         transform=ax.transAxes,
         ha="left",
         va="top",
-        fontsize=18,
+        fontsize=ANNOTATION_FONTSIZE,
         bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.78, "edgecolor": "none"},
+        zorder=6,
     )
 
     ax.axhline(0, color="#4a4a4a", linewidth=1.4, zorder=1)
     ax.set_xticks(x)
-    ax.set_xticklabels([CONDITION_LABELS[c] for c in CONDITION_ORDER], fontsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
-    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
-    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.set_ylim(-0.5, 0.2)
-    ax.set_yticks([-0.4, -0.3, -0.2, -0.1, 0, 0.1])
+    ax.set_xticklabels([CONDITION_LABELS[c] for c in CONDITION_ORDER], fontsize=TICK_LABEL_FONTSIZE + 2)
+    ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE + 2, pad=14)
+    if show_y_axis:
+        ax.set_ylabel("Trust Score Change", fontsize=AXIS_LABEL_FONTSIZE + 2)
+        ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE + 2)
+    else:
+        ax.set_ylabel("")
+        ax.tick_params(axis="y", left=False, labelleft=False)
+    ax.set_ylim(-0.3, 0.05)
+    ax.set_yticks([-0.3, -0.2, -0.1, 0.0])
 
 
 def write_report(
@@ -234,57 +274,91 @@ def write_report(
     emotional_test: dict[str, float],
     analytical_test: dict[str, float],
 ) -> str:
+    def ci_text(low: float, high: float) -> str:
+        if np.isnan(low) or np.isnan(high):
+            return "95\\% CI [NA, NA]"
+        return f"95\\% CI [{low:.3f}, {high:.3f}]"
+
+    def significance_text(p_value: float, threshold: float = ALPHA) -> str:
+        if pd.isna(p_value):
+            return "was not testable"
+        if p_value < threshold:
+            return "was statistically significant"
+        return "was not statistically significant"
+
+    def df_text(value: float) -> str:
+        if pd.isna(value):
+            return "NA"
+        return f"{value:.2f}"
+
+    def bh_significance_map(named_pvalues: list[tuple[str, float]]) -> dict[str, str]:
+        pvalues = np.array([np.inf if np.isnan(pvalue) else pvalue for _, pvalue in named_pvalues], dtype=float)
+        order = np.argsort(pvalues)
+        sorted_p = pvalues[order]
+        thresholds = ALPHA * (np.arange(1, len(named_pvalues) + 1, dtype=float) / len(named_pvalues))
+        rejected = np.zeros(len(named_pvalues), dtype=bool)
+        passing = np.where(sorted_p <= thresholds)[0]
+        if len(passing):
+            rejected[order[: passing[-1] + 1]] = True
+
+        results_map: dict[str, str] = {}
+        for idx, (name, pvalue) in enumerate(named_pvalues):
+            if np.isnan(pvalue):
+                results_map[name] = "was not testable"
+            elif rejected[idx]:
+                results_map[name] = "was statistically significant"
+            else:
+                results_map[name] = "was not statistically significant"
+        return results_map
+
     lines: list[str] = []
+    bh_results = bh_significance_map([
+        ("2.1", analytical_test["p"]),
+        ("2.2", emotional_test["p"]),
+        ("2.3", overall_test["p"]),
+    ])
 
-    lines.append("\\subsubsection{Hypothesis 7 Results}")
+    lines.append("\\subsection{Hypothesis 2}")
+    lines.append("\\begin{center}")
+    lines.append("\\centering")
+    lines.append("\\includegraphics[width=\\linewidth]{Figures/hypothesis2.png}")
+    lines.append("\\vspace{-20pt}")
+    lines.append("\\captionof{figure}{Visualization for Hypothesis 2.}")
+    lines.append("\\label{fig:hypothesis2}")
+    lines.append("\\end{center}")
+    lines.append("")
     lines.append(
-        "Hypothesis 7 tested whether there is a main effect of condition across three trust-change outcomes: overall change, emotional change, and analytical change."
+        "Hypothesis 2 tested whether experimental condition changed the magnitude of trust change across analytical, emotional, and overall trust outcomes. Figure \\ref{fig:hypothesis2} summarizes the mean change scores for the Interactive and Static conditions, and the primary analyses used Welch's two-sample t-tests to compare conditions for each outcome."
     )
     lines.append("")
 
-    lines.append("7.1 Main condition effect on overall change:")
     lines.append(
-        "Overall change condition effect: "
-        f"$M_{{Interactive}}={overall_test['mean_interactive']:.3f}$, "
-        f"$M_{{Text}}={overall_test['mean_text']:.3f}$, "
-        f"$t={overall_test['t']:.3f}$, "
-        f"$p {format_p(overall_test['p'])}$, "
-        f"$\\Delta(M_I-M_T)={overall_test['delta_interactive_minus_text']:.3f}$."
+        f"Across $n_{{Interactive}}={int(analytical_test['n_interactive'])}$ and $n_{{Text}}={int(analytical_test['n_text'])}$ participants, analytical trust change was $M_{{Interactive}}={analytical_test['mean_interactive']:.3f}$ "
+        f"({ci_text(analytical_test['ci_low_interactive'], analytical_test['ci_high_interactive'])}) in the Interactive condition and $M_{{Text}}={analytical_test['mean_text']:.3f}$ "
+        f"({ci_text(analytical_test['ci_low_text'], analytical_test['ci_high_text'])}) in the Static condition, Welch's $t({df_text(analytical_test['df'])})={analytical_test['t']:.3f}$, "
+        f"$p {format_p(analytical_test['p'])}$, and $\\Delta(M_I-M_T)={analytical_test['delta_interactive_minus_text']:.3f}$. Sub-hypothesis 2.1 {significance_text(analytical_test['p'])}."
     )
-    if float(overall_test["p"]) >= ALPHA:
-        lines.append("Interpretation: no significant main condition effect on overall change.")
-    else:
-        lines.append("Interpretation: a significant main condition effect on overall change.")
 
     lines.append("")
-    lines.append("7.2 Main condition effect on emotional change:")
     lines.append(
-        "Emotional change condition effect: "
-        f"$M_{{Interactive}}={emotional_test['mean_interactive']:.3f}$, "
-        f"$M_{{Text}}={emotional_test['mean_text']:.3f}$, "
-        f"$t={emotional_test['t']:.3f}$, "
-        f"$p {format_p(emotional_test['p'])}$, "
-        f"$\\Delta(M_I-M_T)={emotional_test['delta_interactive_minus_text']:.3f}$."
+        f"Emotional trust change followed the same pattern: $M_{{Interactive}}={emotional_test['mean_interactive']:.3f}$ "
+        f"({ci_text(emotional_test['ci_low_interactive'], emotional_test['ci_high_interactive'])}) for Interactive participants and $M_{{Text}}={emotional_test['mean_text']:.3f}$ "
+        f"({ci_text(emotional_test['ci_low_text'], emotional_test['ci_high_text'])}) for Static participants, Welch's $t({df_text(emotional_test['df'])})={emotional_test['t']:.3f}$, "
+        f"$p {format_p(emotional_test['p'])}$, and $\\Delta(M_I-M_T)={emotional_test['delta_interactive_minus_text']:.3f}$. Sub-hypothesis 2.2 {significance_text(emotional_test['p'])}."
     )
-    if float(emotional_test["p"]) >= ALPHA:
-        lines.append("Interpretation: no significant main condition effect on emotional change.")
-    else:
-        lines.append("Interpretation: a significant main condition effect on emotional change.")
 
     lines.append("")
-    lines.append("7.3 Main condition effect on analytical change:")
     lines.append(
-        "Analytical change condition effect: "
-        f"$M_{{Interactive}}={analytical_test['mean_interactive']:.3f}$, "
-        f"$M_{{Text}}={analytical_test['mean_text']:.3f}$, "
-        f"$t={analytical_test['t']:.3f}$, "
-        f"$p {format_p(analytical_test['p'])}$, "
-        f"$\\Delta(M_I-M_T)={analytical_test['delta_interactive_minus_text']:.3f}$."
+        f"Overall trust change also did not differ meaningfully by condition, with $M_{{Interactive}}={overall_test['mean_interactive']:.3f}$ "
+        f"({ci_text(overall_test['ci_low_interactive'], overall_test['ci_high_interactive'])}) in the Interactive condition and $M_{{Text}}={overall_test['mean_text']:.3f}$ "
+        f"({ci_text(overall_test['ci_low_text'], overall_test['ci_high_text'])}) in the Static condition, Welch's $t({df_text(overall_test['df'])})={overall_test['t']:.3f}$, "
+        f"$p {format_p(overall_test['p'])}$, and $\\Delta(M_I-M_T)={overall_test['delta_interactive_minus_text']:.3f}$. Sub-hypothesis 2.3 {significance_text(overall_test['p'])}. Taken together, these results indicate that the Interactive and Static conditions produced comparable changes in trust, so Hypothesis 2 was not supported."
     )
-    if float(analytical_test["p"]) >= ALPHA:
-        lines.append("Interpretation: no significant main condition effect on analytical change.")
-    else:
-        lines.append("Interpretation: a significant main condition effect on analytical change.")
+
+    lines.append("")
+    lines.append(
+        f"\\textbf{{Benjamini-Hochberg Procedure:}} Using the Benjamini-Hochberg procedure at false discovery rate $q={ALPHA:.2f}$ for the three primary sub-hypothesis tests, sub-hypothesis 2.1 {bh_results['2.1']}, sub-hypothesis 2.2 {bh_results['2.2']}, and sub-hypothesis 2.3 {bh_results['2.3']}."
+    )
         
     return "\n".join(lines) + "\n"
 
@@ -299,28 +373,28 @@ def main() -> None:
     analytical_test = condition_welch_test(analysis, "analytical_change")
 
     plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True, sharey=True)
 
     draw_condition_subplot(
         axes[0],
-        overall_test,
-        title="2.1 Main Condition Effect: Overall Change",
-        ylabel="Overall Change",
+        analytical_test,
+        title="Analytical Change",
+        show_y_axis=True,
     )
     draw_condition_subplot(
         axes[1],
         emotional_test,
-        title="2.2 Main Condition Effect: Emotional Change",
-        ylabel="Emotional Change",
+        title="Emotional Change",
+        show_y_axis=False,
     )
     draw_condition_subplot(
         axes[2],
-        analytical_test,
-        title="2.3 Main Condition Effect: Analytical Change",
-        ylabel="Analytical Change",
+        overall_test,
+        title="Overall Change",
+        show_y_axis=False,
     )
 
-    fig.suptitle("Hypothesis 2: Main Condition Effects Across Trust Change Outcomes", fontsize=26)
+    fig.suptitle("Hypothesis 2: Main Condition Effects Across Trust Change Outcomes", fontsize=32)
     fig.savefig(PLOT_OUTPUT_PATH, dpi=300)
     plt.close(fig)
 

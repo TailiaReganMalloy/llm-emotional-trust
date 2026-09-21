@@ -1,0 +1,22 @@
+\subsubsection{Age-Based Trust-Change Comparison Condition-Effect Results}
+Condition-effect tests (Interactive vs Text) were run within each Age Group category for analytical change, emotional change, and analytical-minus-emotional difference.
+
+Analytical Change (Post - Pre, per-item) (min n per condition = 8):
+- 18-24: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.181$, $M_{Text}=-0.098$, $t=-0.698$, $p = .487$, $\Delta(M_I-M_T)=-0.083$, ns.
+- 25-34: $n_{Interactive}=104$, $n_{Text}=95$, $M_{Interactive}=-0.110$, $M_{Text}=-0.074$, $t=-0.395$, $p = .694$, $\Delta(M_I-M_T)=-0.036$, ns.
+- 35-44: $n_{Interactive}=36$, $n_{Text}=48$, $M_{Interactive}=-0.181$, $M_{Text}=-0.067$, $t=-0.988$, $p = .327$, $\Delta(M_I-M_T)=-0.114$, ns.
+- 45+: $n_{Interactive}=31$, $n_{Text}=31$, $M_{Interactive}=-0.235$, $M_{Text}=-0.245$, $t=0.074$, $p = .941$, $\Delta(M_I-M_T)=0.010$, ns.
+
+Emotional Change (Post - Pre, per-item) (min n per condition = 8):
+- 18-24: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.017$, $M_{Text}=-0.117$, $t=1.385$, $p = .169$, $\Delta(M_I-M_T)=0.100$, ns.
+- 25-34: $n_{Interactive}=104$, $n_{Text}=95$, $M_{Interactive}=-0.071$, $M_{Text}=-0.051$, $t=-0.358$, $p = .721$, $\Delta(M_I-M_T)=-0.019$, ns.
+- 35-44: $n_{Interactive}=36$, $n_{Text}=48$, $M_{Interactive}=-0.093$, $M_{Text}=0.032$, $t=-1.395$, $p = .168$, $\Delta(M_I-M_T)=-0.125$, ns.
+- 45+: $n_{Interactive}=31$, $n_{Text}=31$, $M_{Interactive}=-0.108$, $M_{Text}=0.036$, $t=-1.281$, $p = .207$, $\Delta(M_I-M_T)=-0.143$, ns.
+
+Analytical - Emotional Change Difference (min n per condition = 8):
+- 18-24: $n_{Interactive}=52$, $n_{Text}=57$, $M_{Interactive}=-0.164$, $M_{Text}=0.019$, $t=-1.642$, $p = .104$, $\Delta(M_I-M_T)=-0.182$, ns.
+- 25-34: $n_{Interactive}=104$, $n_{Text}=95$, $M_{Interactive}=-0.039$, $M_{Text}=-0.022$, $t=-0.200$, $p = .842$, $\Delta(M_I-M_T)=-0.017$, ns.
+- 35-44: $n_{Interactive}=36$, $n_{Text}=48$, $M_{Interactive}=-0.088$, $M_{Text}=-0.099$, $t=0.090$, $p = .929$, $\Delta(M_I-M_T)=0.011$, ns.
+- 45+: $n_{Interactive}=31$, $n_{Text}=31$, $M_{Interactive}=-0.128$, $M_{Text}=-0.281$, $t=1.001$, $p = .321$, $\Delta(M_I-M_T)=0.153$, ns.
+
+Asterisk key: * p < .05, ** p < .01, *** p < .001; ns = non-significant.

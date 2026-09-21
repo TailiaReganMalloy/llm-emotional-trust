@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-DATA_PATH = Path(__file__).resolve().parent / "data" / "Metrics.csv"
+DATA_PATH = Path(__file__).resolve().parent / "Metrics.csv"
 LATEX_OUTPUT_PATH = Path(__file__).resolve().parent / "weird_normal_gender_table.tex"
 
 CONDITION_ORDER = ["Interactive", "Text"]
@@ -204,13 +204,37 @@ def build_latex_table(summary: pd.DataFrame) -> str:
 		]
 	]
 
-	latex = display.to_latex(
-		index=False,
-		escape=False,
-		caption="WEIRD and NORMAL composition by gender within each condition, with average age.",
-		label="tab:weird-normal-gender-condition",
+	lines = [
+		r"\begin{table}",
+		r"\caption{WEIRD and NORMAL composition by gender within each condition, with average age.}",
+		r"\label{tab:weird-normal-gender-condition}",
+		r"\begin{tabular}{llrllll}",
+		r"\toprule",
+		r"Condition & Gender & Total n & WEIRD n (\%) & WEIRD Avg Age & NORMAL n (\%) & NORMAL Avg Age \\",
+		r"\midrule",
+	]
+
+	for _, row in display.iterrows():
+		lines.append(
+			"{} & {} & {} & {} & {} & {} & {} \\\\".format(
+				row["Condition"],
+				row["Gender"],
+				int(row["Total n"]),
+				row["WEIRD n (%)"],
+				row["WEIRD Avg Age"],
+				row["NORMAL n (%)"],
+				row["NORMAL Avg Age"],
+			)
+		)
+
+	lines.extend(
+		[
+			r"\bottomrule",
+			r"\end{tabular}",
+			r"\end{table}",
+		]
 	)
-	return latex
+	return "\n".join(lines)
 
 
 def main() -> None:

@@ -837,3 +837,59 @@
     \item Placeholder: Share your thoughts...
   \end{itemize}
 \end{enumerate}
+
+\subsection*{5. Individualism--Collectivism Lexicon and Weighting Scheme}
+\begingroup
+\small
+The individualism--collectivism lexicon is described only qualitatively (categories of terms). The actual word list and weighting scheme are included here in the supplementary materials for reproducibility.
+
+For each free-text response, the analysis lowercased the text, tokenized it with \texttt{[a-z']+}, summed the weights of individualistic terms ($I$) and collectivist terms ($C$), and computed the normalized score
+\[
+\mathrm{IC} = \frac{C - I}{C + I}.
+\]
+If $C + I < 10^{-9}$, the score was set to $0.0$ (neutral). Participant-level \texttt{ic\_mean} was the mean of the four available free-text fields (AI Interaction Feeling, Need Model Understanding, Job Screening Feeling, and Explanation Comment), omitting missing fields.
+
+The weighting scheme followed the analysis code in \texttt{Results/qualitative/ic1.py}: pronouns were given higher weights as the strongest linguistic markers, while broader value or concept words were given somewhat lower weights because they are more ambiguous.
+
+\textbf{Individualistic lexicon (term = weight)}
+\begin{itemize}
+  \item First-person singular pronouns.
+  {\raggedright\ttfamily i=2.0, me=2.0, my=2.0, mine=2.0, myself=2.5.\par}
+  \item Autonomy and independence.
+  {\raggedright\ttfamily individual=1.5, individuality=1.5, individualistic=2.0, personal=1.2,\\
+  privately=1.2, private=1.0, independent=1.5, independently=1.5,\\
+  independence=1.5, autonomous=1.5, autonomy=1.5, self-reliant=1.5,\\
+  self-reliance=1.5, alone=1.2, solo=1.0.\par}
+  \item Personal rights and distinction.
+  {\raggedright\ttfamily freedom=1.0, liberty=1.0, rights=1.0, choice=0.8,\\
+  unique=0.8, uniqueness=0.8.\par}
+  \item Achievement and competition.
+  {\raggedright\ttfamily achievement=1.0, accomplish=0.8, accomplishment=0.8,\\
+  competition=1.0, compete=1.0, competitive=1.0.\par}
+  \item Self-focus and ownership.
+  {\raggedright\ttfamily self=0.8, self-interest=1.5, self-focused=1.5, own=0.6,\\
+  ownership=0.8.\par}
+\end{itemize}
+
+\textbf{Collectivist lexicon (term = weight)}
+\begin{itemize}
+  \item First-person plural pronouns.
+  {\raggedright\ttfamily we=2.0, us=2.0, our=2.0, ours=2.0, ourselves=2.5.\par}
+  \item Community and group orientation.
+  {\raggedright\ttfamily community=1.8, communities=1.8, society=1.5, societal=1.5,\\
+  social=1.0, group=1.2, groups=1.2, team=1.2, teamwork=1.5,\\
+  together=1.5, collectively=1.5, collective=1.5.\par}
+  \item Sharing and cooperation.
+  {\raggedright\ttfamily shared=1.2, share=1.0, sharing=1.2, cooperation=1.5,\\
+  cooperate=1.5, cooperative=1.5, collaboration=1.5,\\
+  collaborate=1.5, collaborative=1.5, solidarity=1.8.\par}
+  \item Belonging and interdependence.
+  {\raggedright\ttfamily belonging=1.2, belong=1.0, interdependence=1.8,\\
+  interdependent=1.5.\par}
+  \item Mutuality and common good.
+  {\raggedright\ttfamily people=0.8, everyone=1.2, everybody=1.2, mutual=1.2,\\
+  mutually=1.2, common=0.8, commons=1.0, harmony=1.5,\\
+  harmonious=1.2, duty=1.2, obligation=1.2, responsibility=0.8,\\
+  public=0.8, citizens=1.0.\par}
+\end{itemize}
+\endgroup

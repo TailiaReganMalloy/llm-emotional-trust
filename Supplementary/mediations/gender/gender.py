@@ -5,19 +5,19 @@ from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 HYPOTHESES_ROOT = Path(__file__).resolve().parents[1]
 if str(HYPOTHESES_ROOT) not in sys.path:
     sys.path.insert(0, str(HYPOTHESES_ROOT))
 
-from Supplementary.old.oldHypotheses.group_change_common import (
+from group_change_common import (
     coalesce_text_columns,
     run_grouping_analysis,
     run_grouping_condition_effect_analysis,
 )
 
 
-DATA_PATH = REPO_ROOT / "data" / "Metrics.csv"
+DATA_PATH = REPO_ROOT / "Dataset" / "Metrics.csv"
 OUTPUT_DIR = Path(__file__).resolve().parent
 TXT_PATH = OUTPUT_DIR / "gender.txt"
 PNG_PATH = OUTPUT_DIR / "gender.png"

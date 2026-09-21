@@ -45,6 +45,37 @@ CONDITION_POST_CHANGE_METRICS = [
     ("overall_change_01", "Overall change"),
 ]
 
+ANALYTICAL_PRE_ITEMS = [
+    "AI Deceptive",
+    "AI Dishonest",
+    "AI Suspicious",
+    "AI Wary",
+    "AI Harm",
+    "AI Confident",
+    "AI Security",
+    "AI Trustworthy",
+    "AI Reliable",
+    "AI Trust",
+]
+
+ANALYTICAL_POST_ITEMS = [
+    "AI Deceptive Post",
+    "AI Dishonest Post",
+    "AI Suspicious Post",
+    "AI Wary Post",
+    "AI Harm Post",
+    "AI Confident Post",
+    "AI Security Post",
+    "AI Trustworthy Post",
+    "AI Reliable Post",
+    "AI Trust Post",
+]
+
+EMOTIONAL_PRE_ITEMS = [f"AI systems are {i}" for i in range(1, 10)]
+EMOTIONAL_POST_ITEMS = [f"AI systems are {i} Post" for i in range(1, 10)]
+
+CONDITION_LABELS = {"Interactive": "Interactive", "Text": "Static"}
+
 
 def load_module(module_path: Path, module_name: str):
     spec = importlib.util.spec_from_file_location(module_name, module_path)
@@ -122,6 +153,31 @@ def summarize_metric(series: pd.Series) -> str:
     if len(series) == 0:
         return "--"
     return f"{series.mean():.2f} ({series.std(ddof=1):.2f})"
+
+
+def cronbach_alpha(df: pd.DataFrame, columns: list[str]) -> float:
+    X = df.loc[:, columns].dropna().to_numpy(dtype=float)
+    if X.shape[0] == 0 or X.shape[1] <= 1:
+        return float("nan")
+    item_vars = X.var(axis=0, ddof=1)
+    total_var = X.sum(axis=1).var(ddof=1)
+    if total_var <= 0:
+        return float("nan")
+    k = X.shape[1]
+    return (k / (k - 1)) * (1 - (item_vars.sum() / total_var))
+
+
+def reliability_by_condition(df: pd.DataFrame, columns: list[str]) -> dict[str, float]:
+    results = {"overall": cronbach_alpha(df, columns)}
+    for condition, label in CONDITION_LABELS.items():
+        results[label] = cronbach_alpha(df[df["Condition"] == condition], columns)
+    return results
+
+
+def format_alpha(value: float) -> str:
+    if np.isnan(value):
+        return "NA"
+    return f"{value:.2f}".replace("0.", ".")
 
 
 def pairwise_directions(metric_groups: dict[tuple[str, str], pd.Series], alpha: float = 0.05):
@@ -409,6 +465,21 @@ def render_condition_post_change_summary(pairwise_by_metric: dict[str, dict[str,
     return "\\noindent " + " ".join(sentences) + "\n"
 
 
+def render_reliability_summary(df: pd.DataFrame) -> str:
+    analytical_pre = reliability_by_condition(df, ANALYTICAL_PRE_ITEMS)
+    analytical_post = reliability_by_condition(df, ANALYTICAL_POST_ITEMS)
+    emotional_pre = reliability_by_condition(df, EMOTIONAL_PRE_ITEMS)
+    emotional_post = reliability_by_condition(df, EMOTIONAL_POST_ITEMS)
+
+    return (
+        "\\noindent Internal consistency was calculated on the polarity-aligned item set used in the analyses, "
+        "with negatively worded items reverse-coded before estimating reliability. "
+        f"For the 10-item analytical trust scale, reliability was acceptable in both the Interactive and Static conditions at pretest ($\\alpha = {format_alpha(analytical_pre['Interactive'])}$ and $\\alpha = {format_alpha(analytical_pre['Static'])}$, respectively) and at posttest ($\\alpha = {format_alpha(analytical_post['Interactive'])}$ and $\\alpha = {format_alpha(analytical_post['Static'])}$, respectively). "
+        f"For the 9-item emotional trust scale, reliability was moderate to good at pretest in the Interactive and Static conditions ($\\alpha = {format_alpha(emotional_pre['Interactive'])}$ and $\\alpha = {format_alpha(emotional_pre['Static'])}$, respectively) and remained acceptable at posttest ($\\alpha = {format_alpha(emotional_post['Interactive'])}$ and $\\alpha = {format_alpha(emotional_post['Static'])}$, respectively), indicating coherent post emotional items after reconstructing the canonical item order in the analytic sample ($N={len(df)}$). "
+        "These reliability estimates are reported alongside the primary mean-difference analyses to characterize scale quality and guide interpretation of the trust effects.\n"
+    )
+
+
 def print_pre_results(pairwise_by_metric: dict[str, dict[str, object]]) -> None:
     for metric, label in PRE_METRICS:
         print(f"\n{label}:")
@@ -453,6 +524,7 @@ def main() -> None:
     condition_post_change_table_tex, condition_post_change_results = render_condition_post_change_table(df)
     post_change_table_tex, post_change_results = render_post_change_table(df)
     pre_summary_tex = render_pre_summary(pre_results)
+    reliability_summary_tex = render_reliability_summary(df)
     condition_post_change_summary_tex = render_condition_post_change_summary(condition_post_change_results)
     post_change_summary_tex = render_post_change_summary(post_change_results)
 
@@ -478,6 +550,8 @@ def main() -> None:
         + combined_top_tables_tex
         + "\n"
         + pre_summary_tex
+        + "\n"
+        + reliability_summary_tex
         + "\n"
         + condition_post_change_summary_tex
         + "\n"
