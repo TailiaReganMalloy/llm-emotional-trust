@@ -1,16 +1,23 @@
-\subsection{Hypothesis 6 Validation}
-The results in the statistical analysis of hypothesis 6 demonstrate an effect of cultural group across the difference between emotional and analytical trust change. Because the WEIRD/Normal participant grouping is determined by multiple participant demographics, there is the potential of a hidden mediating effect of one of these demographics individually. If this were the case, the main conclusions of hypothesis 5 would not be supported and instead the observed effect would be better described as differences related to one or more of the constituent demographics. To test the possibility of this, we performed ten different mediation analyses testing whether there was a mediating effect of each of the five demographic items on the impact of the demographic group on analytical vs. emotional change difference, for each of the two conditions. The results below demonstrate that none of the constituent demographics display a mediating effect for either of the two conditions, providing further support to hypothesis 5.  
+\subsubsection{Mediation Of WEIRD Attributes Across Conditions}
+Across both conditions combined (Interactive and Text), separate mediation models tested whether each WEIRD-defining attribute mediated the association between WEIRD group membership and the analytical-vs-emotional change difference.
+Model per test: X = WEIRD indicator, M = attribute indicator, Y = analytical_change - emotional_change; indirect effect estimated by non-parametric bootstrap.
 
-Across both conditions combined (Interactive and Text), separate mediation models tested whether each WEIRD-defining attribute mediated the association between WEIRD group membership and the analytical-versus-emotional change difference. For each model, $X$ denotes the WEIRD indicator, $M$ denotes the candidate mediator, and $Y=\Delta A-\Delta E$; indirect effects were estimated using non-parametric bootstrap.
+For the western geographic indicator (residence or origin) as a mediator, analysis of (n=454) showed an a path (X->M) of 0.6819, a b path (M->Y | X) of -0.0250, a c total path (X->Y) of -0.0770, and a c' direct path (X->Y | M) of -0.0599.
+The estimated indirect effect (a*b) was -0.0168, with a 95% CI of [-0.1019, 0.0672] and p = .686.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-For the \textbf{western geographic indicator} (residence or origin) as mediator, analysis with $n=504$ showed an $a$ path of $(X \to M)=0.6986$, a $b$ path of $(M \to Y\mid X)=-0.1277$, a total effect of $c=(X \to Y)=-0.2286$, and a direct effect of $c'=(X \to Y\mid M)=-0.1393$. The estimated indirect effect was $ab=-0.0893$, with $95\%$ CI $[-0.1878,\,0.0093]$ and $p=.071$. This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
+For the english language indicator as a mediator, analysis of (n=454) showed an a path (X->M) of 0.4971, a b path (M->Y | X) of -0.1024, a c total path (X->Y) of -0.0770, and a c' direct path (X->Y | M) of -0.0261.
+The estimated indirect effect (a*b) was -0.0509, with a 95% CI of [-0.1091, 0.0050] and p = .073.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-For the \textbf{english language indicator} as mediator, analysis with $n=504$ showed an $a$ path of $(X \to M)=0.5023$, a $b$ path of $(M \to Y\mid X)=-0.0738$, a total effect of $c=(X \to Y)=-0.2286$, and a direct effect of $c'=(X \to Y\mid M)=-0.1915$. The estimated indirect effect was $ab=-0.0366$, with $95\%$ CI $[-0.1079,\,0.0300]$ and $p=.288$. This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
+For the above high school education indicator as a mediator, analysis of (n=454) showed an a path (X->M) of 0.2052, a b path (M->Y | X) of -0.1640, a c total path (X->Y) of -0.0770, and a c' direct path (X->Y | M) of -0.0433.
+The estimated indirect effect (a*b) was -0.0338, with a 95% CI of [-0.0642, -0.0064] and p = .012.
+This indicates evidence of mediation because the bootstrap confidence interval excludes zero.
 
-For the \textbf{high education indicator} as mediator, analysis with $n=504$ showed an $a$ path of $(X \to M)=0.1927$, a $b$ path of $(M \to Y\mid X)=-0.1025$, a total effect of $c=(X \to Y)=-0.2286$, and a direct effect of $c'=(X \to Y\mid M)=-0.2088$. The estimated indirect effect was $ab=-0.0203$, with $95\%$ CI $[-0.0519,\,0.0072]$ and $p=.166$. This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
+For the weird employment indicator as a mediator, analysis of (n=454) showed an a path (X->M) of 0.4286, a b path (M->Y | X) of -0.0088, a c total path (X->Y) of -0.0770, and a c' direct path (X->Y | M) of -0.0732.
+The estimated indirect effect (a*b) was -0.0042, with a 95% CI of [-0.0512, 0.0408] and p = .862.
+This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
 
-For the \textbf{employment indicator} as mediator, analysis with $n=504$ showed an $a$ path of $(X \to M)=0.4435$, a $b$ path of $(M \to Y\mid X)=0.0657$, a total effect of $c=(X \to Y)=-0.2286$, and a direct effect of $c'=(X \to Y\mid M)=-0.2577$. The estimated indirect effect was $ab=0.0284$, with $95\%$ CI $[-0.0249,\,0.0823]$ and $p=.276$. This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
-
-For the \textbf{ethnicity indicator} as mediator, analysis with $n=504$ showed an $a$ path of $(X \to M)=0.3675$, a $b$ path of $(M \to Y\mid X)=-0.0503$, a total effect of $c=(X \to Y)=-0.2286$, and a direct effect of $c'=(X \to Y\mid M)=-0.2101$. The estimated indirect effect was $ab=-0.0184$, with $95\%$ CI $[-0.0695,\,0.0319]$ and $p=.460$. This indicates no clear evidence of mediation because the bootstrap confidence interval includes zero.
-
-Overall these five analyses demonstrate that the impact that cultural background has on the difference between emotional and analytical trust is not better explained as a mediated effect of any of the constituent demographics used in our categorization of WEIRD and Normal participants. 
+For the white ethnicity indicator as a mediator, analysis of (n=454) showed an a path (X->M) of 0.3631, a b path (M->Y | X) of 0.1265, a c total path (X->Y) of -0.0770, and a c' direct path (X->Y | M) of -0.1229.
+The estimated indirect effect (a*b) was 0.0451, with a 95% CI of [0.0023, 0.0959] and p = .037.
+This indicates evidence of mediation because the bootstrap confidence interval excludes zero.

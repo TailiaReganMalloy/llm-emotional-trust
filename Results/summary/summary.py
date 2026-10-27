@@ -7,6 +7,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from assumptions import render_assumptions_summary
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = REPO_ROOT / "Dataset" / "Metrics.csv"
@@ -527,6 +529,7 @@ def main() -> None:
     reliability_summary_tex = render_reliability_summary(df)
     condition_post_change_summary_tex = render_condition_post_change_summary(condition_post_change_results)
     post_change_summary_tex = render_post_change_summary(post_change_results)
+    assumptions_summary_tex = render_assumptions_summary(df)
 
     combined_top_tables_tex = "\n".join([
         r"\begin{center}",
@@ -558,6 +561,8 @@ def main() -> None:
         + centered_post_change_table_tex
         + "\n"
         + post_change_summary_tex
+        + "\n"
+        + assumptions_summary_tex
     )
     print(f"Saved: {OUTPUT_PATH}")
     print("\nPre table tests:")

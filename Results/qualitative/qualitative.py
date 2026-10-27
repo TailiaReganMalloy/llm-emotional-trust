@@ -10,8 +10,8 @@ import pandas as pd
 from scipy import stats
 
 try:
+    from Results.qualitative.legacy_metrics import load_legacy_qualitative_frame
     from Results.qualitative.sentiment1 import (
-        DATA_PATH,
         FIGURES_DIR,
         METRICS_TEXT_COLS,
         build_analysis_frame,
@@ -23,8 +23,8 @@ except ModuleNotFoundError:
     REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(REPO_ROOT) not in sys.path:
         sys.path.insert(0, str(REPO_ROOT))
+    from Results.qualitative.legacy_metrics import load_legacy_qualitative_frame
     from Results.qualitative.sentiment1 import (
-        DATA_PATH,
         FIGURES_DIR,
         METRICS_TEXT_COLS,
         build_analysis_frame,
@@ -42,10 +42,11 @@ OUTCOME_LABELS = {
     "emotional_change": "Emotional",
 }
 
-SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 20
-TICK_LABEL_FONTSIZE = 20
-STAT_BOX_FONTSIZE = 16
+SUBPLOT_TITLE_FONTSIZE = 26
+AXIS_LABEL_FONTSIZE = 24
+TICK_LABEL_FONTSIZE = 22
+STAT_BOX_FONTSIZE = 20
+LEGEND_FONTSIZE = 14
 
 
 def profile_mean(df: pd.DataFrame, group_col: str, group_value: str) -> np.ndarray:
@@ -93,8 +94,8 @@ def add_sentiment_polarity(df: pd.DataFrame) -> pd.DataFrame:
 
 def compute_group_lines(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
     weird = np.array([df.loc[df["Group"] == "WEIRD", outcome].mean() for outcome in OUTCOMES], dtype=float)
-    non_weird = np.array([df.loc[df["Group"] == "NORMAL", outcome].mean() for outcome in OUTCOMES], dtype=float)
-    return weird, non_weird
+    normal = np.array([df.loc[df["Group"] == "NORMAL", outcome].mean() for outcome in OUTCOMES], dtype=float)
+    return weird, normal
 
 
 def plot_two_group_panel(
@@ -105,14 +106,14 @@ def plot_two_group_panel(
     right_label: str,
     title: str,
     weird_line: np.ndarray,
-    non_weird_line: np.ndarray,
+    normal_line: np.ndarray,
     left_color: str,
     right_color: str,
     show_legend: bool = False,
     legend_groups_only: bool = False,
 ) -> None:
     x = np.arange(len(OUTCOMES), dtype=float)
-    width = 0.34
+    width = 0.42
 
     left_means: list[float] = []
     left_err_low: list[float] = []
@@ -143,8 +144,8 @@ def plot_two_group_panel(
         color=left_color,
         label=left_label.capitalize(),
         yerr=[left_err_low, left_err_high],
-        capsize=4,
-        edgecolor="white",
+        capsize=6,
+        edgecolor="none",
     )
     right_bar = ax.bar(
         x + width / 2,
@@ -153,12 +154,12 @@ def plot_two_group_panel(
         color=right_color,
         label=right_label.capitalize(),
         yerr=[right_err_low, right_err_high],
-        capsize=4,
-        edgecolor="white",
+        capsize=6,
+        edgecolor="none",
     )
 
-    ax.plot(x, weird_line, color="#222222", marker="o", linewidth=1.8, label="WEIRD mean")
-    ax.plot(x, non_weird_line, color="#555555", marker="o", linestyle="--", linewidth=1.8, label="non-WEIRD mean")
+    ax.plot(x, weird_line, color="#222222", marker="o", markersize=8, linewidth=2.0, label="WEIRD mean")
+    ax.plot(x, normal_line, color="#555555", marker="o", markersize=8, linestyle="--", linewidth=2.0, label="Normal mean")
 
     ax.axhline(0.0, color="#333333", linewidth=1.1)
     ax.set_xticks(x)
@@ -172,7 +173,7 @@ def plot_two_group_panel(
         left_vals = df.loc[df[group_col] == left_label, outcome]
         right_vals = df.loc[df[group_col] == right_label, outcome]
         p_value = welch_group_test(left_vals, right_vals)
-        summary_lines.append(f"{label}: p {ic_mod.format_p_text(p_value)} ({ic_mod.significance_stars(p_value)})")
+        summary_lines.append(f"{label}: $p {ic_mod.format_p_text(p_value).replace(' ', '')}$ ({ic_mod.significance_stars(p_value)})")
 
     ax.text(
         0.02,
@@ -188,9 +189,9 @@ def plot_two_group_panel(
 
     if show_legend:
         if legend_groups_only:
-            ax.legend([left_bar, right_bar], [left_label.capitalize(), right_label.capitalize()], loc="lower left", fontsize=10)
+            ax.legend([left_bar, right_bar], [left_label.capitalize(), right_label.capitalize()], loc="lower left", fontsize=LEGEND_FONTSIZE)
         else:
-            ax.legend(loc="lower left", fontsize=10)
+            ax.legend(loc="lower left", fontsize=LEGEND_FONTSIZE)
 
 
 def plot_similarity_panel(
@@ -211,38 +212,24 @@ def plot_similarity_panel(
     x = np.arange(2, dtype=float)
     width = 0.32
 
-    ax.bar(
-        x - width / 2,
-        [weird_left, non_left],
-        width=width,
-        color="#377eb8",
-        edgecolor="white",
-        label=left_label.capitalize(),
-    )
-    ax.bar(
-        x + width / 2,
-        [weird_right, non_right],
-        width=width,
-        color="#c26a26",
-        edgecolor="white",
-        label=right_label.capitalize(),
-    )
+    ax.bar(x - width / 2, [weird_left, non_left], width=width, color="#377eb8", edgecolor="none", label=left_label.capitalize())
+    ax.bar(x + width / 2, [weird_right, non_right], width=width, color="#c26a26", edgecolor="none", label=right_label.capitalize())
 
     ax.set_xticks(x)
-    ax.set_xticklabels(["WEIRD", "non-WEIRD"], fontsize=TICK_LABEL_FONTSIZE)
+    ax.set_xticklabels(["WEIRD", "Normal"], fontsize=TICK_LABEL_FONTSIZE)
     ax.set_ylim(-1.0, 1.0)
     ax.axhline(0.0, color="#333333", linewidth=1.0)
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.set_ylabel("Cosine similarity", fontsize=AXIS_LABEL_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.legend(loc="lower left", fontsize=10)
+    ax.legend(loc="lower left", fontsize=LEGEND_FONTSIZE)
 
     ax.text(
         0.02,
         0.98,
         (
             f"WEIRD: {left_label[:3]}={weird_left:.3f}, {right_label[:3]}={weird_right:.3f}\n"
-            f"non-WEIRD: {left_label[:3]}={non_left:.3f}, {right_label[:3]}={non_right:.3f}"
+            f"Normal: {left_label[:3]}={non_left:.3f}, {right_label[:3]}={non_right:.3f}"
         ),
         transform=ax.transAxes,
         ha="left",
@@ -297,7 +284,41 @@ def build_profile_contrast_frame(
     return pd.DataFrame(rows)
 
 
+# Every Welch p-value annotated on this figure is Benjamini-Hochberg adjusted (p_a) across all tests shown.
+# The figure is built twice: pass 1 logs the raw p-values in call order, pass 2 returns their adjusted values.
+_P_LOG: list[float] = []
+_P_ADJUSTED: list[float] | None = None
+
+
+def _bh_adjust(pvalues: list[float]) -> list[float]:
+    p = np.array([np.inf if np.isnan(v) else v for v in pvalues], dtype=float)
+    m = len(p)
+    order = np.argsort(p)
+    adjusted = np.minimum.accumulate((p[order] * m / np.arange(1, m + 1))[::-1])[::-1]
+    q = np.empty(m, dtype=float)
+    q[order] = np.minimum(adjusted, 1.0)
+    return [np.nan if np.isinf(p[i]) else float(q[i]) for i in range(m)]
+
+
 def welch_group_test(values_a: pd.Series, values_b: pd.Series) -> float:
+    p_value = _raw_welch_p(values_a, values_b)
+    if _P_ADJUSTED is None:
+        _P_LOG.append(p_value)
+        return p_value
+    return _next_adjusted()
+
+
+_CALL_INDEX = 0
+
+
+def _next_adjusted() -> float:
+    global _CALL_INDEX
+    value = _P_ADJUSTED[_CALL_INDEX]
+    _CALL_INDEX += 1
+    return value
+
+
+def _raw_welch_p(values_a: pd.Series, values_b: pd.Series) -> float:
     clean_a = values_a.dropna().astype(float)
     clean_b = values_b.dropna().astype(float)
     if len(clean_a) < 2 or len(clean_b) < 2:
@@ -307,9 +328,9 @@ def welch_group_test(values_a: pd.Series, values_b: pd.Series) -> float:
 
 
 def add_sig_bracket(ax: plt.Axes, x0: float, x1: float, y: float, text: str) -> None:
-    height = 0.035
-    ax.plot([x0, x0, x1, x1], [y, y + height, y + height, y], color="#333333", linewidth=1.1)
-    ax.text((x0 + x1) / 2, y + height + 0.015, text, ha="center", va="bottom", fontsize=9)
+    height = 0.04
+    ax.plot([x0, x0, x1, x1], [y, y + height, y + height, y], color="#333333", linewidth=1.4)
+    ax.text((x0 + x1) / 2, y + height + 0.015, text, ha="center", va="bottom", fontsize=14)
 
 
 def plot_profile_summary_panel(
@@ -329,14 +350,13 @@ def plot_profile_summary_panel(
     )
 
     group_order = ["WEIRD", "NORMAL"]
-    group_labels = ["WEIRD", "non-WEIRD"]
     categories = [
         ("ic_contrast", "IC"),
         ("sentiment_contrast", "Sentiment"),
         ("interaction_contrast", "Interaction"),
     ]
     x = np.arange(len(categories), dtype=float)
-    offset = 0.13
+    offset = 0.15
 
     weird_means: list[float] = []
     weird_err_low: list[float] = []
@@ -366,10 +386,10 @@ def plot_profile_summary_panel(
         fmt="o-",
         color="#222222",
         ecolor="#222222",
-        elinewidth=1.4,
-        capsize=4,
-        markersize=7,
-        linewidth=1.6,
+        elinewidth=1.8,
+        capsize=5,
+        markersize=9,
+        linewidth=1.8,
         label="WEIRD",
     )
     ax.errorbar(
@@ -379,11 +399,11 @@ def plot_profile_summary_panel(
         fmt="o--",
         color="#666666",
         ecolor="#666666",
-        elinewidth=1.4,
-        capsize=4,
-        markersize=7,
-        linewidth=1.6,
-        label="non-WEIRD",
+        elinewidth=1.8,
+        capsize=5,
+        markersize=9,
+        linewidth=1.8,
+        label="Normal",
     )
 
     ax.axhline(0.0, color="#333333", linewidth=1.0)
@@ -393,13 +413,13 @@ def plot_profile_summary_panel(
     ax.set_ylabel("Profile contrast", fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_title("Profile Contrast Summary", fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
-    ax.legend(loc="lower left", fontsize=10)
+    ax.legend(loc="lower left", fontsize=LEGEND_FONTSIZE)
 
     for idx, (column, _) in enumerate(categories):
         weird_vals = contrast_df.loc[contrast_df["Group"] == "WEIRD", column]
         non_vals = contrast_df.loc[contrast_df["Group"] == "NORMAL", column]
         p_value = welch_group_test(weird_vals, non_vals)
-        p_text = f"p {ic_mod.format_p_text(p_value)} ({ic_mod.significance_stars(p_value)})"
+        p_text = f"$p {ic_mod.format_p_text(p_value).replace(' ', '')}$ ({ic_mod.significance_stars(p_value)})"
         y_top = max(
             weird_means[idx] + weird_err_high[idx],
             non_means[idx] + non_err_high[idx],
@@ -407,10 +427,21 @@ def plot_profile_summary_panel(
         add_sig_bracket(ax, x[idx] - offset, x[idx] + offset, y_top, p_text)
 
 def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
+    global _P_ADJUSTED, _CALL_INDEX
+    _P_ADJUSTED, _CALL_INDEX = None, 0
+    _P_LOG.clear()
+    plt.close(_build_qualitative_figure(df))
+    _P_ADJUSTED = _bh_adjust(list(_P_LOG))
+    fig = _build_qualitative_figure(df)
+    fig.savefig(output_path, dpi=250)
+    plt.close(fig)
+
+
+def _build_qualitative_figure(df: pd.DataFrame) -> plt.Figure:
     plt.style.use("ggplot")
     fig, axes = plt.subplots(1, 3, figsize=(22, 7.2), constrained_layout=True)
 
-    weird_line, non_weird_line = compute_group_lines(df)
+    weird_line, normal_line = compute_group_lines(df)
     weird_profile = profile_mean(df, "Group", "WEIRD")
     non_weird_profile = profile_mean(df, "Group", "NORMAL")
 
@@ -430,7 +461,7 @@ def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
         right_label="positive",
         title="Negative vs Positive Sentiment",
         weird_line=weird_line,
-        non_weird_line=non_weird_line,
+        normal_line=normal_line,
         left_color="#377eb8",
         right_color="#c26a26",
         show_legend=True,
@@ -444,7 +475,7 @@ def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
         right_label="collectivist",
         title="Individualistic vs Collectivist",
         weird_line=weird_line,
-        non_weird_line=non_weird_line,
+        normal_line=normal_line,
         left_color="#c26a26",
         right_color="#377eb8",
         show_legend=True,
@@ -462,16 +493,15 @@ def make_qualitative_plot(df: pd.DataFrame, output_path: Path) -> None:
 
     axes[0].set_ylabel("Normalized trust change (z-score)", fontsize=AXIS_LABEL_FONTSIZE)
     axes[1].set_ylabel("Normalized trust change (z-score)", fontsize=AXIS_LABEL_FONTSIZE)
-    fig.suptitle("Qualitative Trust-Change and Profile Summary", fontsize=26)
+    fig.suptitle("Qualitative Trust-Change and Profile Summary", fontsize=32)
 
-    fig.savefig(output_path, dpi=250)
-    plt.close(fig)
+    return fig
 
 
 def main() -> None:
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
-    raw = pd.read_csv(DATA_PATH)
+    raw = load_legacy_qualitative_frame()
     engine = get_sentiment_engine()
     analysis_df = build_analysis_frame(raw, engine)
     analysis_df = add_ic_orientation(analysis_df)

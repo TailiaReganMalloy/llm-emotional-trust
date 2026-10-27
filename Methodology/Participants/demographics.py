@@ -98,6 +98,7 @@ def score_weird(row: pd.Series) -> int:
 
 CONDITIONS = ["Interactive", "Text"]
 GENDER_ROWS = ["Man", "Woman", "NB/GD"]
+RESPONSE_TIME_UPPER_CUTOFF = 105800.17
 
 
 def normalize_gender_value(value: object) -> str | float:
@@ -156,6 +157,11 @@ def build_df() -> pd.DataFrame:
     df["Gender_cat"] = derive_gender(df)
     age_col = select_age_column(df)
     df["Age_numeric"] = pd.to_numeric(df[age_col], errors="coerce")
+    completed_col = pd.to_datetime(df["Completed at"], errors="coerce") if "Completed at" in df.columns else pd.Series(pd.NaT, index=df.index)
+    df["Completed_at_dt"] = completed_col
+    df["Time_taken_numeric"] = pd.to_numeric(df.get("Time taken"), errors="coerce")
+    df = df[df["Completed_at_dt"].notna()].copy()
+    df = df[df["Time_taken_numeric"].le(RESPONSE_TIME_UPPER_CUTOFF) | df["Time_taken_numeric"].isna()].copy()
     return df
 
 

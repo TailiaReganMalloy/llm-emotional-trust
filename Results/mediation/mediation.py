@@ -27,7 +27,7 @@ TICK_LABEL_FONTSIZE = 14
 MEDIATORS = [
     ("western_geo", "Western geographic indicator (residence or origin)"),
     ("english_language", "English language indicator"),
-    ("high_education", "High education indicator"),
+    ("above_high_school", "Above high school education indicator"),
     ("weird_employment", "WEIRD employment indicator"),
     ("white_ethnicity", "White ethnicity indicator"),
 ]
@@ -245,7 +245,7 @@ def prepare_analysis_frame(df: pd.DataFrame) -> pd.DataFrame:
         | country_of_birth.isin(WESTERN_COUNTRIES)
     ).astype(float)
     work["english_language"] = language.str.startswith("english").astype(float)
-    work["high_education"] = work["Education"].isin(HIGH_EDUCATION).astype(float)
+    work["above_high_school"] = (work["Education"] != "High School").where(work["Education"].notna()).astype(float)
     work["weird_employment"] = work["Employment status"].isin(WEIRD_EMPLOYMENT).astype(float)
     work["white_ethnicity"] = (
         work["Ethnicity simplified"].astype(str).str.strip().str.lower() == "white"
@@ -420,9 +420,20 @@ def write_report(results: list[MediationResult]) -> None:
 
 def draw_results(results: list[MediationResult]) -> None:
     plt.style.use("ggplot")
-    fig, ax = plt.subplots(1, 1, figsize=(10, 6), constrained_layout=True)
+    fig, ax = plt.subplots(1, 1, figsize=(12, 7), constrained_layout=True)
 
-    labels = [r.mediator_label for r in results]
+    short = {
+        "Western geographic indicator (residence or origin)": "Western geography",
+        "English language indicator": "English language",
+        "Above high school education indicator": "Above high school\neducation",
+        "WEIRD employment indicator": "WEIRD employment",
+        "White ethnicity indicator": "White ethnicity",
+    }
+
+    def short_label(label: str) -> str:
+        return short.get(label, label)
+
+    labels = [short_label(r.mediator_label) for r in results]
 
     x = np.arange(len(results), dtype=float)
     means = np.array([r.indirect_effect for r in results], dtype=float)
@@ -432,7 +443,7 @@ def draw_results(results: list[MediationResult]) -> None:
     err_low = np.nan_to_num(means - lows, nan=0.0)
     err_high = np.nan_to_num(highs - means, nan=0.0)
 
-    bar_colors = ["#377eb8", "#c26a26", "#4daf4a", "#984ea3", "#ff7f00"]
+    bar_colors = ["#377eb8", "#c26a26", "#4daf4a", "#984ea3", "#ff7f00", "#a65628", "#f781bf", "#999999"]
     ax.bar(x, means, color=bar_colors[: len(results)], width=0.68, edgecolor="none", zorder=2)
     ax.errorbar(
         x,
@@ -450,15 +461,14 @@ def draw_results(results: list[MediationResult]) -> None:
         star = p_to_stars(res.indirect_p)
         if star:
             anchor = highs[idx] if pd.notna(highs[idx]) else means[idx]
-            ax.text(idx, anchor + 0.01, star, ha="center", va="bottom", fontsize=19, color="black")
+            ax.text(idx, anchor + 0.003, star, ha="center", va="bottom", fontsize=19, color="black")
 
         box_text = (
-            f"t={t_text(res.indirect_t)}, p {p_text(res.indirect_p)}\n"
-            f"{mediation_sig_text(res.indirect_p)}"
+            f"t={t_text(res.indirect_t)}\np {p_text(res.indirect_p)}"
         )
         ax.text(
             idx,
-            (highs[idx] if pd.notna(highs[idx]) else means[idx]) + 0.13 * max(np.nanmax(highs) - np.nanmin(lows), 0.05),
+            (highs[idx] if pd.notna(highs[idx]) else means[idx]) + 0.22 * max(np.nanmax(highs) - np.nanmin(lows), 0.05),
             box_text,
             ha="center",
             va="bottom",
@@ -473,7 +483,7 @@ def draw_results(results: list[MediationResult]) -> None:
 
     ax.axhline(0.0, color="#444444", linewidth=1.4, zorder=1)
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, rotation=20, ha="right", fontsize=TICK_LABEL_FONTSIZE)
+    ax.set_xticklabels(labels, rotation=0, ha="center", fontsize=11)
     ax.set_title("All Conditions Combined", fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.set_xlabel("Mediator", fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_ylabel("Indirect Effect (a*b)", fontsize=AXIS_LABEL_FONTSIZE)
@@ -481,7 +491,7 @@ def draw_results(results: list[MediationResult]) -> None:
 
     fig.suptitle(
         "Mediation Of WEIRD-Defining Attributes On Analytical-Emotional Change Difference",
-        fontsize=24,
+        fontsize=20,
     )
 
     ymin = min(np.nanmin([r.indirect_ci_low for r in results if r.valid]), -0.02)
@@ -513,14 +523,15 @@ def main() -> None:
     results: list[MediationResult] = []
     subset = analysis.copy()
     for mediator_key, mediator_label in MEDIATORS:
-        res = run_single_mediation(
-            subset=subset,
-            condition="All",
-            mediator_key=mediator_key,
-            mediator_label=mediator_label,
-            rng=rng,
+        results.append(
+            run_single_mediation(
+                subset=subset,
+                condition="All",
+                mediator_key=mediator_key,
+                mediator_label=mediator_label,
+                rng=rng,
+            )
         )
-        results.append(res)
 
     write_report(results)
     draw_results(results)

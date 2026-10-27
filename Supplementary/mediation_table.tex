@@ -1,0 +1,82 @@
+{\footnotesize
+\setlength{\tabcolsep}{2pt}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{longtable}{L{0.12\linewidth}L{0.25\linewidth}R{0.05\linewidth}R{0.065\linewidth}R{0.065\linewidth}R{0.065\linewidth}R{0.16\linewidth}R{0.055\linewidth}R{0.055\linewidth}}
+\caption{Mediation of the effect of WEIRD group on the analytical-versus-emotional trust-change difference for every pairwise comparison of each demographic variable (country of origin excluded). Only participants in the two compared groups are included; $M=1$ for the first group listed and $M=0$ for the second (reference) group. $a$: $X\rightarrow M$; $b$: $M\rightarrow Y\mid X$; $ab$: indirect effect with 95\% bootstrap CI (5000 resamples); $p$: bootstrap $p$-value; $q$: Benjamini-Hochberg adjusted $p$ within each demographic variable. Bold rows have a bootstrap CI that excludes zero.}
+\label{tab:mediation_all}\\
+\toprule
+Variable & Comparison & $n$ & $a$ & $b$ & $ab$ & 95\% CI & $p$ & $q$ \\
+\midrule
+\endfirsthead
+\toprule
+Variable & Comparison & $n$ & $a$ & $b$ & $ab$ & 95\% CI & $p$ & $q$ \\
+\midrule
+\endhead
+Age group & 18-24 vs. 25-34 & 308 & -0.288 & -0.042 & 0.012 & [-0.026, 0.056] & .550 & .688 \\
+Age group & 35-44 vs. 25-34 & 283 & 0.083 & -0.060 & -0.005 & [-0.028, 0.011] & .573 & .688 \\
+Age group & 45+ vs. 25-34 & 261 & 0.219 & -0.159 & -0.035 & [-0.089, 0.003] & .073 & .439 \\
+Age group & 35-44 vs. 18-24 & 193 & 0.455 & -0.023 & -0.010 & [-0.088, 0.071] & .802 & .802 \\
+Age group & 45+ vs. 18-24 & 171 & 0.591 & -0.115 & -0.067 & [-0.176, 0.040] & .210 & .631 \\
+Age group & 45+ vs. 35-44 & 146 & 0.173 & -0.099 & -0.017 & [-0.064, 0.015] & .336 & .673 \\
+\midrule
+Gender & Man vs. Woman & 187 & -0.197 & 0.024 & -0.004 & [-0.044, 0.029] & .787 & .944 \\
+Gender & Non-binary vs. Woman & 165 & -0.083 & 0.197 & -0.017 & [-0.080, 0.029] & .470 & .940 \\
+Gender & Rather not say vs. Woman & 158 & 0.044 & -0.019 & -0.001 & [-0.034, 0.027] & .946 & .946 \\
+Gender & Non-binary vs. Man & 156 & 0.119 & 0.191 & 0.024 & [-0.037, 0.104] & .433 & .940 \\
+Gender & Rather not say vs. Man & 149 & 0.249 & -0.039 & -0.009 & [-0.083, 0.052] & .754 & .944 \\
+Gender & Rather not say vs. Non-binary & 127 & 0.134 & -0.206 & -0.029 & [-0.120, 0.030] & .352 & .940 \\
+\midrule
+AI knowledge & Advanced vs. Conceptual understanding & 329 & -0.033 & -0.037 & 0.001 & [-0.010, 0.015] & .860 & .950 \\
+AI knowledge & Beginner knowledge vs. Conceptual understanding & 327 & -0.000 & 0.028 & -0.000 & [-0.011, 0.010] & .950 & .950 \\
+AI knowledge & Expert vs. Conceptual understanding & 230 & 0.073 & -0.277 & -0.023 & [-0.101, 0.016] & .368 & .950 \\
+AI knowledge & Beginner knowledge vs. Advanced & 220 & 0.037 & 0.068 & 0.002 & [-0.015, 0.025] & .815 & .950 \\
+AI knowledge & Expert vs. Advanced & 123 & 0.147 & -0.187 & -0.030 & [-0.148, 0.050] & .506 & .950 \\
+AI knowledge & Expert vs. Beginner knowledge & 121 & 0.127 & -0.253 & -0.034 & [-0.154, 0.035] & .392 & .950 \\
+\midrule
+\textbf{Education} & \textbf{High School vs. Bachelor} & \textbf{315} & \textbf{-0.275} & \textbf{0.166} & \textbf{-0.046} & \textbf{[-0.092, -0.008]} & \textbf{.016} & \textbf{.160} \\
+Education & Master vs. Bachelor & 303 & -0.003 & -0.027 & -0.000 & [-0.011, 0.010] & .981 & .981 \\
+Education & Graduate Professional Degree vs. Bachelor & 256 & -0.046 & 0.002 & -0.001 & [-0.019, 0.015] & .908 & .981 \\
+Education & PhD vs. Bachelor & 231 & 0.135 & -0.055 & -0.008 & [-0.078, 0.046] & .837 & .981 \\
+\textbf{Education} & \textbf{Master vs. High School} & \textbf{184} & \textbf{0.398} & \textbf{-0.166} & \textbf{-0.067} & \textbf{[-0.152, -0.002]} & \textbf{.039} & \textbf{.196} \\
+Education & Graduate Professional Degree vs. High School & 137 & 0.340 & -0.126 & -0.044 & [-0.164, 0.039] & .329 & .981 \\
+Education & PhD vs. High School & 112 & 0.642 & -0.059 & -0.039 & [-0.220, 0.152] & .658 & .981 \\
+Education & Graduate Professional Degree vs. Master & 125 & -0.077 & 0.020 & -0.002 & [-0.040, 0.030] & .884 & .981 \\
+Education & PhD vs. Master & 100 & 0.265 & 0.029 & 0.007 & [-0.120, 0.129] & .886 & .981 \\
+Education & PhD vs. Graduate Professional Degree & 53 & 0.468 & 0.069 & 0.032 & [-0.167, 0.261] & .751 & .981 \\
+\midrule
+Employment status & Part-Time vs. Full-Time & 281 & -0.302 & -0.101 & 0.029 & [-0.011, 0.073] & .151 & .378 \\
+Employment status & Unemployed (and job seeking) vs. Full-Time & 274 & -0.387 & 0.086 & -0.034 & [-0.095, 0.026] & .260 & .443 \\
+Employment status & Other vs. Full-Time & 216 & -0.122 & 0.175 & -0.021 & [-0.054, 0.004] & .099 & .356 \\
+Employment status & Not in paid work vs. Full-Time & 202 & 0.025 & -0.140 & -0.004 & [-0.027, 0.012] & .731 & .812 \\
+Employment status & Unemployed (and job seeking) vs. Part-Time & 181 & -0.372 & 0.174 & -0.066 & [-0.155, 0.003] & .065 & .356 \\
+Employment status & Other vs. Part-Time & 123 & 0.070 & 0.273 & 0.020 & [-0.062, 0.133] & .684 & .812 \\
+Employment status & Not in paid work vs. Part-Time & 109 & 0.368 & -0.013 & -0.005 & [-0.121, 0.117] & .907 & .907 \\
+Employment status & Other vs. Unemployed (and job seeking) & 116 & 0.518 & 0.094 & 0.045 & [-0.087, 0.198] & .469 & .669 \\
+Employment status & Not in paid work vs. Unemployed (and job seeking) & 102 & 0.762 & -0.178 & -0.146 & [-0.452, 0.115] & .266 & .443 \\
+Employment status & Not in paid work vs. Other & 44 & 0.410 & -0.321 & -0.131 & [-0.358, 0.019] & .107 & .356 \\
+\midrule
+\textbf{Ethnicity} & \textbf{Black vs. White} & \textbf{263} & \textbf{-0.206} & \textbf{-0.163} & \textbf{0.035} & \textbf{[0.004, 0.078]} & \textbf{.021} & \textbf{.198} \\
+\textbf{Ethnicity} & \textbf{Asian vs. White} & \textbf{262} & \textbf{-0.253} & \textbf{-0.176} & \textbf{0.045} & \textbf{[0.004, 0.095]} & \textbf{.026} & \textbf{.198} \\
+Ethnicity & Mixed vs. White & 243 & -0.278 & -0.054 & 0.015 & [-0.031, 0.060] & .503 & .980 \\
+Ethnicity & Other vs. White & 233 & -0.178 & -0.128 & 0.024 & [-0.014, 0.076] & .270 & .810 \\
+Ethnicity & Prefer not to say vs. White & 205 & -0.028 & -0.081 & 0.001 & [-0.020, 0.022] & .944 & .980 \\
+Ethnicity & Asian vs. Black & 149 & -0.107 & 0.002 & -0.000 & [-0.034, 0.030] & .980 & .980 \\
+Ethnicity & Mixed vs. Black & 130 & -0.350 & 0.142 & -0.053 & [-0.138, 0.006] & .095 & .474 \\
+Ethnicity & Other vs. Black & 120 & -0.075 & 0.045 & -0.003 & [-0.045, 0.038] & .871 & .980 \\
+Ethnicity & Prefer not to say vs. Black & 92 & 0.143 & 0.083 & 0.008 & [-0.079, 0.108] & .854 & .980 \\
+Ethnicity & Mixed vs. Asian & 129 & -0.300 & 0.130 & -0.043 & [-0.131, 0.014] & .181 & .680 \\
+Ethnicity & Other vs. Asian & 119 & 0.024 & 0.036 & 0.002 & [-0.043, 0.050] & .936 & .980 \\
+Ethnicity & Prefer not to say vs. Asian & 91 & 0.240 & 0.113 & 0.025 & [-0.091, 0.175] & .656 & .980 \\
+Ethnicity & Other vs. Mixed & 100 & 0.368 & -0.117 & -0.050 & [-0.203, 0.047] & .409 & .980 \\
+Ethnicity & Prefer not to say vs. Mixed & 72 & 0.606 & 0.090 & 0.047 & [-0.198, 0.296] & .647 & .980 \\
+Ethnicity & Prefer not to say vs. Other & 62 & 0.259 & 0.037 & 0.014 & [-0.128, 0.193] & .870 & .980 \\
+\midrule
+Language & English vs. Non-English & 454 & 0.497 & -0.102 & -0.051 & [-0.109, 0.005] & .073 & .073 \\
+\bottomrule
+\end{longtable}
+}
+
+
+\subsubsection{Fine-grained Analysis}
+\textcolor{red}{To preform a more fine-grained analysis of the impact of inclusion criteria on the difference web observed between participants based on cultural group, we performed an extensive mediation analysis. This fine-grained mediation analysis compared every variable in the inclusion criteria for WEIRD vs. Normal to determine if any sub-group of one of these demographics had a mediation effect. Out of 54 different mediation analyses (full table in supplementary materials) the only significant mediation effects observed were in two sub groupings of Education and Ethnicity). However, these mediation effects did not remain significant after B-H correction, as shown in the following q values. These mediation effects within education were for High School vs. Bachelor ($n=315, a=-0.275, b=0.166, ab = -0.046, 95\%[-0.092, -0.008], p =0.039, q=0.160$) and for Master's vs. High School ($n=184, a=0.398, b=-0.166, ab=-0.067, 95\%[-0.152, -0.002], p =0.016$ with a q-value of $p=0.196$). These mediation effects within ethnicity were for Black vs. White ($n=263, a=-0.206, b=-0.163, ab=0.035, 95\%[0.004, 0.078], p=0.021$) with a q-value of $0.198$ and for Asian vs. White ($n=262, a=-0.253, b=-0.176, ab=0.045,95\%[-0.092, -0.008], p=0.026$) with a q-value of $0.198$. See the supplementary materials for the full information on all mediation tests run. }

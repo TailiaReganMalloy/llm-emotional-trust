@@ -24,6 +24,7 @@ Top-level folders and files:
 - Results/: Analysis pipelines and output summaries by hypothesis/topic.
     - Results/anova/, Results/bias/: Shared/diagnostic statistical analyses.
     - Results/hypothesis1/ ... Results/hypothesis6/: Per-hypothesis scripts and text outputs.
+        - Each primary hypothesis has a `_stats.py` entrypoint for statistical tests and text reports and a `_plot.py` entrypoint for figures; `hypothesisN.py` remains a compatibility runner for both.
     - Results/hypothesis2a/: Additional follow-up hypothesis analysis.
     - Results/mediation/: Mediation analysis scripts and subgroup subfolders (age, education, gender, etc.).
     - Results/qualitative/: Qualitative and sentiment/IC analysis scripts, TeX fragments, and README notes.
@@ -216,7 +217,6 @@ The snippet below creates a simple bar plot of mean pre-study AI Trust by condit
     ax.set_ylabel("Mean AI Trust (1-5)")
     plt.tight_layout()
     plt.show()
-
 
 
 

@@ -300,7 +300,7 @@ def draw_group_split_subplot(
         x[0],
         x[1],
         bracket_y,
-        significance_label(float(weird_test["p"])),
+        significance_label(float(weird_test["p_adj"])),
         step,
     )
     add_pair_bracket(
@@ -308,13 +308,13 @@ def draw_group_split_subplot(
         x[2],
         x[3],
         bracket_y,
-        significance_label(float(normal_test["p"])),
+        significance_label(float(normal_test["p_adj"])),
         step,
     )
 
     summary = (
-        f"{GROUP_DISPLAY['WEIRD']}: t={float(weird_test['t']):.3f}, p {format_p(float(weird_test['p']))}\n"
-        f"{GROUP_DISPLAY['NORMAL']}: t={float(normal_test['t']):.3f}, p {format_p(float(normal_test['p']))}"
+        f"{GROUP_DISPLAY['WEIRD']}: t={float(weird_test['t']):.3f}, $p_a {format_p(float(weird_test['p_adj']))}$\n"
+        f"{GROUP_DISPLAY['NORMAL']}: t={float(normal_test['t']):.3f}, $p_a {format_p(float(normal_test['p_adj']))}$"
     )
     ax.text(
         0.01,
@@ -364,6 +364,17 @@ def draw_group_split_subplot(
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
     ax.set_ylim(-0.4, 0.2)
     ax.set_yticks([-0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2])
+
+
+# Benjamini-Hochberg adjusted q-values: q_(i) = min over j>=i of p_(j) * m / j, capped at 1, returned in input order.
+def bh_qvalues(pvalues: list[float]) -> list[float]:
+    p = np.array([np.inf if pd.isna(v) else v for v in pvalues], dtype=float)
+    m = len(p)
+    order = np.argsort(p)
+    adjusted = np.minimum.accumulate((p[order] * m / np.arange(1, m + 1))[::-1])[::-1]
+    q = np.empty(m, dtype=float)
+    q[order] = np.minimum(adjusted, 1.0)
+    return [float("nan") if np.isinf(p[i]) else float(q[i]) for i in range(m)]
 
 
 def interpretation_line(weird_test: dict[str, float | str], normal_test: dict[str, float | str]) -> str:
@@ -446,6 +457,11 @@ def main() -> None:
         group: condition_welch_test(analysis, "analytical_change", group)
         for group in GROUP_ORDER
     }
+
+    # Annotate B-H adjusted p-values (p_a), adjusted across the six WEIRD/Normal condition tests shown in the figure.
+    plotted = [t[g] for t in (overall_tests, emotional_tests, analytical_tests) for g in GROUP_ORDER]
+    for test, q in zip(plotted, bh_qvalues([t["p"] for t in plotted])):
+        test["p_adj"] = q
 
     plt.style.use("ggplot")
     fig, axes = plt.subplots(1, 3, figsize=(22, 6), constrained_layout=True)

@@ -10,8 +10,8 @@ import pandas as pd
 from scipy import stats
 
 try:
+    from Results.qualitative.legacy_metrics import load_legacy_qualitative_frame
     from Results.qualitative.sentiment1 import (
-        DATA_PATH,
         FIGURES_DIR,
         METRICS_TEXT_COLS,
         build_analysis_frame,
@@ -25,8 +25,8 @@ except ModuleNotFoundError:
     REPO_ROOT = Path(__file__).resolve().parents[2]
     if str(REPO_ROOT) not in sys.path:
         sys.path.insert(0, str(REPO_ROOT))
+    from Results.qualitative.legacy_metrics import load_legacy_qualitative_frame
     from Results.qualitative.sentiment1 import (
-        DATA_PATH,
         FIGURES_DIR,
         METRICS_TEXT_COLS,
         build_analysis_frame,
@@ -39,10 +39,11 @@ except ModuleNotFoundError:
 
 ic_mod = import_module("Results.qualitative.1c3")
 
-SUBPLOT_TITLE_FONTSIZE = 22
-AXIS_LABEL_FONTSIZE = 20
-TICK_LABEL_FONTSIZE = 20
-STAT_BOX_FONTSIZE = 16
+SUBPLOT_TITLE_FONTSIZE = 26
+AXIS_LABEL_FONTSIZE = 24
+TICK_LABEL_FONTSIZE = 22
+STAT_BOX_FONTSIZE = 20
+LEGEND_FONTSIZE = 13
 
 
 def add_ic_orientation(df: pd.DataFrame) -> pd.DataFrame:
@@ -90,12 +91,12 @@ def _box_with_points(
     bp = ax.boxplot(
         [s.dropna().astype(float).to_numpy() for s in series_list],
         positions=positions,
-        widths=0.28,
+        widths=0.38,
         patch_artist=True,
         showfliers=False,
-        medianprops={"color": "#222222", "linewidth": 1.4},
-        whiskerprops={"color": "#444444", "linewidth": 1.2},
-        capprops={"color": "#444444", "linewidth": 1.2},
+        medianprops={"color": "#222222", "linewidth": 1.6},
+        whiskerprops={"color": "#444444", "linewidth": 1.4},
+        capprops={"color": "#444444", "linewidth": 1.4},
     )
 
     for box, c in zip(bp["boxes"], colors):
@@ -110,7 +111,7 @@ def _box_with_points(
         ax.scatter(
             np.full(clean.size, pos) + jitter,
             clean,
-            s=11,
+            s=18,
             alpha=0.45,
             color=c,
             edgecolors="none",
@@ -123,6 +124,78 @@ def _box_with_points(
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.set_ylabel(ylabel, fontsize=AXIS_LABEL_FONTSIZE)
     ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+
+
+def _combined_distribution_panel(ax: plt.Axes, df: pd.DataFrame) -> tuple[float, float, float, float]:
+    sent = df[df["sentiment_mean"].notna()].copy()
+    ic = df[df["ic_mean"].notna()].copy()
+
+    sent_weird = sent[sent["Group"] == "WEIRD"]["sentiment_mean"]
+    sent_normal = sent[sent["Group"] == "NORMAL"]["sentiment_mean"]
+    ic_weird = ic[ic["Group"] == "WEIRD"]["ic_mean"]
+    ic_normal = ic[ic["Group"] == "NORMAL"]["ic_mean"]
+
+    positions = [0.0, 0.78, 2.0, 2.78]
+    bp = ax.boxplot(
+        [
+            sent_weird.dropna().astype(float).to_numpy(),
+            sent_normal.dropna().astype(float).to_numpy(),
+            ic_weird.dropna().astype(float).to_numpy(),
+            ic_normal.dropna().astype(float).to_numpy(),
+        ],
+        positions=positions,
+        widths=0.38,
+        patch_artist=True,
+        showfliers=False,
+        medianprops={"color": "#222222", "linewidth": 1.6},
+        whiskerprops={"color": "#444444", "linewidth": 1.4},
+        capprops={"color": "#444444", "linewidth": 1.4},
+    )
+
+    for box, color in zip(bp["boxes"], ["#377eb8", "#c26a26", "#377eb8", "#c26a26"]):
+        box.set(facecolor=color, edgecolor="white", alpha=0.9)
+
+    rng = np.random.default_rng(7)
+    for pos, vals, color in zip(positions, [sent_weird, sent_normal, ic_weird, ic_normal], ["#377eb8", "#c26a26", "#377eb8", "#c26a26"]):
+        clean = vals.dropna().astype(float).to_numpy()
+        if clean.size == 0:
+            continue
+        jitter = rng.uniform(-0.07, 0.07, size=clean.size)
+        ax.scatter(np.full(clean.size, pos) + jitter, clean, s=18, alpha=0.45, color=color, edgecolors="none", zorder=3)
+
+    ax.axhline(0.0, color="#333333", linewidth=1.0)
+    ax.set_xticks([0.39, 2.39])
+    ax.set_xticklabels(["Sentiment", "IC"], fontsize=TICK_LABEL_FONTSIZE)
+    ax.text(0.39, -0.08, "WEIRD   Normal", transform=ax.get_xaxis_transform(), ha="center", va="top", fontsize=TICK_LABEL_FONTSIZE - 2)
+    ax.text(2.39, -0.08, "WEIRD   Normal", transform=ax.get_xaxis_transform(), ha="center", va="top", fontsize=TICK_LABEL_FONTSIZE - 2)
+    ax.set_title("Sentiment and IC by Demographic Group", fontsize=SUBPLOT_TITLE_FONTSIZE)
+    ax.set_ylabel("Participant score", fontsize=AXIS_LABEL_FONTSIZE)
+    ax.tick_params(axis="y", labelsize=TICK_LABEL_FONTSIZE)
+
+    sent_group_p = float(welch_test(sent_weird, sent_normal)["p"])
+    sent_neg = sent[sent["sentiment_polarity"] == "negative"]["sentiment_mean"]
+    sent_pos = sent[sent["sentiment_polarity"] == "positive"]["sentiment_mean"]
+    sent_polarity_p = float(welch_test(sent_neg, sent_pos)["p"])
+    ic_group_p = float(welch_test(ic_weird, ic_normal)["p"])
+    ic_ind = ic[ic["ic_mean"] < 0.0]["ic_mean"]
+    ic_col = ic[ic["ic_mean"] > 0.0]["ic_mean"]
+    ic_orientation_p = float(welch_test(ic_ind, ic_col)["p"])
+
+    ax.text(
+        0.02,
+        0.98,
+        (
+            f"Sentiment, WEIRD vs Normal: $p {format_p_text(_adj('sent_group', sent_group_p)).replace(' ', '')}$ ({significance_stars(_adj('sent_group', sent_group_p))})\n"
+            f"IC, WEIRD vs Normal: $p {format_p_text(_adj('ic_group', ic_group_p)).replace(' ', '')}$ ({significance_stars(_adj('ic_group', ic_group_p))})"
+        ),
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        fontsize=STAT_BOX_FONTSIZE,
+        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
+    )
+
+    return sent_group_p, sent_polarity_p, ic_group_p, ic_orientation_p
 
 
 def _regression_panel(
@@ -163,7 +236,7 @@ def _regression_panel(
             ecolor="#377eb8",
             alpha=0.95,
             capsize=3,
-            markersize=6,
+            markersize=7,
             label="WEIRD (bin mean ± sd)",
         )
     if not normal_bins.empty:
@@ -176,8 +249,8 @@ def _regression_panel(
             ecolor="#c26a26",
             alpha=0.95,
             capsize=3,
-            markersize=6,
-            label="non-WEIRD (bin mean ± sd)",
+            markersize=7,
+            label="Normal (bin mean ± sd)",
         )
 
     weird_lr = stats.linregress(weird[x_col], weird["ame_change"]) if len(weird) >= 3 else None
@@ -191,31 +264,28 @@ def _regression_panel(
     if normal_lr is not None:
         x_line_n = np.linspace(float(normal[x_col].min()), float(normal[x_col].max()), 200)
         y_line_n = normal_lr.intercept + normal_lr.slope * x_line_n
-        ax.plot(x_line_n, y_line_n, color="#8f4f1d", linewidth=1.8, linestyle="--", label="non-WEIRD fit")
+        ax.plot(x_line_n, y_line_n, color="#8f4f1d", linewidth=1.8, linestyle="--", label="Normal fit")
 
     ax.axhline(0.0, color="#333333", linewidth=1.0)
     ax.set_title(title, fontsize=SUBPLOT_TITLE_FONTSIZE)
     ax.set_xlabel(x_label, fontsize=AXIS_LABEL_FONTSIZE)
     ax.set_ylabel("Analytical - Emotional change (z)", fontsize=AXIS_LABEL_FONTSIZE)
     ax.tick_params(axis="both", labelsize=TICK_LABEL_FONTSIZE)
-    ax.legend(loc="lower left", fontsize=10)
+    ax.legend(loc="lower left", fontsize=LEGEND_FONTSIZE)
 
-    weird_slope_txt = f"{weird_lr.slope:.3f}" if weird_lr is not None else "NA"
-    weird_p_txt = format_p_text(float(weird_lr.pvalue)) if weird_lr is not None else "NA"
-    weird_sig_txt = significance_stars(float(weird_lr.pvalue)) if weird_lr is not None else "ns"
-    normal_slope_txt = f"{normal_lr.slope:.3f}" if normal_lr is not None else "NA"
-    normal_p_txt = format_p_text(float(normal_lr.pvalue)) if normal_lr is not None else "NA"
-    normal_sig_txt = significance_stars(float(normal_lr.pvalue)) if normal_lr is not None else "ns"
+    weird_adj = _adj(f"{x_col}_weird", float(weird_lr.pvalue)) if weird_lr is not None else np.nan
+    normal_adj = _adj(f"{x_col}_normal", float(normal_lr.pvalue)) if normal_lr is not None else np.nan
+    weird_p_txt = format_p_text(weird_adj).replace(" ", "") if weird_lr is not None else "NA"
+    weird_sig_txt = significance_stars(weird_adj) if weird_lr is not None else "ns"
+    normal_p_txt = format_p_text(normal_adj).replace(" ", "") if normal_lr is not None else "NA"
+    normal_sig_txt = significance_stars(normal_adj) if normal_lr is not None else "ns"
 
     ax.text(
         0.02,
         0.98,
         (
-            f"n={len(use)}\n"
-            f"WEIRD slope={weird_slope_txt}\n"
-            f"WEIRD p {weird_p_txt} ({weird_sig_txt})\n"
-            f"non-WEIRD slope={normal_slope_txt}\n"
-            f"non-WEIRD p {normal_p_txt} ({normal_sig_txt})"
+            f"WEIRD $p {weird_p_txt}$ ({weird_sig_txt})\n"
+            f"Normal $p {normal_p_txt}$ ({normal_sig_txt})"
         ),
         transform=ax.transAxes,
         ha="left",
@@ -235,93 +305,72 @@ def _regression_panel(
     }
 
 
-def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dict[str, float]]:
-    plt.style.use("ggplot")
-    fig, axes = plt.subplots(1, 4, figsize=(26, 7.4), constrained_layout=True)
+# Benjamini-Hochberg adjusted p-values (p_a) for the six tests annotated in this figure; empty means "show raw p".
+P_ADJ: dict[str, float] = {}
 
-    # Panel 1: sentiment score distributions by WEIRD vs non-WEIRD.
+
+def _adj(key: str, raw_p: float) -> float:
+    return P_ADJ.get(key, raw_p)
+
+
+def _bh_adjust(named: dict[str, float]) -> dict[str, float]:
+    keys = list(named)
+    p = np.array([np.inf if np.isnan(named[k]) else named[k] for k in keys], dtype=float)
+    m = len(p)
+    order = np.argsort(p)
+    adjusted = np.minimum.accumulate((p[order] * m / np.arange(1, m + 1))[::-1])[::-1]
+    q = np.empty(m, dtype=float)
+    q[order] = np.minimum(adjusted, 1.0)
+    return {k: (np.nan if np.isinf(p[i]) else float(q[i])) for i, k in enumerate(keys)}
+
+
+def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dict[str, float]]:
+    # First pass draws to a scratch figure only to collect the raw p-values, which are then BH-adjusted together.
+    P_ADJ.clear()
+    scratch = plt.figure()
+    scratch_axes = [scratch.add_subplot(1, 3, i + 1) for i in range(3)]
+    sent_p, _, ic_p, _ = _combined_distribution_panel(scratch_axes[0], df)
+    raw_sent = _regression_panel(scratch_axes[1], df, x_col="sentiment_mean", x_label="", title="")
+    raw_ic = _regression_panel(scratch_axes[2], df, x_col="ic_mean", x_label="", title="")
+    plt.close(scratch)
+    P_ADJ.update(_bh_adjust({
+        "sent_group": sent_p,
+        "ic_group": ic_p,
+        "sentiment_mean_weird": raw_sent["weird_p"],
+        "sentiment_mean_normal": raw_sent["normal_p"],
+        "ic_mean_weird": raw_ic["weird_p"],
+        "ic_mean_normal": raw_ic["normal_p"],
+    }))
+
+    plt.style.use("ggplot")
+    fig, axes = plt.subplots(1, 3, figsize=(24, 7.8), constrained_layout=True, gridspec_kw={"width_ratios": [1.15, 1.0, 1.0]})
+
+    sent_group_p, sent_polarity_p, ic_group_p, ic_orientation_p = _combined_distribution_panel(axes[0], df)
+
     sent = df[df["sentiment_mean"].notna()].copy()
     sent_weird = sent[sent["Group"] == "WEIRD"]["sentiment_mean"]
     sent_normal = sent[sent["Group"] == "NORMAL"]["sentiment_mean"]
 
-    _box_with_points(
-        axes[0],
-        [sent_weird, sent_normal],
-        [0.0, 1.0],
-        ["#377eb8", "#c26a26"],
-        ["WEIRD", "non-WEIRD"],
-        "Sentiment Score by Demographic Group",
-        "Participant mean sentiment",
-    )
-
-    sent_group_p = float(welch_test(sent_weird, sent_normal)["p"])
-    sent_neg = sent[sent["sentiment_polarity"] == "negative"]["sentiment_mean"]
-    sent_pos = sent[sent["sentiment_polarity"] == "positive"]["sentiment_mean"]
-    sent_polarity_p = float(welch_test(sent_neg, sent_pos)["p"])
-    axes[0].text(
-        0.02,
-        0.98,
-        (
-            f"WEIRD vs non-WEIRD: p {format_p_text(sent_group_p)} ({significance_stars(sent_group_p)})\n"
-            f"Negative vs Positive (all): p {format_p_text(sent_polarity_p)} ({significance_stars(sent_polarity_p)})"
-        ),
-        transform=axes[0].transAxes,
-        ha="left",
-        va="top",
-        fontsize=STAT_BOX_FONTSIZE,
-        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
-    )
-
-    # Panel 2: IC score distributions by WEIRD vs non-WEIRD.
     ic = df[df["ic_mean"].notna()].copy()
     ic_weird = ic[ic["Group"] == "WEIRD"]["ic_mean"]
     ic_normal = ic[ic["Group"] == "NORMAL"]["ic_mean"]
 
-    _box_with_points(
-        axes[1],
-        [ic_weird, ic_normal],
-        [0.0, 1.0],
-        ["#377eb8", "#c26a26"],
-        ["WEIRD", "non-WEIRD"],
-        "IC Score by Demographic Group",
-        "Collectivist - Individualistic score",
-    )
-
-    ic_group_p = float(welch_test(ic_weird, ic_normal)["p"])
-    ic_ind = ic[ic["ic_mean"] < 0.0]["ic_mean"]
-    ic_col = ic[ic["ic_mean"] > 0.0]["ic_mean"]
-    ic_orientation_p = float(welch_test(ic_ind, ic_col)["p"])
-    axes[1].text(
-        0.02,
-        0.98,
-        (
-            f"WEIRD vs non-WEIRD: p {format_p_text(ic_group_p)} ({significance_stars(ic_group_p)})\n"
-            f"Individualistic vs Collectivist (all): p {format_p_text(ic_orientation_p)} ({significance_stars(ic_orientation_p)})"
-        ),
-        transform=axes[1].transAxes,
-        ha="left",
-        va="top",
-        fontsize=STAT_BOX_FONTSIZE,
-        bbox={"facecolor": "white", "alpha": 0.88, "edgecolor": "none", "boxstyle": "round,pad=0.3"},
-    )
-
-    # Panels 3 and 4: regressions predicting analytical-emotional change.
     reg_sent = _regression_panel(
-        axes[2],
+        axes[1],
         df,
         x_col="sentiment_mean",
         x_label="Mean sentiment score",
         title="Regression: A-E\nChange ~ Sentiment",
     )
     reg_ic = _regression_panel(
-        axes[3],
+        axes[2],
         df,
         x_col="ic_mean",
         x_label="Collectivity score (IC)",
         title="Regression: A-E\nChange ~ Collectivity",
     )
 
-    fig.suptitle("Qualitative: Distribution Tests and Regression Models", fontsize=26)
+    fig.suptitle("Qualitative: Distribution Tests and Regression Models", fontsize=32)
     fig.savefig(output_path, dpi=250)
     plt.close(fig)
 
@@ -346,7 +395,7 @@ def make_qualitative1_plot(df: pd.DataFrame, output_path: Path) -> dict[str, dic
 def main() -> None:
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
-    raw = pd.read_csv(DATA_PATH)
+    raw = load_legacy_qualitative_frame()
     engine = get_sentiment_engine()
     analysis_df = build_analysis_frame(raw, engine)
     analysis_df = add_ic_orientation(analysis_df)
